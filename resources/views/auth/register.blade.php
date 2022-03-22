@@ -45,6 +45,22 @@
                                 name="password_confirmation" required />
             </div>
 
+            <!-- is_admin -->
+            <div class="mt-4">
+                <x-input id="is_admin" class="block mt-1 w-full"
+                                type="hidden"
+                                name="is_admin"
+                                value=1 required />
+            </div>
+
+            <!-- is_deleted -->
+            <div class="mt-4">
+                <x-input id="is_deleted" class="block mt-1 w-full"
+                                type="hidden"
+                                name="is_deleted"
+                                value=0 required />
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}

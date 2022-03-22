@@ -1,0 +1,358 @@
+/* CSSは基本的にBootstrapを使用
+独自にCSSを設定する場合は、「k-」から始める。 */
+
+label {
+    font-size: 1.0rem;
+    font-weight: 700;
+  }
+
+/* グローバルナビの設定 */
+.k-nav-link {
+  display: block;
+  padding: 0;
+}
+
+.k-gNav-sales {
+  margin-top: 30%;
+  padding-left: 3%;
+  padding-right: 0;
+}
+
+.k-logo-pd {
+  padding: 20% 0 0 0;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.k-side-pd {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.k-pt {
+  padding-top: 25%;
+}
+
+.scrollspy {
+  position: relative;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+/* JSでactiveとなった時は、filterで色変更 */
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  filter: invert(8%) sepia(99%) saturate(7044%) hue-rotate(247deg) brightness(100%) contrast(145%);
+  background-color: inherit;
+}
+
+
+
+/* 実績紹介ページ用CSS */
+.k-card {
+  /* メイン画像の大きさを決める */
+  min-width: 100%;
+  max-height: 100vh;
+  /* 設定した画像より大きい部分はトリミング */
+  overflow: hidden;
+  /* アップした画像は、中央に配置し上下左右をトリミング */
+  background-size: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Bootstorapで指定する画像の丸みを削除 */
+  border-radius: 0;
+}
+
+.k-card-slide {
+  /* メイン画像の大きさを決める */
+  width: 100%;
+  /* アップした画像は、中央に配置し上下左右をトリミング */
+  background-size: contain;
+  border: none;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  /* Bootstorapで指定する画像の丸みを削除 */
+  border-radius: 0;
+}
+
+.k-works-list {
+  /* メイン画像の大きさを決める */
+  width: 250px;
+  height: 250px;
+  /* アップした画像は、中央に配置し上下左右をトリミング */
+  background-size: contain;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Bootstorapで指定する画像の丸みを削除 */
+  border-radius: 0;
+}
+
+.headline {
+  position: absolute;
+  bottom: 150px;
+  left: 50px;
+  color: white;
+  font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+  font-size: 3rem;
+  letter-spacing: 1.5px;
+}
+
+.period {
+  position: absolute;
+  bottom: 90px;
+  left: 50px;
+  color: white;
+  font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+
+.scrolldown1 {
+  /*描画位置※位置は適宜調整してください*/
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  /*全体の高さ*/
+  height: 80px;
+}
+
+/*Scrollテキストの描写*/
+.scrolldown1 span {
+  /*描画位置*/
+  position: absolute;
+  left: -52px;
+  top: -20px;
+  /*テキストの形状*/
+  color: #eee;
+  font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+  width: 300px;
+}
+
+/* 線の描写 */
+.scrolldown1::after {
+  content: "";
+  /*描画位置*/
+  position: absolute;
+  top: -30px;
+  /*線の形状*/
+  width: 1px;
+  height: 50px;
+  background: #eee;
+  /*線の動き1.4秒かけて動く。永遠にループ*/
+  animation: pathmove 1.4s ease-in-out infinite;
+  opacity: 0;
+}
+
+/*高さ・位置・透過が変化して線が上から下に動く*/
+@keyframes pathmove {
+  0% {
+    height: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  30% {
+    height: 50px;
+    opacity: 1;
+  }
+
+  100% {
+    height: 0;
+    top: 80px;
+    opacity: 0;
+  }
+}
+
+.k-detail-headline {
+  /* margin-bottom: 5px; */
+  font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+  font-size: 2.0rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.k-detail-content {
+  font-family: a-otf-ryumin-pr6n, serif;
+  font-size: 1.0rem;
+  letter-spacing: .5px;
+  line-height: 2;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+table th {
+  border-right: 3px solid #000;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 12px 15px 12px 0;
+  width: 25%;
+  text-align: left;
+  font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+  font-size: 1.0rem;
+  font-weight: bold;
+}
+
+table td {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 12px 0 12px 30px;
+  font-family: a-otf-ryumin-pr6n, serif;
+  font-size: 1.0rem;
+  line-height: 2;
+}
+
+.k-carousel-caption {
+  position: relative;
+  left: 0;
+  padding-top: 5%;
+  align-items: center;
+  color: #000;
+}
+
+.works-list{
+  text-align: center;
+}
+
+@media (max-width: 768px){
+  body{
+      overflow:hidden;
+  }
+  #sidebarMenu{
+      z-index:100;
+      position:fixed;
+  }
+}
+
+@media (max-width: 576px){
+  .headline {
+    position: absolute;
+    bottom: 70px;
+    left: 20px;
+    color: white;
+    font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+  }
+
+  .period {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    color: white;
+    font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+    font-size: 1.0rem;
+    letter-spacing: 1px;
+  }
+
+
+  .scrolldown1 {
+    /*描画位置※位置は適宜調整してください*/
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    /*全体の高さ*/
+    height: 20px;
+  }
+
+  /*Scrollテキストの描写*/
+  .scrolldown1 span {
+    /*描画位置*/
+    position: absolute;
+    left: -40px;
+    top: -15px;
+    /*テキストの形状*/
+    color: #eee;
+    font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    width: 300px;
+  }
+
+  /* 線の描写 */
+  .scrolldown1::after {
+    content: "";
+    /*描画位置*/
+    position: absolute;
+    top: -30px;
+    /*線の形状*/
+    width: 1px;
+    height: 50px;
+    background: #eee;
+    /*線の動き1.4秒かけて動く。永遠にループ*/
+    animation: pathmove 1.4s ease-in-out infinite;
+    opacity: 0;
+  }
+
+  /*高さ・位置・透過が変化して線が上から下に動く*/
+  @keyframes pathmove {
+    0% {
+      height: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    30% {
+      height: 20px;
+      opacity: 1;
+    }
+
+    100% {
+      height: 0;
+      top: 40px;
+      opacity: 0;
+    }
+  }
+
+  .k-detail-headline {
+    font-size: 1.2rem;
+    margin: 10% 5% 5% 5%;
+
+  }
+
+  .k-detail-content {
+    font-size: 0.9rem;
+    letter-spacing: .3px;
+    line-height: 2;
+    margin: 5%;
+
+  }
+
+  table {
+    width: 90%;
+    margin: 10% 5%;
+  }
+
+  table th {
+    border-right: 2px solid #000;
+    padding: 8px 10px 8px 0;
+    width: 25%;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  table td {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 8px 0 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .carousel-item img {
+    width: 80%;
+  }
+
+
+
+}

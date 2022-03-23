@@ -24,7 +24,12 @@ class DetailController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+        $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
+
+        $param = ['types' => $types, 'tags' => $tags];
+
+        return view('admin.create', $param);
     }
 
     /**
@@ -35,7 +40,23 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $detail = new Detail();
+        $detail->user_id = auth()->user()->id;
+        $detail->headline = $request->headline;
+        $detail->period = $request->period;
+        $detail->request = $request->request;
+        $detail->lead = $request->lead;
+        $detail->location = $request->location;
+        $detail->type1 = $request->type1;
+        $detail->type2 = $request->type2;
+        $detail->type3 = $request->type3;
+        $detail->content_tag1 = $request->content_tag1;
+        $detail->content_tag2 = $request->content_tag2;
+        $detail->content_tag3 = $request->content_tag3;
+        $detail->save();
+
+        return redirect()->route('admin.create')->with('message', '投稿を作成しました');
+
     }
 
     /**

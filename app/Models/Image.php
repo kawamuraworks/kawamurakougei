@@ -16,4 +16,9 @@ class Image extends Model
     public function works_list() {
         return $this->belongsTo(WorksList::class);
     }
+
+    protected $fillable = [
+        'detail_id ', 'pass', 'img_content'
+    ];
+
 }

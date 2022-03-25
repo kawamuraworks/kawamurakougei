@@ -2,7 +2,7 @@
 
     <h3 class="ms-5 py-3">新規実績登録</h3>
     @if (session('message'))
-        {{ session('message') }}
+       <span class="ms-5"> {{ session('message') }}</span>
     @endif
     <form method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data" class="needs-validation"
         novalidate>
@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="col-sm-12 pt-3">
-                    <label for="request" class="form-label">お客様要望</label>
-                    <input type="text" class="form-control" id="request" name="request" placeholder="15字以下推奨" required>
+                    <label for="cs_request" class="form-label">お客様要望</label>
+                    <input type="text" class="form-control" id="cs_request" name="cs_request" placeholder="15字以下推奨" required>
                     <div class="invalid-feedback">
                         お客様要望を入力してください
                     </div>
@@ -58,7 +58,7 @@
                         <select class="form-select d-block w-100" id="type1" name="type1" required>
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
@@ -72,7 +72,7 @@
                         <select class="form-select d-block w-100" id="type2" name="type2">
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -83,7 +83,7 @@
                         <select class="form-select d-block w-100" id="type3" name="type3">
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -95,7 +95,7 @@
                         <select class="form-select d-block w-100" id="content_tag1" name="content_tag1" required>
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
@@ -109,7 +109,7 @@
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -120,7 +120,7 @@
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -134,8 +134,8 @@
                 <div id="image_0" class="col-sm-12">
                     <label for="image0" class="form-label">画像・説明文登録</label>
                     <p class="mb-1">1枚目</p>
-                    <input type="file" class="form-control" id="image_0" placeholder="画像を登録してください" value="" required>
-                    <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="" required>
+                    <input type="file" class="form-control" id="image0" placeholder="画像を登録してください" name="image0" required>
+                    <input type="text" class="form-control mt-2" id="image0" placeholder="20文字以下推奨" value="image0" required>
                     <div class="invalid-feedback">
                         画像・説明文を登録してください
                     </div>

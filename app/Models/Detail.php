@@ -18,7 +18,7 @@ class Detail extends Model
     }
 
     protected $fillable = [
-        'user_id', 'headline', 'period', 'request', 'lead', 'location',
+        'user_id', 'headline', 'period', 'cs_request', 'lead', 'location',
         'type1', 'type2', 'type3', 'content_tag1', 'content_tag2', 'content_tag3'
     ];
 }

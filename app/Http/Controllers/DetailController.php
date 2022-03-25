@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detail;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class DetailController extends Controller
@@ -40,23 +41,24 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
+        // detailsテーブル
         $detail = new Detail();
-        $detail->user_id = auth()->user()->id;
-        $detail->headline = $request->headline;
-        $detail->period = $request->period;
-        $detail->request = $request->request;
-        $detail->lead = $request->lead;
-        $detail->location = $request->location;
-        $detail->type1 = $request->type1;
-        $detail->type2 = $request->type2;
-        $detail->type3 = $request->type3;
-        $detail->content_tag1 = $request->content_tag1;
-        $detail->content_tag2 = $request->content_tag2;
-        $detail->content_tag3 = $request->content_tag3;
+        $detail->fill($request->all());
+        $detail->fill(['user_id' => auth()->user()->id]);
+        unset($detail['_token']);
         $detail->save();
 
-        return redirect()->route('admin.create')->with('message', '投稿を作成しました');
+        // imagesテーブル
+        $works_img = new Image();
+        $i=0;
+        $name = request()->file('image'.$i)->getClientOriginalName();
+        request()->file('image'.$i)->move('storage/images'.$i, $name);
+        $works_img->image = $name;
+        $works_img->save();
+        $i++;
 
+
+        return redirect()->route('admin.create')->with('message', '投稿を作成しました');
     }
 
     /**

@@ -1,19 +1,20 @@
 // 無効なフィールドがある場合にフォーム送信を無効にするスターターJavaScriptの例
-(function() {
-  'use strict';
+(function () {
+    'use strict'
 
   // Bootstrapカスタム検証スタイルを適用してすべてのフォームを取得
-  var forms = document.querySelectorAll('needs-validation');
+  var forms = document.querySelectorAll('.needs-validation')
 
   // ループして帰順を防ぐ
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
         }
-        form.classList.add('was-validated');
+
+        form.classList.add('was-validated')
       }, false)
     })
 })()

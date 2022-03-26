@@ -136,5 +136,14 @@ return [
     ],
     'attributes' => [
         'password' => 'パスワード',
+        'headline' => '見出し',
+        'period' => '施工期間',
+        'cs_request' => 'お客様要望',
+        'lead' => 'リード文',
+        'location' => '所在地',
+        'type1' => '用途1',
+        'content_tag1' => '工事内容1',
+        'image0' => 'ファイル',
+        'img_content' => '画像説明文',
     ],
 ];

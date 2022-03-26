@@ -18,7 +18,7 @@ class Image extends Model
     }
 
     protected $fillable = [
-        'detail_id ', 'pass', 'img_content'
+        'detail_id ', 'path', 'img_content'
     ];
 
 }

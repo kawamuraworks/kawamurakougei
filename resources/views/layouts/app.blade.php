@@ -25,7 +25,7 @@
 <body>
     {{-- @include('layouts.navigation') --}}
     <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none">
-        <a class="navbar-brand col-sm-3  me-0 px-sm-3 py-sm-3" href="#">河村工芸</a>
+        <a class="navbar-brand col-sm-3 me-0 px-sm-3 py-sm-3" href="#">河村工芸</a>
         <button class="navbar-toggler position-right d-lg-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
         <div class="row">
             <!-- グローバルナビ　開始 -->
             <nav id="sidebarMenu"
-                class="navbar navbar-light col-lg-2 d-lg-block bg-light flex-column align-items-stretch p-3">
+                class="collapse navbar navbar-light col-lg-2 d-lg-block bg-light flex-column align-items-stretch p-3">
 
                 <!-- ロゴ配置　開始 -->
                 <div class="container d-none d-lg-block">
@@ -157,12 +157,11 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/kawamurakougei.js.js"></script>
-
+    </script> --}}
+    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('/js/kawamurakougei.js.js') }}"></script> --}}
 </body>
 
 </html>

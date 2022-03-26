@@ -41,6 +41,23 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
+        $inputs = $request->validate([
+            // detailsテーブル
+            'headline' => 'required|max:255',
+            'period' => 'required|max:255',
+            'cs_request' => 'required|max:255',
+            'lead' => 'required',
+            'location' => 'required|max:255',
+            'type1' => 'required',
+            'content_tag1' => 'required',
+
+            // imagesテーブル
+            'img_content' => 'required|max:255',
+
+            // works_listsテーブル
+            'image0' => 'image|max:1024'
+        ]);
+
         // detailsテーブル
         $detail = new Detail();
         $detail->fill($request->all());
@@ -49,12 +66,27 @@ class DetailController extends Controller
         $detail->save();
 
         // imagesテーブル
+        $i=1;
         $works_img = new Image();
-        $i=0;
-        $name = request()->file('image'.$i)->getClientOriginalName();
-        request()->file('image'.$i)->move('storage/images'.$i, $name);
-        $works_img->image = $name;
+        $works_img->detail_id = $detail->id;
+        $works_img->img_content = $request->img_content;
+
+        // 画像名を設定する。
+        $original = request()->file('image0')->getClientOriginalName();
+        $img_kind =  explode(".",$original);
+        $works_img_name = 'works_' . $detail->id .'_'. $i . '.' . end($img_kind);
+
+        request()->file('image0')->move('storage/work_'. $detail->id, $works_img_name);
+        $works_img->path = 'storage/work_'. $detail->id;
+
         $works_img->save();
+
+        // $i=0;
+        // $original = request()->file('image'.$i)->getClientOriginalName();
+        // $name = date('Ymd_His').'_'.$original;
+        // request()->file('image'.$i)->move('storage/images'.$i, $name);
+        // $works_img->image = $name;
+        // $works_img->save();
         $i++;
 
 

@@ -1,9 +1,10 @@
 <x-app-layout>
 
     <h3 class="ms-5 py-3">新規実績登録</h3>
-    @if (session('message'))
-       <span class="ms-5"> {{ session('message') }}</span>
-    @endif
+
+    <x-validation-errors class="mx-5 mb-4 px-4 py-3 alert-danger rounded" :errors="$errors" />
+    <x-message :message="session('message')" />
+
     <form method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data" class="needs-validation"
         novalidate>
         @csrf
@@ -13,7 +14,7 @@
             <div class="col-md-7 pe-5 k-side-pd">
                 <div class="col-sm-12">
                     <label for="headline" class="form-label">見出し</label>
-                    <input type="text" class="form-control" id="headline" name="headline" placeholder="12字以下推奨" required>
+                    <input type="text" class="form-control" id="headline" name="headline" value="{{old('headline')}}" placeholder="12字以下推奨" required>
                     <div class="invalid-feedback">
                         見出しを入力してください
                     </div>
@@ -21,7 +22,7 @@
 
                 <div class="col-sm-12 pt-3">
                     <label for="period" class="form-label">施工期間</label>
-                    <input type="text" class="form-control" id="period" name="period" placeholder="〇年〇ヶ月　又は　〇週間" required>
+                    <input type="text" class="form-control" id="period" name="period" value="{{old('period')}}" placeholder="〇年〇ヶ月　又は　〇週間" required>
                     <div class="invalid-feedback">
                         施工期間を入力してください
                     </div>
@@ -29,7 +30,7 @@
 
                 <div class="col-sm-12 pt-3">
                     <label for="cs_request" class="form-label">お客様要望</label>
-                    <input type="text" class="form-control" id="cs_request" name="cs_request" placeholder="15字以下推奨" required>
+                    <input type="text" class="form-control" id="cs_request" name="cs_request" value="{{old('cs_request')}}" placeholder="15字以下推奨" required>
                     <div class="invalid-feedback">
                         お客様要望を入力してください
                     </div>
@@ -37,7 +38,7 @@
 
                 <div class="col-sm-12 pt-3">
                     <label for="lead" class="form-label">リード文</label>
-                    <textarea rows="5" cols="60" class="form-control" id="lead" name="lead" placeholder="ここに記入してください" required></textarea>
+                    <textarea rows="5" cols="60" class="form-control" id="lead" name="lead" value="{{old('lead')}}" placeholder="ここに記入してください" required></textarea>
                     <div class="invalid-feedback">
                         リード文を入力してください
                     </div>
@@ -45,7 +46,7 @@
 
                 <div class="col-sm-12 pt-3">
                     <label for="location" class="form-label">所在地</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="〇〇県△△市" required>
+                    <input type="text" class="form-control" id="location" name="location" value="{{old('location')}}" placeholder="〇〇県△△市" required>
                     <div class="invalid-feedback">
                         所在地を入力してください
                     </div>
@@ -135,7 +136,7 @@
                     <label for="image0" class="form-label">画像・説明文登録</label>
                     <p class="mb-1">1枚目</p>
                     <input type="file" class="form-control" id="image0" placeholder="画像を登録してください" name="image0" required>
-                    <input type="text" class="form-control mt-2" id="image0" placeholder="20文字以下推奨" value="image0" required>
+                    <input type="text" class="form-control mt-2" id="image0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content" required>
                     <div class="invalid-feedback">
                         画像・説明文を登録してください
                     </div>

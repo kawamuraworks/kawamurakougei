@@ -12,4 +12,8 @@ class WorksList extends Model
     public function image() {
         return $this->belongsTo(Image::class);
     }
+
+    protected $fillable = [
+        'image_id', 'priority', 'is_detail_deleted'
+    ];
 }

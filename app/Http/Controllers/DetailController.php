@@ -55,7 +55,7 @@ class DetailController extends Controller
             'img_content' => 'required|max:255',
 
             // works_listsテーブル
-            'image0' => 'image|max:1024'
+            'image_0' => 'image|max:1024', // ←【注意】〇枚目を上手く表示されるために0から始める。1から始めると別途修正が必要
         ]);
 
         // detailsテーブル
@@ -65,21 +65,49 @@ class DetailController extends Controller
         unset($detail['_token']);
         $detail->save();
 
-        // imagesテーブル
-        $i=1;
+        // 【メイン登録のみ】imagesテーブル
         $works_img = new Image();
         $works_img->detail_id = $detail->id;
+
+        // 登録する画像名の設定
+        $original = $request->file('image_0')->getClientOriginalName();
+        $img_kind =  explode(".", $original);
+        $works_img_name = 'works_' . $detail->id . '_' . 0 . '.' . end($img_kind);
+
+        // 画像をpublicへ移動して保存・pathをDBに登録
+        $request->file('image_0')->move('storage/work_' . $detail->id, $works_img_name);
+        $works_img->path = 'storage/work_' . $detail->id;
+
+        // 画像説明文をDBに登録
+        $works_img->img_content = $request->img_content;
+        $works_img->save();
+
+
+
+
+        /*
+        【メイン登録のみ】imagesテーブル
+        $i= 1;
+        $works_img = new Image();
+        $works_img->detail_id = $detail->id;
+
+        登録する画像名の設定
+        $original = $request->file('image_0')->getClientOriginalName();
+        $img_kind =  explode(".", $original);
+        $works_img_name = 'works_' . $detail->id . '_' . 0 . '.' . end($img_kind);
+
+        画像をpublicへ移動して保存・pathをDBに登録
+        $request->file('image_0')->move('storage/work_' . $detail->id, $works_img_name);
+        $works_img->path = 'storage/work_' . $detail->id;
+
+        画像説明文をDBに登録
         $works_img->img_content = $request->img_content;
 
-        // 画像名を設定する。
-        $original = request()->file('image0')->getClientOriginalName();
-        $img_kind =  explode(".",$original);
-        $works_img_name = 'works_' . $detail->id .'_'. $i . '.' . end($img_kind);
-
-        request()->file('image0')->move('storage/work_'. $detail->id, $works_img_name);
-        $works_img->path = 'storage/work_'. $detail->id;
-
         $works_img->save();
+        */
+
+
+
 
         // $i=0;
         // $original = request()->file('image'.$i)->getClientOriginalName();
@@ -87,7 +115,6 @@ class DetailController extends Controller
         // request()->file('image'.$i)->move('storage/images'.$i, $name);
         // $works_img->image = $name;
         // $works_img->save();
-        $i++;
 
 
         return redirect()->route('admin.create')->with('message', '投稿を作成しました');

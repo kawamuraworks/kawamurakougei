@@ -132,17 +132,16 @@
 
             <!-- 画像テーブル用（右） -->
             <div class="col-md-5">
-                <div id="image_0" class="col-sm-12">
-                    <label for="image0" class="form-label">画像・説明文登録</label>
+                <div id="images" class="col-sm-12">
+                    <label for="image_0" class="form-label">画像・説明文登録</label>
                     <p class="mb-1">1枚目</p>
-                    <input type="file" class="form-control" id="image0" placeholder="画像を登録してください" name="image0" required>
-                    <input type="text" class="form-control mt-2" id="image0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content" required>
+                    <input type="file" class="form-control" id="image_0" placeholder="画像を登録してください" name="image_0" required>
+                    <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content" required>
                     <div class="invalid-feedback">
                         画像・説明文を登録してください
                     </div>
                 </div>
 
-                <div id="images" class="col-sm-12"></div>
 
                 <div class="col-md-4 mt-3">
                     <input class="btn btn-primary" type="button" value="追加" onclick="addImage()" />

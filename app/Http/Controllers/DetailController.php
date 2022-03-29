@@ -52,42 +52,78 @@ class DetailController extends Controller
             'content_tag1' => 'required',
 
             // imagesテーブル
-            'img_content' => 'required|max:255',
+            'img_content_' => 'required|max:255',
 
             // works_listsテーブル
             'image_0' => 'image|max:1024', // ←【注意】〇枚目を上手く表示されるために0から始める。1から始めると別途修正が必要
         ]);
 
-        // detailsテーブル
+        // 【detailsテーブル】
         $detail = new Detail();
         $detail->fill($request->all());
         $detail->fill(['user_id' => auth()->user()->id]);
         unset($detail['_token']);
         $detail->save();
 
-        // 【メイン登録のみ】imagesテーブル
-        $works_img = new Image();
-        $works_img->detail_id = $detail->id;
+
+        // $tt[] = '';
+        for($i=0; $i<count($request->file('image_')); $i++) {
+            $tt[$i]['image'] =$request->file('image_')[$i];
+            $tt[$i]['content'] = $request->img_content_[$i];
+
+            $temp_img =$request->file('image_')[$i];
+            $temp_content = $request->img_content_[$i];
+            // $i++;
+        }
+        dd($tt);
+
+        // 【imagesテーブル】
+        // 画像と説明文を多次元配列として保存
+        $img_all[] = $request->file('image_');
+        $img_all[] = $request->img_content_;
+
+        $count = count($request->file('image_'));
+        for ($i = 0; $i < $count; $i++) {
+            $works_img = new Image();
+            $works_img->detail_id = $detail->id;
+
+            // 多次元配列を分解して画像名を作成
+            $input = array_column($img_all, $i);
+            $original = $input[0]->getClientOriginalName();
+            $img_kind =  explode(".", $original);
+            $works_img_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
+
+            // 作成した画像名でpublicフォルダに移動
+            $input[0]->move('storage/work_' . $detail->id, $works_img_name);
+            $works_img->path = 'storage/work_' . $detail->id;
+
+            $works_img->img_content = $input[1];
+
+            $works_img->save();
+        }
 
         // 登録する画像名の設定
-        $original = $request->file('image_0')->getClientOriginalName();
-        $img_kind =  explode(".", $original);
-        $works_img_name = 'works_' . $detail->id . '_' . 0 . '.' . end($img_kind);
+        // foreach($request->file('image_') as $k =>$v) {
+        //     $original = $v->getClientOriginalName();
+        //     $img_kind =  explode(".", $original);
+        //     $works_img_name = 'works_' . $detail->id . '_' . $k . '.' . end($img_kind);
 
-        // 画像をpublicへ移動して保存・pathをDBに登録
-        $request->file('image_0')->move('storage/work_' . $detail->id, $works_img_name);
-        $works_img->path = 'storage/work_' . $detail->id;
-
+        //     画像をpublicへ移動して保存・pathをDBに登録
+        //     $v->move('storage/work_' . $detail->id, $works_img_name);
+        //     $works_img->path = 'storage/work_' . $detail->id;
+        //     dd($works_img->path);
+        // }
         // 画像説明文をDBに登録
-        $works_img->img_content = $request->img_content;
-        $works_img->save();
+        // foreach($request->img_content_ as $v) {
+        //     $works_img->img_content = $v;
+        // }
+        // $works_img->save();
 
 
 
 
         /*
         【メイン登録のみ】imagesテーブル
-        $i= 1;
         $works_img = new Image();
         $works_img->detail_id = $detail->id;
 

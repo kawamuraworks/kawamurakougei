@@ -135,8 +135,8 @@
                 <div id="images" class="col-sm-12">
                     <label for="image_0" class="form-label">画像・説明文登録</label>
                     <p class="mb-1">1枚目</p>
-                    <input type="file" class="form-control" id="image_0" placeholder="画像を登録してください" name="image_0" required>
-                    <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content" required>
+                    <input type="file" class="form-control" id="image_0" placeholder="画像を登録してください" name="image_[]" required>
+                    <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content_[]" required>
                     <div class="invalid-feedback">
                         画像・説明文を登録してください
                     </div>

@@ -38,14 +38,14 @@ function addImage() {
   input_image.type = 'file';
   input_image.className = 'form-control';
   input_image.id = 'image_' + i;
-  input_image.name = 'image_' + i;
+  input_image.name = 'image_[]';
   input_image.placeholder = '画像を登録してください';
 
   let input_data = document.createElement('input');
   input_data.type = 'text';
   input_data.className = 'form-control mt-2';
   input_data.id = 'img_content_' + i;
-  input_data.name = 'img_content img_content_' + i;
+  input_data.name = 'img_content_[]';
   input_data.placeholder = '20文字以下推奨';
 
 

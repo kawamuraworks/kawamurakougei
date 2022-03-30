@@ -26,9 +26,9 @@
 let i = 1;
 
 function addImage() {
-  let div = document.createElement('div');
-  div.id = 'image_' + i;
-  div.className = 'pt-4';
+  let div1 = document.createElement('div');
+  div1.id = 'image_' + i;
+  div1.className = 'pt-4';
 
   let image_p = document.createElement('p');
   image_p.className = 'mb-1';
@@ -40,6 +40,7 @@ function addImage() {
   input_image.id = 'image_' + i;
   input_image.name = 'image_[]';
   input_image.placeholder = '画像を登録してください';
+  input_image.required = true;
 
   let input_data = document.createElement('input');
   input_data.type = 'text';
@@ -47,15 +48,21 @@ function addImage() {
   input_data.id = 'img_content_' + i;
   input_data.name = 'img_content_[]';
   input_data.placeholder = '20文字以下推奨';
+  input_data.required = true;
+
+  let span = document.createElement('span');
+  span.className = 'invalid-feedback';
+  span.textContent = '画像・説明文を登録してください';
 
 
   let parent = document.getElementById('images');
-  parent.appendChild(div);
+  parent.appendChild(div1);
 
   let parent2 = document.getElementById('image_' + i);
   parent2.appendChild(image_p);
   parent2.appendChild(input_image);
   parent2.appendChild(input_data);
+  parent2.appendChild(span);
 
   i++;
 

@@ -171,7 +171,7 @@ label {
   }
 }
 
-.k-detail-headline {
+.cs_request {
   /* margin-bottom: 5px; */
   font-family: futura-pt, a-otf-ud-shin-go-pr6n, sans-serif;
   font-size: 2.0rem;
@@ -179,7 +179,7 @@ label {
   letter-spacing: 1.5px;
 }
 
-.k-detail-content {
+.lead {
   font-family: a-otf-ryumin-pr6n, serif;
   font-size: 1.0rem;
   letter-spacing: .5px;

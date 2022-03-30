@@ -38,7 +38,7 @@
 
                 <div class="col-sm-12 pt-3">
                     <label for="lead" class="form-label">リード文</label>
-                    <textarea rows="5" cols="60" class="form-control" id="lead" name="lead" value="{{old('lead')}}" placeholder="ここに記入してください" required></textarea>
+                    <textarea rows="5" cols="60" class="form-control" id="lead" name="lead" placeholder="ここに記入してください" required>{{old('lead')}}</textarea>
                     <div class="invalid-feedback">
                         リード文を入力してください
                     </div>
@@ -137,9 +137,7 @@
                     <p class="mb-1">1枚目</p>
                     <input type="file" class="form-control" id="image_0" placeholder="画像を登録してください" name="image_[]" required>
                     <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content_[]" required>
-                    <div class="invalid-feedback">
-                        画像・説明文を登録してください
-                    </div>
+                    <span class="invalid-feedback">画像・説明文を登録してください</span>
                 </div>
 
 

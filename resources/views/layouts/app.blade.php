@@ -25,7 +25,7 @@
 <body>
     {{-- @include('layouts.navigation') --}}
     <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none">
-        <a class="navbar-brand col-sm-3 me-0 px-sm-3 py-sm-3" href="#">河村工芸</a>
+        <a class="navbar-brand col-sm-3 me-0 px-sm-3 py-sm-3" href="/">河村工芸</a>
         <button class="navbar-toggler position-right d-lg-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -43,7 +43,7 @@
                 <div class="container d-none d-lg-block">
                     <div class="row justify-content-center k-pt">
                         <div class="col-12 k-logo-pd">
-                            <h1><a class="navbar-brand" href="#"><img src="/images/btn_gNav-00.png"
+                            <h1><a class="navbar-brand" href="/"><img src="/images/btn_gNav-00.png"
                                         class="img-fluid" alt="リフォームはプロの壁屋さん兵庫・神戸の河村工芸へ"></a>
                             </h1>
                         </div>
@@ -59,7 +59,7 @@
                             <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-2 pt-lg-5">
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="index.html#item-1"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" @if(url('/')==true) href="#item-1" @else href="./#item-1" @endif><img
                                             src="/images/btn_gNav01_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav01_on.png'"
                                             onmouseout="this.src='/images/btn_gNav01_off.png'"></a>
@@ -68,7 +68,7 @@
                                 <!-- 実績ページは常にナビボタンをonにする。画像の切り替えは必要ない。 -->
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="./works.html"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="/admin/"><img
                                             src="/images/btn_gNav02_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav02_on.png'"
                                             onmouseout="this.src='/images/btn_gNav02_off.png'"></a>
@@ -77,7 +77,7 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="index.html#item-3"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-3"><img
                                             src="/images/btn_gNav03_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav03_on.png'"
                                             onmouseout="this.src='/images/btn_gNav03_off.png'"></a>
@@ -85,7 +85,7 @@
 
                                 <div div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="index.html#item-4"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-4"><img
                                             src="/images/btn_gNav04_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav04_on.png'"
                                             onmouseout="this.src='/images/btn_gNav04_off.png'"></a>
@@ -93,7 +93,7 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="index.html#item-5"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-5"><img
                                             src="/images/btn_gNav05_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav05_on.png'"
                                             onmouseout="this.src='/images/btn_gNav05_off.png'"></a>
@@ -135,14 +135,33 @@
                     <div class="row col-md-12 mx-5">
                         <p style="margin-bottom: 0">©2022 kawamura Kougei All Rights Reserved</p>
                         <hr style="margin-bottom: 0">
-                        <a href="{{ route('login') }}" class="col-2 btn btn-light" style="margin-top: 0">ログイン</a>
+                        {{-- <a href="{{ route('login') }}" class="col-2 btn btn-light" style="margin-top: 0">ログイン</a>
+
                         <form method="POST" action="{{ route('logout') }}" style="padding-left: 0">
                             @csrf
                             <x-dropdown-link :href="route('logout')" class="col-2 btn btn-light" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
-                        </form>
+                        </form> --}}
+
+                        @if (Route::has('login'))
+                            <div class="row col-md-12">
+                                @auth
+                                    <a href="{{ url('/admin/create') }}" class="col-sm-12 col-lg-2 btn btn-light my-2">新規実績登録</a>
+                                    <a href="{{ route('register') }}" class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">管理者登録</a>
+                                    <form method="POST" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
+                                        @csrf
+                                        <x-dropdown-link :href="route('logout')" class="btn btn-light ms-lg-2" onclick="event.preventDefault();
+                                                                    this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                @else
+                                    <a href="{{ route('login') }}" class="col-2 btn btn-light my-2">ログイン</a>
+                                @endauth
+                            </div>
+                        @endif
 
                     </div>
                 </div>
@@ -157,9 +176,6 @@
     </div>
 
 
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script> --}}
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/js/kawamurakougei.js.js') }}"></script>
 </body>

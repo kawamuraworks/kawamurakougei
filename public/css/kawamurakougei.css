@@ -315,13 +315,13 @@ table td {
     }
   }
 
-  .k-detail-headline {
+  .cs_request {
     font-size: 1.2rem;
     margin: 10% 5% 5% 5%;
 
   }
 
-  .k-detail-content {
+  .lead {
     font-size: 0.9rem;
     letter-spacing: .3px;
     line-height: 2;

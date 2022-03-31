@@ -15,10 +15,17 @@ use App\Http\Controllers\DetailController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::resource('admin', DetailController::class);
+// Route::resource('admin', DetailController::class);
+Route::get('admin', [DetailController::class, 'index'])->name('admin.index');
+Route::get('admin/create', [DetailController::class, 'create'])->name('admin.create');
+Route::post('admin', [DetailController::class, 'store'])->name('admin.store');
+Route::get('admin/{admin}', [DetailController::class, 'show'])->name('admin.show');
+Route::get('admin/{admin}/edit', [DetailController::class, 'edit'])->name('admin.edit');
+Route::patch('admin/{admin}', [DetailController::class, 'update'])->name('admin.update');
+Route::delete('admin/{admin}', [DetailController::class, 'destroy'])->name('admin.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

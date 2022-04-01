@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('works_lists', function (Blueprint $table) {
-            $table->unique(['priority']);
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('detail_id')->constrained('details');
+            $table->text('path');
+            $table->string('img_content');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('works_lists', function (Blueprint $table) {
-            $table->dropUnique(['priority']);
-        });
+        Schema::dropIfExists('images');
     }
 };

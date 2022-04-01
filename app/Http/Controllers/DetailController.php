@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Detail;
 use App\Models\Image;
-use App\Models\WorksList;
 use Illuminate\Http\Request;
 
 class DetailController extends Controller
@@ -16,10 +15,13 @@ class DetailController extends Controller
      */
     public function index()
     {
-        $detail = Detail::all();
-        $image = Image::where('detail_id', 1)->get();
+        $detail = Detail::where('priority',1)->first();
+        $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+        $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
 
-        return view('admin.index', compact('detail', 'image'));
+        $image = Image::where('detail_id',$detail->id)->get();
+
+        return view('admin.index', compact('detail', 'types', 'tags', 'image'));
     }
 
     /**
@@ -64,7 +66,12 @@ class DetailController extends Controller
         $detail = new Detail();
         $detail->fill(['user_id' => auth()->user()->id]);
         $detail->fill($request->all());
+        $detail->is_detail_deleted = 1;
         unset($detail['_token']);
+        $detail->save();
+
+        // priorityは重複させない。$detail->idを使用するため2回に分けて保存
+        $detail->priority = $detail->id;
         $detail->save();
 
         // 島田さんアイデア
@@ -97,12 +104,12 @@ class DetailController extends Controller
             $works_img->save();
         }
 
-        // 【works_listsテーブル】
-        $list = new WorksList();
-        $list->image_id = $works_img->id - $count + 1;
-        $list->priority = $detail->id;
-        $list->is_detail_deleted = 1;
-        $list->save();
+        // 【works_listsテーブル】テーブル削除
+        // $list = new WorksList();
+        // $list->image_id = $works_img->id - $count + 1;
+        // $list->priority = $detail->id;
+        // $list->is_detail_deleted = 1;
+        // $list->save();
 
 
         // 【imagesテーブル】

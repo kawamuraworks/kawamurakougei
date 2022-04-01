@@ -1,48 +1,122 @@
 <x-app-layout>
     <div class="card col-lg-10 k-card">
-        <img src="{{ asset($image[0]->path . '/works_1_0.jpg') }}" class="card-img"
-            alt="{{ $detail[0]->headline }}">
+        <img src="{{ asset($image[0]->path . '/works_' . $detail->id . '_0.jpg') }}" class="card-img"
+            alt="{{ $detail->headline }}">
         <div class="card-img-overlay">
-            <h1 class="headline">{{ $detail[0]->headline }}</h1>
-            <p class="period">施工期間：{{ $detail[0]->period }}</p>
+            <h1 class="headline">{{ $detail->headline }}</h1>
+            <p class="period">施工期間：{{ $detail->period }}</p>
             <div class="scrolldown1"><span>Scroll Down</span></div>
         </div>
     </div>
 
     <div class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 10%;">
-        <h2 class="cs_request pb-lg-4">{{ $detail[0]->cs_request }}</h2>
-        <p class="lead">{{ $detail[0]->lead }}</p>
+        <h2 class="cs_request pb-lg-4">{{ $detail->cs_request }}</h2>
+        <p class="lead">{!! nl2br(e($detail->lead)) !!}</p>
     </div>
 
     <div class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 5%;">
         <table>
             <tr>
                 <th>所　在　地</th>
-                <td>{{ $detail[0]->location }}</td>
+                <td>{{ $detail->location }}</td>
             </tr>
 
             <tr>
                 <th>用　　　途</th>
-                <td>{{ $detail[0]->type1 }} @if (isset($detail[0]->type2))
-                        / {{ $detail[0]->type2 }}
-                        @endif @if (isset($detail[0]->type3))
-                            / {{ $detail[0]->type3 }}
+                <td>{{ $detail->type1 }} @if (isset($detail->type2))
+                        / {{ $detail->type2 }}
+                        @endif @if (isset($detail->type3))
+                            / {{ $detail->type3 }}
                         @endif
                 </td>
             </tr>
             <tr>
 
                 <th>工 事 内 容</th>
-                <td>{{ $detail[0]->content_tag1 }} @if (isset($detail[0]->content_tag2))
-                        / {{ $detail[0]->content_tag2 }}
-                        @endif @if (isset($detail[0]->content_tag3))
-                            / {{ $detail[0]->content_tag3 }}
+                <td>{{ $detail->content_tag1 }} @if (isset($detail->content_tag2))
+                        / {{ $detail->content_tag2 }}
+                        @endif @if (isset($detail->content_tag3))
+                            / {{ $detail->content_tag3 }}
                         @endif
                 </td>
             </tr>
         </table>
     </div>
 
+    <!-- スライドショー -->
+    <div class="card col-sm-2 col-lg-10 bg-light k-card-slide" style="margin-top: 10%; align-items: center;">
+        @for ($i = 0; $i < count($image); $i++)
+            <div id="carouselExampleFade" class="carousel  carousel-dark slide carousel-fade pt-5"
+                data-bs-ride="carousel">
+
+                <!-- ページ切り替えバー -->
+
+                <div class="carousel-indicators">
+                    @if ($i = 0)
+                        <button type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide-to="{{ $i }}" class="active"
+                            aria-label="`スライド {{ $i + 1 }}`" aria-current="true"></button>
+                    @else
+                        <button type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide-to="{{ $i }}" aria-label="`スライド {{ $i + 1 }}`"
+                            class=""></button>
+                    @endif
+                </div>
+
+
+                <!-- スライドショーに表示されるコンテンツ -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="./common/works/works-0001-1.jpg" alt="第1スライド" class="d-block"
+                            width="calc(100% * 0.9)" height="auto" style="margin: 0 auto;">
+                        <div class="carousel-caption d-block k-carousel-caption">
+                            <p class="lead">1番目のスライドの代表的なプレースホルダコンテンツ。</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="./common/works/works-0001-2.jpg" alt="第2スライド" class="d-block"
+                            width="calc(100% * 0.9)" height="auto" style="margin: 0 auto;">
+                        <div class="carousel-caption d-block k-carousel-caption">
+                            <p class="lead">2番目のスライドの代表的なプレースホルダコンテンツ。</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="./common/works/works-0001-3.jpg" alt="第2スライド" class="d-block"
+                            width="calc(100% * 0.9)" height="auto" style="margin: 0 auto;">
+                        <div class="carousel-caption d-block k-carousel-caption">
+                            <p class="lead">3番目のスライドの代表的なプレースホルダコンテンツ。</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="./common/works/works-0001-4.jpg" alt="第4スライド" class="d-block"
+                            width="calc(100% * 0.9)" height="auto" style="margin: 0 auto;">
+                        <div class="carousel-caption d-block k-carousel-caption">
+                            <p class="lead">4番目のスライドの代表的なプレースホルダコンテンツ。</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="./common/works/works-0001-5.jpg" alt="第5スライド" class="d-block"
+                            width="calc(100% * 0.9)" height="auto" style="margin: 0 auto;">
+                        <div class="carousel-caption d-block k-carousel-caption">
+                            <p class="lead">5番目のスライドの代表的なプレースホルダコンテンツ。</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ↑スライドショーに表示されるコンテンツここまで -->
+            </div>
+        @endfor
+    </div>
+
+
+
+
+
+
+    {{-- ↓最終削除
     <!-- スライドショー -->
     <div class="card col-sm-2 col-lg-10 bg-light k-card-slide" style="margin-top: 10%; align-items: center;">
         <div id="carouselExampleFade" class="carousel  carousel-dark slide carousel-fade pt-5" data-bs-ride="carousel">
@@ -123,6 +197,8 @@
         </div>
     </div>
     <!-- ↑スライドショーここまで -->
+    ↑最終削除 --}}
+
     <div class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 5%;">
         <h3 class="cs_request pb-lg-2">実績一覧</h3>
     </div>

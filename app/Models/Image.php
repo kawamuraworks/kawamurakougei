@@ -13,10 +13,6 @@ class Image extends Model
         return $this->belongsTo(Detail::class);
     }
 
-    public function works_list() {
-        return $this->belongsTo(WorksList::class);
-    }
-
     protected $fillable = [
         'detail_id ', 'path', 'img_content'
     ];

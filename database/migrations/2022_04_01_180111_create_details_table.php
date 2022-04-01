@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('headline');
             $table->string('period');
-            $table->string('request');
+            $table->string('cs_request');
             $table->text('lead');
             $table->string('location');
             $table->integer('type1');
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('content_tag1');
             $table->integer('content_tag2')->nullable();
             $table->integer('content_tag3')->nullable();
+            $table->integer('priority')->unique()->nullable();
+            $table->integer('is_detail_deleted');
             $table->timestamps();
         });
     }

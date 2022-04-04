@@ -20,8 +20,9 @@ class DetailController extends Controller
         $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
 
         $image = Image::where('detail_id',$detail->id)->get();
+        $count = count($image);
 
-        return view('admin.index', compact('detail', 'types', 'tags', 'image'));
+        return view('admin.index', compact('detail', 'types', 'tags', 'image', 'count'));
     }
 
     /**

@@ -19,10 +19,27 @@ class DetailController extends Controller
         $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
         $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
 
-        $image = Image::where('detail_id',$detail->id)->get();
-        $count = count($image);
+        $images = Image::where('detail_id',$detail->id)->get();
 
-        return view('admin.index', compact('detail', 'types', 'tags', 'image', 'count'));
+        $sort = 'priority';
+        $lists = Detail::orderBy($sort, 'asc')->get();
+
+        return view('admin.index', compact('detail', 'types', 'tags', 'images', 'sort', 'lists'));
+    }
+
+    public function priority(Request $request)
+    {
+        $result = $request->priority;
+        $detail = Detail::where('priority',$result)->first();
+        $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+        $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
+
+        $images = Image::where('detail_id',$detail->id)->get();
+
+        $sort = 'priority';
+        $lists = Detail::orderBy($sort, 'asc')->get();
+
+        return view('admin.index', compact('detail', 'types', 'tags', 'images', 'sort', 'lists'));
     }
 
     /**

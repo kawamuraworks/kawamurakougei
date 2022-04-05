@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 // Route::resource('admin', DetailController::class);
 Route::get('admin', [DetailController::class, 'index'])->name('admin.index');
+Route::get('admin/{priority?}', [DetailController::class, 'priority'])->name('admin.index');
 Route::get('admin/create', [DetailController::class, 'create'])->name('admin.create');
 Route::post('admin', [DetailController::class, 'store'])->name('admin.store');
 Route::get('admin/{admin}', [DetailController::class, 'show'])->name('admin.show');

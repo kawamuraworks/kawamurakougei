@@ -19,10 +19,14 @@ Route::get('/', function () {
 });
 
 // Route::resource('admin', DetailController::class);
-Route::get('admin', [DetailController::class, 'index'])->name('admin.index');
-Route::get('admin/{priority?}', [DetailController::class, 'priority'])->name('admin.index');
+Route::get('work', [DetailController::class, 'index'])->name('work.index');
+Route::get('work/{priority?}', [DetailController::class, 'priority'])->name('work.index');
+
 Route::get('admin/create', [DetailController::class, 'create'])->name('admin.create');
 Route::post('admin', [DetailController::class, 'store'])->name('admin.store');
+
+Route::get('admin/select', [DetailController::class, 'select'])->name('admin.select');
+
 Route::get('admin/{admin}', [DetailController::class, 'show'])->name('admin.show');
 Route::get('admin/{admin}/edit', [DetailController::class, 'edit'])->name('admin.edit');
 Route::patch('admin/{admin}', [DetailController::class, 'update'])->name('admin.update');

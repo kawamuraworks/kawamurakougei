@@ -213,6 +213,11 @@ table td {
   line-height: 2;
 }
 
+.k-slick-slide {
+    width: auto;
+    height: 450px;
+}
+
 .k-carousel-caption {
   position: relative;
   left: 0;
@@ -229,10 +234,16 @@ table td {
   body{
       overflow:hidden;
   }
+
   #sidebarMenu{
       z-index:100;
-      position:fixed;
+      position:relative;
   }
+
+  .k-slick-slide {
+    width: auto;
+    height: auto;
+}
 }
 
 @media (max-width: 576px){

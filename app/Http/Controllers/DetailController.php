@@ -24,7 +24,7 @@ class DetailController extends Controller
         $sort = 'priority';
         $lists = Detail::orderBy($sort, 'asc')->get();
 
-        return view('admin.index', compact('detail', 'types', 'tags', 'images', 'sort', 'lists'));
+        return view('work.index', compact('detail', 'types', 'tags', 'images', 'sort', 'lists'));
     }
 
     public function priority(Request $request)
@@ -39,7 +39,15 @@ class DetailController extends Controller
         $sort = 'priority';
         $lists = Detail::orderBy($sort, 'asc')->get();
 
-        return view('admin.index', compact('detail', 'types', 'tags', 'images', 'sort', 'lists'));
+        return view('work.index', compact('detail', 'types', 'tags', 'images', 'sort', 'lists'));
+    }
+
+    public function select()
+    {
+        $sort = 'priority';
+        $lists = Detail::orderBy($sort, 'asc')->get();
+
+        return view('admin.select', compact('sort', 'lists'));
     }
 
     /**
@@ -92,14 +100,6 @@ class DetailController extends Controller
         $detail->priority = $detail->id;
         $detail->save();
 
-        // 島田さんアイデア
-        // $tt[] = '';
-        // for($i=0; $i<count($request->file('image_')); $i++) {
-        //     $tt[$i]['image'] =$request->file('image_')[$i];
-        //     $tt[$i]['content'] = $request->img_content_[$i];
-        //     $i++;
-        // }
-
         // 【imagesテーブル】
         $count = count($request->file('image_'));
         for ($i = 0; $i < $count; $i++) {
@@ -122,39 +122,6 @@ class DetailController extends Controller
             $works_img->save();
         }
 
-        // 【works_listsテーブル】テーブル削除
-        // $list = new WorksList();
-        // $list->image_id = $works_img->id - $count + 1;
-        // $list->priority = $detail->id;
-        // $list->is_detail_deleted = 1;
-        // $list->save();
-
-
-        // 【imagesテーブル】
-        // 【複雑過ぎ】画像と説明文を多次元配列として保存
-        // $img_all[] = $request->file('image_');
-        // $img_all[] = $request->img_content_;
-
-        // $count = count($request->file('image_'));
-        // for ($i = 0; $i < $count; $i++) {
-        //     $works_img = new Image();
-        //     $works_img->detail_id = $detail->id;
-
-        //     多次元配列を分解して画像名を作成
-        //     $input = array_column($img_all, $i);
-        //     $original = $input[0]->getClientOriginalName();
-        //     $img_kind =  explode(".", $original);
-        //     $works_img_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
-
-        //     作成した画像名でpublicフォルダに移動
-        //     $input[0]->move('storage/work_' . $detail->id, $works_img_name);
-        //     $works_img->path = 'storage/work_' . $detail->id;
-
-        //     $works_img->img_content = $input[1];
-
-        //     $works_img->save();
-        // }
-
         return redirect()->route('admin.create')->with('message', '投稿を作成しました');
     }
 
@@ -164,9 +131,9 @@ class DetailController extends Controller
      * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Detail $detail)
+    public function show(Detail $lists)
     {
-        //
+        // return view('admin.show', compact('lists'));
     }
 
     /**

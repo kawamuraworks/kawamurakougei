@@ -25,65 +25,54 @@
             <tr>
                 <th>用　　　途</th>
                 <td>
-                    @foreach($types as $k =>$v)
-                        @if($k == $detail->type1)
-                        {{$v}}
-                        @continue
-                        @endif
-
-                        @if(isset($detail->type2) && $k == $detail->type2)
-                        / {{$v}}
-                        @continue
-                        @endif
-
-                        @if(isset($detail->type3) && $k == $detail->type3)
-                        / {{$v}}
-                        @continue
+                    @foreach ($types as $k => $v)
+                        @if ($k == $detail->type1)
+                            {{ $v }}
                         @endif
                     @endforeach
-                </td>
-            </tr>
 
+                    @if (isset($detail->type2))
+                        @foreach ($types as $k => $v)
+                            @if ($k == $detail->type2)
+                                / {{ $v }}
+                            @endif
+                        @endforeach
+                    @endif
 
-            <tr>
-                <th>用　　　途</th>
-                <td>{{ $detail->type1 }} @if (isset($detail->type2))
-                        / {{ $detail->type2 }}
-                        @endif @if (isset($detail->type3))
-                            / {{ $detail->type3 }}
-                        @endif
+                    @if (isset($detail->type3))
+                        @foreach ($types as $k => $v)
+                            @if ($k == $detail->type3)
+                                / {{ $v }}
+                            @endif
+                        @endforeach
+                    @endif
                 </td>
             </tr>
 
             <tr>
                 <th>工 事 内 容</th>
                 <td>
-                    @foreach($tags as $k =>$v)
-                        @if($k == $detail->content_tag3)
-                        {{$k . $v}}
-                        @continue
-                        @endif
-
-                        @if($k == $detail->content_tag2)
-                        / {{$k . $v}}
-                        @continue
-                        @endif
-
-                        @if($k == $detail->content_tag1)
-                        / {{$k . $v}}
+                    @foreach ($tags as $k => $v)
+                        @if ($k == $detail->content_tag1)
+                            {{ $v }}
                         @endif
                     @endforeach
-                </td>
-            </tr>
 
-            <tr>
-                <th>工 事 内 容</th>
-                <td>{{ $detail->content_tag1 }}
-                     @if (isset($detail->content_tag2))
-                        / {{ $detail->content_tag2 }}<-ここでforeach?
-                        @endif @if (isset($detail->content_tag3))
-                            / {{ $detail->content_tag3 }}
-                        @endif
+                    @if (isset($detail->content_tag2))
+                        @foreach ($tags as $k => $v)
+                            @if ($k == $detail->content_tag2)
+                                / {{ $v }}
+                            @endif
+                        @endforeach
+                    @endif
+
+                    @if (isset($detail->content_tag3))
+                        @foreach ($tags as $k => $v)
+                            @if ($k == $detail->content_tag3)
+                                / {{ $v }}
+                            @endif
+                        @endforeach
+                    @endif
                 </td>
             </tr>
         </table>
@@ -113,8 +102,8 @@
                     @if ($k == 0)
                         <div class="carousel-item active" data-bs-interval="5000">
                             <img src="{{ asset($images[$k]->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
-                                alt="{{ $images[$k]->img_content }}" class="d-block" width="calc(100% * 0.9)"
-                                height="auto" style="margin: 0 auto;">
+                                alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
+                                style="margin: 0 auto;">
                             <div class="carousel-caption d-block k-carousel-caption">
                                 <p class="k-detail-content">{{ $images[$k]->img_content }}</p>
                             </div>
@@ -123,8 +112,8 @@
                     @endif
                     <div class="carousel-item" data-bs-interval="5000">
                         <img src="{{ asset($images[$k]->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
-                            alt="{{ $images[$k]->img_content }}" class="d-block" width="calc(100% * 0.9)"
-                            height="auto" style="margin: 0 auto;">
+                            alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
+                            style="margin: 0 auto;">
                         <div class="carousel-caption d-block k-carousel-caption">
                             <p class="k-detail-content">{{ $images[$k]->img_content }}</p>
                         </div>
@@ -145,7 +134,7 @@
         @foreach ($lists as $k => $v)
             <div class="col-sm-6 col-lg-3 themed-grid-col md-sm-2 pt-lg-2">
                 <figure class="works-list">
-                    <a class="nav-link k-nav-link" aria-current="page" href="index?priority={{ $lists[$k]->id }}">
+                    <a class="nav-link k-nav-link" aria-current="page" href="/work/index?priority={{ $lists[$k]->id }}">
                         <img src="{{ asset('storage/work_' . $lists[$k]->id . '/works_' . $lists[$k]->id . '_0.jpg') }}"
                             class="img-fluid" alt="">
                     </a>

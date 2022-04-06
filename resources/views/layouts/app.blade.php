@@ -68,7 +68,7 @@
                                 <!-- 実績ページは常にナビボタンをonにする。画像の切り替えは必要ない。 -->
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="/admin/"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="/work"><img
                                             src="/images/btn_gNav02_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav02_on.png'"
                                             onmouseout="this.src='/images/btn_gNav02_off.png'"></a>
@@ -77,7 +77,7 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-3"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="#item-3"><img
                                             src="/images/btn_gNav03_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav03_on.png'"
                                             onmouseout="this.src='/images/btn_gNav03_off.png'"></a>
@@ -132,23 +132,15 @@
                     tabindex="0">
                     {{ $slot }}
 
-                    <div class="row col-md-12 mx-5">
+                    <div class="row col-md-12 ms-5">
                         <p style="margin-bottom: 0">©2022 kawamura Kougei All Rights Reserved</p>
                         <hr style="margin-bottom: 0">
-                        {{-- <a href="{{ route('login') }}" class="col-2 btn btn-light" style="margin-top: 0">ログイン</a>
-
-                        <form method="POST" action="{{ route('logout') }}" style="padding-left: 0">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')" class="col-2 btn btn-light" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form> --}}
 
                         @if (Route::has('login'))
                             <div class="row col-md-12">
                                 @auth
                                     <a href="{{ url('/admin/create') }}" class="col-sm-12 col-lg-2 btn btn-light my-2">新規実績登録</a>
+                                    <a href="{{ url('/admin/select') }}" class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">実績変更選択</a>
                                     <a href="{{ route('register') }}" class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">管理者登録</a>
                                     <form method="POST" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
                                         @csrf

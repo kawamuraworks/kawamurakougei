@@ -45,9 +45,9 @@ class DetailController extends Controller
     public function select()
     {
         $sort = 'priority';
-        $lists = Detail::orderBy($sort, 'asc')->get();
+        $detail = Detail::orderBy($sort, 'asc')->get();
 
-        return view('admin.select', compact('sort', 'lists'));
+        return view('admin.select', compact('sort', 'detail'));
     }
 
     /**
@@ -131,9 +131,9 @@ class DetailController extends Controller
      * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Detail $lists)
+    public function show(Detail $detail)
     {
-        // return view('admin.show', compact('lists'));
+        //
     }
 
     /**
@@ -142,9 +142,16 @@ class DetailController extends Controller
      * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Detail $detail)
+    public function edit($admin, Detail $detail, Image $images)
     {
-        //
+        $detail = Detail::where('id', $admin)->first();
+        $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+        $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
+        $display = ['表示', '非表示'];
+
+        $images = Image::where('detail_id', $admin)->get();
+
+        return view('admin.edit', compact('detail', 'types', 'tags', 'display', 'images'));
     }
 
     /**

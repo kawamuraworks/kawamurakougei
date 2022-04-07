@@ -134,7 +134,7 @@
         @foreach ($lists as $k => $v)
             <div class="col-sm-6 col-lg-3 themed-grid-col md-sm-2 pt-lg-2">
                 <figure class="works-list">
-                    <a class="nav-link k-nav-link" aria-current="page" href="/work/index?priority={{ $lists[$k]->id }}">
+                    <a class="nav-link k-nav-link" aria-current="page" href="/work/index?priority={{ $lists[$k]->priority }}">
                         <img src="{{ asset('storage/work_' . $lists[$k]->id . '/works_' . $lists[$k]->id . '_0.jpg') }}"
                             class="img-fluid" alt="">
                     </a>

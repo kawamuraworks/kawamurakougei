@@ -5,14 +5,14 @@
     </div>
 
     <div class="row row-cols-2 row-cols-lg-4 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-5" padding-left:0>
-        @foreach ($lists as $k => $v)
+        @foreach ($detail as $k => $v)
             <div class="col-sm-6 col-lg-3 themed-grid-col pt-lg-2 ps-0">
                 <figure class="works-list">
-                    <a class="nav-link k-nav-link" aria-current="page" href="/work/index?priority={{ $lists[$k]->id }}">
-                        <img src="{{ asset('storage/work_' . $lists[$k]->id . '/works_' . $lists[$k]->id . '_0.jpg') }}"
+                    <a class="nav-link k-nav-link" aria-current="page" href="{{route('admin.edit', $detail[$k])}}">
+                        <img src="{{ asset('storage/work_' . $detail[$k]->id . '/works_' . $detail[$k]->id . '_0.jpg') }}"
                             class="img-fluid" alt="">
                     </a>
-                    <figcaption class="lead">{{ $lists[$k]->headline }}</figcaption>
+                    <figcaption class="lead">{{ $detail[$k]->headline }}</figcaption>
                 </figure>
             </div>
         @endforeach

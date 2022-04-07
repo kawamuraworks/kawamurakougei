@@ -69,7 +69,7 @@
 
                     <div class="col-md-4">
                         <label for="type2" class="form-label">用途2 <span
-                                class="text-muted">(該当時のみ選択)</span></label>
+                                class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type2" name="type2">
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
@@ -80,7 +80,7 @@
 
                     <div class="col-md-4">
                         <label for="type3" class="form-label">用途3 <span
-                                class="text-muted">(該当時のみ選択)</span></label>
+                                class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type3" name="type3">
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
@@ -105,8 +105,8 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="content_tag2" class="form-label">用途2 <span
-                                class="text-muted">(該当時のみ選択)</span></label>
+                        <label for="content_tag2" class="form-label">工事内容2 <span
+                                class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
@@ -116,8 +116,8 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="content_tag3" class="form-label">用途3 <span
-                                class="text-muted">(該当時のみ選択)</span></label>
+                        <label for="content_tag3" class="form-label">工事内容3 <span
+                                class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)

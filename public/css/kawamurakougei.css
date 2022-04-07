@@ -230,6 +230,11 @@ table td {
   text-align: center;
 }
 
+/* editで使用 */
+.k-cheack-img {
+    height: 150px;
+}
+
 @media (max-width: 768px){
   body{
       overflow:hidden;
@@ -242,8 +247,8 @@ table td {
 
   .k-slick-slide {
     width: auto;
-    height: auto;
-}
+    height: 375px;
+    }
 }
 
 @media (max-width: 576px){
@@ -360,10 +365,8 @@ table td {
     font-size: 0.9rem;
   }
 
-  .carousel-item img {
-    width: 80%;
+  .k-slick-slide {
+    height: 225px;
   }
-
-
 
 }

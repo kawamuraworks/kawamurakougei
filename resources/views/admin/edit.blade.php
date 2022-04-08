@@ -1,13 +1,14 @@
 <x-app-layout>
 
-    <h3 class="ms-5 py-3">実績編集</h3>
+    <h3 class="ms-5 py-3">実績変更</h3>
 
     <x-validation-errors class="mx-5 mb-4 px-4 py-3 alert-danger rounded" :errors="$errors" />
     <x-message :message="session('message')" />
 
-    <form method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data" class="needs-validation"
-        novalidate>
+    <form method="post" action="{{ route('admin.update', $detail) }}" enctype="multipart/form-data"
+        class="needs-validation" novalidate>
         @csrf
+        @method('patch')
 
         <!-- 実績詳細テーブル用（左） -->
         <div class="row mx-5">
@@ -17,10 +18,12 @@
                     <p class="form-label fw-bold text-danger text-center">枠内に誤りがないか確認してください</p>
                     <div class="col-md-6">
                         <label for="is_detail_deleted" class="form-label">表示切替</label>
-                        <select class="form-select d-block w-100" id="is_detail_deleted" name="is_detail_deleted" required>
+                        <select class="form-select d-block w-100" id="is_detail_deleted" name="is_detail_deleted"
+                            required>
                             @foreach ($display as $k => $v)
                                 @if ($k == $detail->is_detail_deleted)
-                                    <option value="{{ old('is_detail_deleted', $detail->is_detail_deleted) }}" selected>
+                                    <option value="{{ old('is_detail_deleted', $detail->is_detail_deleted) }}"
+                                        selected>
                                         {{ $v }}
                                     </option>
                                     @continue
@@ -32,11 +35,14 @@
 
                     <div class="row col-md-6">
                         <label for="priority" class="form-label">表示順</label>
-                        <div class="col-md-5">
+                        <div class="col-sm-4">
                             <input type="text" class="form-control" id="priority" name="priority"
-                            value="{{ old('priority', $detail->priority) }}">
+                                value="{{ old('priority', $detail->priority) }}" required>
+                            <div class="invalid-feedback">
+                                表示順を入力してください
+                            </div>
                         </div>
-                        <div class="col-md-7 ps-0 pt-1">番目</div>
+                        <div class="col-sm-8 ps-0 pt-1">番目</div>
                     </div>
                 </div>
 
@@ -232,14 +238,16 @@
             <!-- 画像テーブル用（右） -->
             <div class="col-md-5">
                 <div id="images" class="col-sm-12">
-                    <label for="image_0" class="form-label">変更する画像を新たに登録してください</label>
+                    <label for="image_0" class="form-label text-danger">※変更する画像のみ再登録をしてください</label>
                     @foreach ($images as $k => $v)
-                        <p class="mb-1">{{$k+1}}枚目</p>
+                        <p class="mb-1">{{ $k + 1 }}枚目</p>
                         <img src="{{ asset($images[$k]->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
                             class="mb-2 k-cheack-img" alt="">
-                        <input type="file" class="form-control" id="image_0" placeholder="変更する画像を登録してください" name="image_[]">
+                        <input type="file" class="form-control" id="image_0" placeholder="変更する画像を登録してください"
+                            name="image_[]">
                         <input type="text" class="form-control mt-2 mb-4" id="image_0" placeholder="20文字以下推奨"
-                            value="{{ old('img_content', $images[$k]->img_content) }}" name="img_content_[]" required>
+                            value="{{ old('img_content', $images[$k]->img_content) }}" name="img_content_[]"
+                            required>
                         <span class="invalid-feedback">画像・説明文を登録してください</span>
                     @endforeach
                 </div>
@@ -255,7 +263,7 @@
         </div>
 
         <div class="row col-md-12 mx-5">
-            <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">登録する</button>
+            <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">変更する</button>
             <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="#">キャンセル</a>
         </div>
     </form>

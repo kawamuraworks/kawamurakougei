@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Detail;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+
 
 class DetailController extends Controller
 {
@@ -71,7 +74,7 @@ class DetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Detail $detail, Image $image)
     {
         $inputs = $request->validate([
             // detailsテーブル
@@ -89,7 +92,6 @@ class DetailController extends Controller
         ]);
 
         // 【detailsテーブル】
-        $detail = new Detail();
         $detail->fill(['user_id' => auth()->user()->id]);
         $detail->fill($request->all());
         $detail->is_detail_deleted = 1;
@@ -103,23 +105,22 @@ class DetailController extends Controller
         // 【imagesテーブル】
         $count = count($request->file('image_'));
         for ($i = 0; $i < $count; $i++) {
-            $works_img = new Image();
-            $works_img->detail_id = $detail->id;
+            $image->detail_id = $detail->id;
 
             // 登録する画像名の作成
             $input = $request->file('image_')[$i];
             $original = $input->getClientOriginalName();
             $img_kind =  explode(".", $original);
-            $works_img_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
+            $image_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
 
             // storageに保存ファイルの作成・画像の登録
-            $input->move('storage/work_' . $detail->id, $works_img_name);
-            $works_img->path = 'storage/work_' . $detail->id;
+            $input->move('storage/work_' . $detail->id, $image_name);
+            $image->path = 'storage/work_' . $detail->id;
 
             // 説明文の保存
-            $works_img->img_content = $request->img_content_[$i];
+            $image->img_content = $request->img_content_[$i];
 
-            $works_img->save();
+            $image->save();
         }
 
         return redirect()->route('admin.create')->with('message', '投稿を作成しました');
@@ -163,7 +164,79 @@ class DetailController extends Controller
      */
     public function update(Request $request, Detail $detail)
     {
-        //
+        $inputs = $request->validate([
+            // detailsテーブル
+            'id' => Rule::unique('details')->ignore(Auth::id()),
+            'headline' => 'required|max:255',
+            'period' => 'required|max:255',
+            'cs_request' => 'required|max:255',
+            'lead' => 'required',
+            'location' => 'required|max:255',
+            'type1' => 'required',
+            'content_tag1' => 'required',
+            'priority' => ['required','numeric',Rule::unique('details')->ignore($request->priority, 'priority')],
+
+            // imagesテーブル
+            'img_content_' => 'required|max:255',
+            'image_[]' => 'image|max:1024', // ←【注意】〇枚目を上手く表示されるために0から始める。1から始めると別途修正が必要
+        ]);
+
+
+        // 【detailsテーブル】
+        $item = Detail::where('priority', $request->priority)->first();// 【備忘録】->first()でitemのデータを取り出さないとエラーになる。
+        $detail->id = $item->id;
+        $detail->fill(['user_id' => auth()->user()->id]);
+        $detail->fill($request->all());
+        unset($detail['_token']);
+        unset($detail['is_detail_deleted']);
+        unset($detail['priority']);
+        $detail->priority = $request->priority;
+        $detail->is_detail_deleted = $request->is_detail_deleted;
+
+
+        $detail->save();
+
+        // $sort = 'priority';
+        // $has_priority = Detail::orderBy($sort, 'asc')->get();
+        // $count = count($has_priority);
+
+        // for($i=1; $i<=$count; $i++) {
+        //     if($has_priority < $request->priority) {
+        //         $has_priority[$i] = $has_priority[$i];
+        //     } elseif($has_priority == $request->priority) {
+        //         $has_priority[$i] = $request->priority;
+        //     } else {
+        //         $has_priority[$i] = $has_priority[$i+1];
+        //     }
+        //     $has_priority->;
+        // }
+
+
+
+
+        // // 【imagesテーブル】
+        // $count = count($request->file('image_'));
+        // for ($i = 0; $i < $count; $i++) {
+        //     $works_img = new Image();
+        //     $works_img->detail_id = $detail->id;
+
+        //     // 登録する画像名の作成
+        //     $input = $request->file('image_')[$i];
+        //     $original = $input->getClientOriginalName();
+        //     $img_kind =  explode(".", $original);
+        //     $works_img_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
+
+        //     // storageに保存ファイルの作成・画像の登録
+        //     $input->move('storage/work_' . $detail->id, $works_img_name);
+        //     $works_img->path = 'storage/work_' . $detail->id;
+
+        //     // 説明文の保存
+        //     $works_img->img_content = $request->img_content_[$i];
+
+        //     $works_img->save();
+        // }
+
+        return redirect()->route('admin/select')->with('message', '内容を変更しました');
     }
 
     /**

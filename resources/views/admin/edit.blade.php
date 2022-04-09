@@ -10,6 +10,9 @@
         @csrf
         @method('patch')
 
+        <input type="hidden" name="id" value="{{ $detail->id }}">
+        <input type="hidden" name="user_id" value="{{ $detail->user_id }}">
+
         <!-- 実績詳細テーブル用（左） -->
         <div class="row mx-5">
             <div class="col-md-7 pe-5 k-side-pd">
@@ -37,7 +40,7 @@
                         <label for="priority" class="form-label">表示順</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="priority" name="priority"
-                                value="{{ old('priority', $detail->priority) }}" required>
+                                value="{{ old('priority', $detail->priority) }}" >
                             <div class="invalid-feedback">
                                 表示順を入力してください
                             </div>

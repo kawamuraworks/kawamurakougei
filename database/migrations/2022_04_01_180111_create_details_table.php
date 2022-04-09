@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('content_tag1');
             $table->integer('content_tag2')->nullable();
             $table->integer('content_tag3')->nullable();
-            $table->integer('priority')->unique()->nullable();
+            $table->integer('priority')->nullable();
             $table->integer('is_detail_deleted');
             $table->timestamps();
         });

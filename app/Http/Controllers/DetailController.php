@@ -164,9 +164,9 @@ class DetailController extends Controller
      */
     public function update(Request $request, Detail $detail)
     {
+        $detail = Detail::where('id', $request->id)->first();// 【備忘録】->first()で$detailのデータを取り出さないとエラーになる。
         $inputs = $request->validate([
             // detailsテーブル
-            'id' => Rule::unique('details')->ignore(Auth::id()),
             'headline' => 'required|max:255',
             'period' => 'required|max:255',
             'cs_request' => 'required|max:255',
@@ -174,41 +174,63 @@ class DetailController extends Controller
             'location' => 'required|max:255',
             'type1' => 'required',
             'content_tag1' => 'required',
-            'priority' => ['required','numeric',Rule::unique('details')->ignore($request->priority, 'priority')],
+            'priority' => 'required|integer',
 
             // imagesテーブル
             'img_content_' => 'required|max:255',
             'image_[]' => 'image|max:1024', // ←【注意】〇枚目を上手く表示されるために0から始める。1から始めると別途修正が必要
         ]);
 
-
         // 【detailsテーブル】
-        $item = Detail::where('priority', $request->priority)->first();// 【備忘録】->first()でitemのデータを取り出さないとエラーになる。
-        $detail->id = $item->id;
-        $detail->fill(['user_id' => auth()->user()->id]);
         $detail->fill($request->all());
         unset($detail['_token']);
-        unset($detail['is_detail_deleted']);
         unset($detail['priority']);
-        $detail->priority = $request->priority;
-        $detail->is_detail_deleted = $request->is_detail_deleted;
+        $detail->update();
 
+        $sort = 'priority';
+        $has_priority = Detail::orderBy($sort, 'asc')->get();
+        $count = count($has_priority);
 
-        $detail->save();
-
-        // $sort = 'priority';
-        // $has_priority = Detail::orderBy($sort, 'asc')->get();
-        // $count = count($has_priority);
+        for($i=0; $i<$count; $i++) {
+            if($has_priority[$i]->priority < $request->priority) {
+                $has_priority[$i] = Detail::where('priority', $i)->first();
+                unset($has_priority[$i]['_token']);
+                $has_priority[$i]->update();
+            } elseif($has_priority[$i]->priority == $request->priority) {
+                $has_priority[$i] = Detail::where('priority', $i)->first();
+                unset($has_priority[$i]['_token']);
+                $has_priority[$i] = $has_priority->priority+1;
+                $has_priority[$i]->update();
+            } elseif($has_priority[$i]->priority > $request->priority) {
+                $has_priority[$i] = Detail::where('priority', $i)->first();
+                unset($has_priority[$i]['_token']);
+                $has_priority[$i] = $has_priority->priority+1;
+                $has_priority[$i]->update();
+            } elseif(!isset($has_priority[$i]->priority)) {
+                $has_priority[$i] = Detail::where('priority', $i)->first();
+                unset($has_priority[$i]['_token']);
+                $has_priority[$i] = $has_priority->priority;
+                $has_priority[$i]->update();
+            }
+        }
 
         // for($i=1; $i<=$count; $i++) {
-        //     if($has_priority < $request->priority) {
-        //         $has_priority[$i] = $has_priority[$i];
-        //     } elseif($has_priority == $request->priority) {
-        //         $has_priority[$i] = $request->priority;
-        //     } else {
-        //         $has_priority[$i] = $has_priority[$i+1];
+        //     if($detail[$i]->priority == $inputs['priority']) {
+        //         $detail = $detail->where('priority', $i)->increment('priority');
         //     }
-        //     $has_priority->;
+        // }
+
+
+        // for($i=0; $i<$count; $i++) {
+        //     $detail = Detail::where('id', $i)->select('id', 'priority');
+        //     if($detail->priority < $request->priority) {
+        //         $detail = $detail->priority;
+        //     } elseif($detail->priority == $request->priority) {
+        //         $detail = $request->priority;
+        //     } else {
+        //         $has_priority = $has_priority[$i+1];
+        //     }
+        //     $has_priority->update();
         // }
 
 
@@ -236,7 +258,9 @@ class DetailController extends Controller
         //     $works_img->save();
         // }
 
-        return redirect()->route('admin/select')->with('message', '内容を変更しました');
+
+
+        return redirect()->route('admin.select')->with('message', '内容を変更しました');
     }
 
     /**

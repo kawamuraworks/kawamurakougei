@@ -132,15 +132,18 @@
 
     <div class="row row-cols-2 row-cols-lg-4 mx-2 px-2 mx-md-4 px-md-3 pb-5">
         @foreach ($lists as $k => $v)
-            <div class="col-sm-6 col-lg-3 themed-grid-col md-sm-2 pt-lg-2">
-                <figure class="works-list">
-                    <a class="nav-link k-nav-link" aria-current="page" href="/work/index?priority={{ $lists[$k]->priority }}">
-                        <img src="{{ asset('storage/work_' . $lists[$k]->id . '/works_' . $lists[$k]->id . '_0.jpg') }}"
-                            class="img-fluid" alt="">
-                    </a>
-                    <figcaption class="lead">{{ $lists[$k]->headline }}</figcaption>
-                </figure>
-            </div>
+            @if ($v->is_detail_deleted != 1)
+                <div class="col-sm-6 col-lg-3 themed-grid-col md-sm-2 pt-lg-2">
+                    <figure class="works-list">
+                        <a class="nav-link k-nav-link" aria-current="page"
+                            href="/work/index?priority={{ $v->priority }}">
+                            <img src="{{ asset('storage/work_' . $v->id . '/works_' . $v->id . '_0.jpg') }}"
+                                class="img-fluid" alt="">
+                        </a>
+                        <figcaption class="lead">{{ $v->headline }}</figcaption>
+                    </figure>
+                </div>
+            @endif
         @endforeach
     </div>
 

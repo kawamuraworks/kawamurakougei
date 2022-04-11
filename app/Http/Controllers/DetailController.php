@@ -182,56 +182,24 @@ class DetailController extends Controller
         ]);
 
         // 【detailsテーブル】
-        $detail->fill($request->all());
-        unset($detail['_token']);
-        unset($detail['priority']);
-        $detail->update();
+
+        $set_priority = Detail::where('priority', '>=', $request->priority);
+        $set_priority->increment('priority', 1);
 
         $sort = 'priority';
         $has_priority = Detail::orderBy($sort, 'asc')->get();
         $count = count($has_priority);
 
-        for($i=0; $i<$count; $i++) {
-            if($has_priority[$i]->priority < $request->priority) {
-                $has_priority[$i] = Detail::where('priority', $i)->first();
-                unset($has_priority[$i]['_token']);
-                $has_priority[$i]->update();
-            } elseif($has_priority[$i]->priority == $request->priority) {
-                $has_priority[$i] = Detail::where('priority', $i)->first();
-                unset($has_priority[$i]['_token']);
-                $has_priority[$i] = $has_priority->priority+1;
-                $has_priority[$i]->update();
-            } elseif($has_priority[$i]->priority > $request->priority) {
-                $has_priority[$i] = Detail::where('priority', $i)->first();
-                unset($has_priority[$i]['_token']);
-                $has_priority[$i] = $has_priority->priority+1;
-                $has_priority[$i]->update();
-            } elseif(!isset($has_priority[$i]->priority)) {
-                $has_priority[$i] = Detail::where('priority', $i)->first();
-                unset($has_priority[$i]['_token']);
-                $has_priority[$i] = $has_priority->priority;
-                $has_priority[$i]->update();
-            }
-        }
-
-        // for($i=1; $i<=$count; $i++) {
-        //     if($detail[$i]->priority == $inputs['priority']) {
-        //         $detail = $detail->where('priority', $i)->increment('priority');
-        //     }
-        // }
+        $set_priority = Detail::where('priority', '>', $count);
+        $set_priority->decrement('priority', 1);
 
 
-        // for($i=0; $i<$count; $i++) {
-        //     $detail = Detail::where('id', $i)->select('id', 'priority');
-        //     if($detail->priority < $request->priority) {
-        //         $detail = $detail->priority;
-        //     } elseif($detail->priority == $request->priority) {
-        //         $detail = $request->priority;
-        //     } else {
-        //         $has_priority = $has_priority[$i+1];
-        //     }
-        //     $has_priority->update();
-        // }
+
+
+        $detail->fill($request->all());
+        unset($detail['_token']);
+        $detail->update();
+
 
 
 

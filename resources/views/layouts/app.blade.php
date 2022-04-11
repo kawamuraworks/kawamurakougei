@@ -59,7 +59,7 @@
                             <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-2 pt-lg-5">
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" @if(url('/')==true) href="#item-1" @else href="./#item-1" @endif><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-1"><img
                                             src="/images/btn_gNav01_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav01_on.png'"
                                             onmouseout="this.src='/images/btn_gNav01_off.png'"></a>
@@ -77,7 +77,7 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="#item-3"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-3"><img
                                             src="/images/btn_gNav03_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav03_on.png'"
                                             onmouseout="this.src='/images/btn_gNav03_off.png'"></a>
@@ -85,7 +85,7 @@
 
                                 <div div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-4"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-4"><img
                                             src="/images/btn_gNav04_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav04_on.png'"
                                             onmouseout="this.src='/images/btn_gNav04_off.png'"></a>
@@ -93,7 +93,7 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-5"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-5"><img
                                             src="/images/btn_gNav05_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav05_on.png'"
                                             onmouseout="this.src='/images/btn_gNav05_off.png'"></a>

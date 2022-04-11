@@ -11,16 +11,8 @@
                 <li>{{ $error }}</li>
             @endforeach
 
-            @if(empty($errors->first('type1')))
-                <li>用途1を再度、選択してください。</li>
-            @endif
-
-            @if(empty($errors->first('content_tag1')))
-                <li>工事内容1を再度、選択してください。</li>
-            @endif
-
             @if(empty($errors->first('image0')))
-                <li>画像ファイルを再度、選択してください。</li>
+                <li>用途・工事内容・画像に誤りが無いか確認してください。</li>
             @endif
         </ul>
     </div>

@@ -18,11 +18,11 @@ class DetailController extends Controller
      */
     public function index()
     {
-        $detail = Detail::where('priority',1)->first();
+        $detail = Detail::where('priority', 1)->first();
         $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
         $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
 
-        $images = Image::where('detail_id',$detail->id)->get();
+        $images = Image::where('detail_id', $detail->id)->get();
 
         $sort = 'priority';
         $lists = Detail::orderBy($sort, 'asc')->get();
@@ -33,11 +33,11 @@ class DetailController extends Controller
     public function priority(Request $request)
     {
         $result = $request->priority;
-        $detail = Detail::where('priority',$result)->first();
+        $detail = Detail::where('priority', $result)->first();
         $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
         $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
 
-        $images = Image::where('detail_id',$detail->id)->get();
+        $images = Image::where('detail_id', $detail->id)->get();
 
         $sort = 'priority';
         $lists = Detail::orderBy($sort, 'asc')->get();
@@ -123,7 +123,7 @@ class DetailController extends Controller
             $image->save();
         }
 
-        return redirect()->route('admin.create')->with('message', '投稿を作成しました');
+        return redirect()->route('admin.select')->with('message', '投稿を作成しました');
     }
 
     /**
@@ -162,9 +162,8 @@ class DetailController extends Controller
      * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Detail $detail)
+    public function update(Request $request, Detail $detail, Image $image)
     {
-        $detail = Detail::where('id', $request->id)->first();// 【備忘録】->first()で$detailのデータを取り出さないとエラーになる。
         $inputs = $request->validate([
             // detailsテーブル
             'headline' => 'required|max:255',
@@ -181,31 +180,58 @@ class DetailController extends Controller
             'image_[]' => 'image|max:1024', // ←【注意】〇枚目を上手く表示されるために0から始める。1から始めると別途修正が必要
         ]);
 
-        // 【detailsテーブル】
+        // // 【detailsテーブル】
+        // $detail = Detail::where('id', $request->id)->first(); // 【備忘録】->first()で$detailのデータを取り出さないとエラーになる。
+        //     // 優先順位が下から上に変更する時のメソッド
+        // $add_priority = Detail::where('priority', '>=', $request->priority)->where('priority', '<', $detail->priority);
+        // $add_priority->increment('priority', 1);
 
-        $set_priority = Detail::where('priority', '>=', $request->priority);
-        $set_priority->increment('priority', 1);
+        //     // 優先順位が上から下に変更する時のメソッド
+        // $delete_priority = Detail::where('priority', '<=', $request->priority)->where('priority', '>', $detail->priority);
+        // $delete_priority->decrement('priority', 1);
 
-        $sort = 'priority';
-        $has_priority = Detail::orderBy($sort, 'asc')->get();
-        $count = count($has_priority);
-
-        $set_priority = Detail::where('priority', '>', $count);
-        $set_priority->decrement('priority', 1);
-
-
-
-
-        $detail->fill($request->all());
-        unset($detail['_token']);
-        $detail->update();
-
-
-
+        //     // priorityの書き換え後、必要なdetail情報の更新
+        // $detail->fill($request->all());
+        // unset($detail['_token']);
+        // $detail->update();
 
 
         // // 【imagesテーブル】
-        // $count = count($request->file('image_'));
+        //     // 最初の更新対象となる行を取得する
+        // $target = Image::where('detail_id', $request->id)->get();
+        //     // 何行更新するかを決める
+        // $count = count($target);
+        //     // 更新行まとめ
+        // $updates = [];
+        //     // 更新する行の情報を配列で生成する
+        // for ($i = 0; $i < $count; $i++) {
+        //     $temp = ['id' => $target[$i]->id, 'detail_id' => $target[$i]->detail_id, 'path' => $target[$i]->path,'img_content' => $request->img_content_[$i]];
+        //     array_push($updates, $temp);
+        // };
+        // // 第一引数に更新内容すべて、第二引数にどこの値を基準に更新するかを設定、第三引数に更新したい列名を設定
+        // Image::upsert($updates, ['id', 'detail_id'], ['img_content']);
+
+        dd($request->image_);
+        $images = $request->image_;
+        $count = count($request->image_);
+        if($count > 0) {
+            foreach($images as $k =>$v) {
+                dd($v);
+            }
+        }
+        //     // 変更する画像名の作成
+        //     $input = $request->file('image_')[$i];
+        //     $original = $input->getClientOriginalName();
+        //     $img_kind =  explode(".", $original);
+        //     $works_img_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
+
+        //     // storageに保存ファイルの作成・画像の登録
+        //     $input->move('storage/work_' . $detail->id, $works_img_name);
+        //     $works_img->path = 'storage/work_' . $detail->id;
+        // }
+
+
+
         // for ($i = 0; $i < $count; $i++) {
         //     $works_img = new Image();
         //     $works_img->detail_id = $detail->id;

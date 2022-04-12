@@ -241,15 +241,15 @@
             <!-- 画像テーブル用（右） -->
             <div class="col-md-5">
                 <div id="images" class="col-sm-12">
-                    <label for="image_0" class="form-label text-danger">※変更する画像のみ再登録をしてください</label>
+                    <label for="image_0" class="form-label text-danger">※画像の変更は、storageフォルダで行ってください。</label>
                     @foreach ($images as $k => $v)
                         <p class="mb-1">{{ $k + 1 }}枚目</p>
-                        <img src="{{ asset($images[$k]->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
+                        <img src="{{ asset($v->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
                             class="mb-2 k-cheack-img" alt="">
                         <input type="file" class="form-control" id="image_0" placeholder="変更する画像を登録してください"
                             name="image_[]">
                         <input type="text" class="form-control mt-2 mb-4" id="image_0" placeholder="20文字以下推奨"
-                            value="{{ old('img_content', $images[$k]->img_content) }}" name="img_content_[]"
+                            value="{{ old('img_content', $v->img_content) }}" name="img_content_[]"
                             required>
                         <span class="invalid-feedback">画像・説明文を登録してください</span>
                     @endforeach

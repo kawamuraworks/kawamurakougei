@@ -152,7 +152,7 @@
 
         <div class="row col-md-12 mx-5">
             <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">登録する</button>
-            <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="#">キャンセル</a>
+            <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="{{ url('/admin/select') }}">実績変更選択</a>
         </div>
     </form>
 

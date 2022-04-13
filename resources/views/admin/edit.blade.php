@@ -225,23 +225,13 @@
                         </select>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
             </div>
             <!-- 実績詳細テーブル用（左）ここまで -->
 
             <!-- 画像テーブル用（右） -->
             <div class="col-md-5">
                 <div id="images" class="col-sm-12">
-                    <label for="image_0" class="form-label text-danger">※画像の変更は、storageフォルダで行ってください。</label>
+                    <label for="image_0" class="form-label text-danger">※変更する画像のみ再登録してください。</label>
                     @foreach ($images as $k => $v)
                         <p class="mb-1">{{ $k + 1 }}枚目</p>
                         <img src="{{ asset($v->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
@@ -267,7 +257,7 @@
 
         <div class="row col-md-12 mx-5">
             <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">変更する</button>
-            <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="#">キャンセル</a>
+            <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="{{ url('/admin/select') }}">実績変更選択</a>
         </div>
     </form>
 

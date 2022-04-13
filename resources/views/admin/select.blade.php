@@ -7,18 +7,18 @@
     <x-message :message="session('message')" />
 
     <div class="row row-cols-2 row-cols-lg-4 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-5" padding-left:0>
-        @foreach ($detail as $k => $v)
+        @foreach ($lists as $k => $v)
             <div class="col-sm-6 col-lg-3 themed-grid-col pt-lg-2 ps-0">
                 <figure class="works-list">
-                    <a class="nav-link k-nav-link" aria-current="page" href="{{route('admin.edit', $detail[$k])}}">
-                        <img src="{{ asset('storage/work_' . $detail[$k]->id . '/works_' . $detail[$k]->id . '_0.jpg') }}"
+                    <a class="nav-link k-nav-link" aria-current="page" href="{{route('admin.edit', $lists[$k])}}">
+                        <img src="{{ asset('storage/work_' . $lists[$k]->id . '/works_' . $lists[$k]->id . '_0.jpg') }}"
                             class="img-fluid" alt="">
                     </a>
-                    <figcaption class="lead">{{ $detail[$k]->headline }}</figcaption>
-                    @if($detail[$k]->is_detail_deleted == 1)
+                    <figcaption class="lead">{{ $lists[$k]->headline }}</figcaption>
+                    @if($lists[$k]->is_detail_deleted == 1)
                         <span class="alert-danger">非表示</span>
                     @endif
-                    {{$detail[$k]->priority}}
+                    {{$lists[$k]->priority}}
                 </figure>
             </div>
         @endforeach

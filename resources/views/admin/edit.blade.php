@@ -40,7 +40,7 @@
                         <label for="priority" class="form-label">表示順</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="priority" name="priority"
-                                value="{{ old('priority', $detail->priority) }}" >
+                                value="{{ old('priority', $detail->priority) }}">
                             <div class="invalid-feedback">
                                 表示順を入力してください
                             </div>
@@ -231,7 +231,8 @@
             <!-- 画像テーブル用（右） -->
             <div class="col-md-5">
                 <div id="images" class="col-sm-12">
-                    <label for="image_0" class="form-label text-danger">※変更する画像のみ再登録してください。</label>
+                    <label for="image_0" class="form-label"><span
+                            class="text-danger">※変更する画像のみ再登録してください。</span><br>※画像の追加は、追加ボタンを押してください。</label>
                     @foreach ($images as $k => $v)
                         <p class="mb-1">{{ $k + 1 }}枚目</p>
                         <img src="{{ asset($v->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
@@ -239,8 +240,7 @@
                         <input type="file" class="form-control" id="image_0" placeholder="変更する画像を登録してください"
                             name="image_[]">
                         <input type="text" class="form-control mt-2 mb-4" id="image_0" placeholder="20文字以下推奨"
-                            value="{{ old('img_content', $v->img_content) }}" name="img_content_[]"
-                            required>
+                            value="{{ old('img_content', $v->img_content) }}" name="img_content_[]" required>
                         <span class="invalid-feedback">画像・説明文を登録してください</span>
                     @endforeach
                 </div>
@@ -256,9 +256,23 @@
         </div>
 
         <div class="row col-md-12 mx-5">
-            <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">変更する</button>
-            <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="{{ url('/admin/select') }}">実績変更選択</a>
+            <button class="col-md-2 btn btn-primary btn-lg mt-5 mb-3 me-3" type="submit">変更する</button>
+            <a class="col-md-2 btn btn-outline-primary btn-lg mt-5 mb-3" href="{{ url('/admin/select') }}">実績変更選択</a>
         </div>
     </form>
+
+    {{-- 削除ボタン --}}
+    <div class="col-md-12 mx-5">
+        <form method="post" action="{{ route('admin.destroy', $detail) }}" enctype="multipart/form-data"
+            class="needs-validation" novalidate>
+            @csrf
+            @method('delete')
+            <input type="hidden" name="id" value="{{ $detail->id }}">
+            <input type="hidden" name="user_id" value="{{ $detail->user_id }}">
+            <input type="hidden" name="priority" value="{{ $detail->priority }}">
+            <button class="col-md-2 btn btn-danger btn-lg mb-5 me-3"
+                onClick="return confirm('本当に削除しますか？');">削除する</button>
+        </form>
+    </div>
 
 </x-app-layout>

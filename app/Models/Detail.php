@@ -36,6 +36,13 @@ class Detail extends Model
         return $tags;
     }
 
+    // 実績変更一覧(select)ページで「表示・非表示」
+    public static function display() {
+        $display = ['表示', '非表示'];
+
+        return $display;
+    }
+
     // 実績一覧
     public static function lists() {
         $sort = 'priority';
@@ -44,7 +51,7 @@ class Detail extends Model
         return $lists;
     }
 
-    // バリデーション
+    // バリデーションルール
     public static function validation($request) {
         $inputs = $request->validate([
             // detailsテーブル
@@ -60,8 +67,36 @@ class Detail extends Model
             'img_content_' => 'required|max:255',
             'image_[]' => 'image|max:1024', // ←【注意】〇枚目を上手く表示されるために0から始める。1から始めると別途修正が必要
         ]);
-
-        return $inputs;
     }
 
+    // 新規登録(create)時のDetailsテーブルへの登録
+    public static function storeDetailsTable($request, $detail) {
+        $detail->fill(['user_id' => auth()->user()->id]);
+        $detail->fill($request->all());
+        $detail->is_detail_deleted = 1;
+        unset($detail['_token']);
+        $detail->save();
+
+        // priorityは重複させない。$detail->idを使用するため2回に分けて保存
+        $detail->priority = $detail->id;
+        $detail->save();
+    }
+
+    // 優先順位を変更するメソッド
+    public static function editPriority($request, $detail) {
+        $detail = Detail::where('id', $request->id)->first(); // 【備忘録】->first()で$detailのデータを取り出さないとエラーになる。
+
+        // 優先順位が下から上に変更する時のメソッド
+        $add_priority = Detail::where('priority', '>=', $request->priority)->where('priority', '<', $detail->priority);
+        $add_priority->increment('priority', 1);
+
+        // 優先順位が上から下に変更する時のメソッド
+        $delete_priority = Detail::where('priority', '<=', $request->priority)->where('priority', '>', $detail->priority);
+        $delete_priority->decrement('priority', 1);
+
+        // priorityの書き換え後、必要なdetail情報の更新
+        $detail->fill($request->all());
+        unset($detail['_token']);
+        $detail->update();
+    }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('admin/{admin}', [DetailController::class, 'destroy'])->name('admin.destroy');
 });
 
+Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

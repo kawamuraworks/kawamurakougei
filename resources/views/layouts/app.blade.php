@@ -101,7 +101,7 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="#"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('contact') }}"><img
                                             src="/images/btn_gNav06_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav06_on.png'"
                                             onmouseout="this.src='/images/btn_gNav06_off.png'"></a>

@@ -1,8 +1,8 @@
 <x-app-layout>
 
-    <h3 class="ms-5 py-3">実績変更</h3>
+    <h3 class="ps-5 py-3">実績変更</h3>
 
-    <x-validation-errors class="mx-5 mb-4 px-4 py-3 alert-danger rounded" :errors="$errors" />
+    <x-validation-errors class="px-5 mb-4 px-4 py-3 alert-danger rounded" :errors="$errors" />
     <x-message :message="session('message')" />
 
     <form method="post" action="{{ route('admin.update', $detail) }}" enctype="multipart/form-data"
@@ -14,8 +14,8 @@
         <input type="hidden" name="user_id" value="{{ $detail->user_id }}">
 
         <!-- 実績詳細テーブル用（左） -->
-        <div class="row mx-5">
-            <div class="col-md-7 pe-5 k-side-pd">
+        <div class="row px-5" style="margin-right:0">
+            <div class="col-md-6 pe-5 k-side-pd">
                 {{-- 表示非表示・掲載順の変更 --}}
                 <div class="row border border-3 border-danger pt-3 pb-4">
                     <p class="form-label fw-bold text-danger text-center">枠内に誤りがないか確認してください</p>
@@ -255,14 +255,14 @@
             <!-- 画像テーブル用（右）ここまで -->
         </div>
 
-        <div class="row col-md-12 mx-5">
+        <div class="row col-md-12 px-5">
             <button class="col-md-2 btn btn-primary btn-lg mt-5 mb-3 me-3" type="submit">変更する</button>
             <a class="col-md-2 btn btn-outline-primary btn-lg mt-5 mb-3" href="{{ url('/admin/select') }}">実績変更選択</a>
         </div>
     </form>
 
     {{-- 削除ボタン --}}
-    <div class="col-md-12 mx-5">
+    <div class="col-md-12 ps-5">
         <form method="post" action="{{ route('admin.destroy', $detail) }}" enctype="multipart/form-data"
             class="needs-validation" novalidate>
             @csrf

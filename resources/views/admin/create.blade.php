@@ -1,8 +1,8 @@
 <x-app-layout>
 
-    <h3 class="ms-5 py-3">新規実績登録</h3>
+    <h3 class="ps-5 py-3">新規実績登録</h3>
 
-    <x-validation-errors class="mx-5 mb-4 px-4 py-3 alert-danger rounded" :errors="$errors" />
+    <x-validation-errors class="ps-5 mb-4 py-3 alert-danger rounded" :errors="$errors" />
     <x-message :message="session('message')" />
 
     <form method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data" class="needs-validation"
@@ -10,8 +10,8 @@
         @csrf
 
         <!-- 実績詳細テーブル用（左） -->
-        <div class="row mx-5">
-            <div class="col-md-7 pe-5 k-side-pd">
+        <div class="row ps-5" style="margin-right:0">
+            <div class="col-md-6 pe-5 k-side-pd">
                 <div class="col-sm-12">
                     <label for="headline" class="form-label">見出し</label>
                     <input type="text" class="form-control" id="headline" name="headline" value="{{old('headline')}}" placeholder="12字以下推奨" required>
@@ -150,7 +150,7 @@
             <!-- 画像テーブル用（右）ここまで -->
         </div>
 
-        <div class="row col-md-12 mx-5">
+        <div class="row col-md-12 px-5">
             <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">登録する</button>
             <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="{{ url('/admin/select') }}">実績変更選択</a>
         </div>

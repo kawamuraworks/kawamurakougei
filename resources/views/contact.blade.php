@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="row ms-5 justify-content-center">
+    <div class="row justify-content-center" style="margin-left: 0; margin-right:0">
         <div class="col-md-7 pe-5 k-side-pd">
             <h3 class="pt-5 pb-3">お問合せ</h3>
         </div>
@@ -13,7 +13,7 @@
         novalidate>
         @csrf
 
-        <div class="row ms-5 justify-content-center">
+        <div class="row justify-content-center" style="margin-left: 0; margin-right:0">
             <div class="col-md-7 pe-5 k-side-pd">
                 {{-- お名前・フリガナ --}}
                 <div class="row">
@@ -116,87 +116,12 @@
                     </div>
                 </div>
 
-
-
-                {{-- <div class="row  pt-3">
-                    <div class="col-md-4">
-                        <label for="type1" class="form-label">用途1</label>
-                        <select class="form-select d-block w-100" id="type1" name="type1" required>
-                            <option value="">選択...</option>
-                            @foreach ($types as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback">
-                            用途を選択してください
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="type2" class="form-label">用途2 <span
-                                class="text-muted">(該当時のみ)</span></label>
-                        <select class="form-select d-block w-100" id="type2" name="type2">
-                            <option value="">選択...</option>
-                            @foreach ($types as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="type3" class="form-label">用途3 <span
-                                class="text-muted">(該当時のみ)</span></label>
-                        <select class="form-select d-block w-100" id="type3" name="type3">
-                            <option value="">選択...</option>
-                            @foreach ($types as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row  pt-3">
-                    <div class="col-md-4">
-                        <label for="content_tag1" class="form-label">工事内容1</label>
-                        <select class="form-select d-block w-100" id="content_tag1" name="content_tag1" required>
-                            <option value="">選択...</option>
-                            @foreach ($tags as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback">
-                            工事内容を選択してください
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="content_tag2" class="form-label">工事内容2 <span
-                                class="text-muted">(該当時のみ)</span></label>
-                        <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
-                            <option value="">選択...</option>
-                            @foreach ($tags as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="content_tag3" class="form-label">工事内容3 <span
-                                class="text-muted">(該当時のみ)</span></label>
-                        <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
-                            <option value="">選択...</option>
-                            @foreach ($tags as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div> --}}
             </div>
             <!-- 実績詳細テーブル用（左）ここまで -->
 
         </div>
 
-        <div class="row col-md-12 ms-5 justify-content-center">
+        <div class="row col-md-12 justify-content-center" style="margin-left: 0; margin-right:0">
             <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">送信する</button>
             <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="{{ url('/') }}">トップページに戻る</a>
         </div>

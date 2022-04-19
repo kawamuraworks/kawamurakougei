@@ -1,10 +1,13 @@
 /* CSSは基本的にBootstrapを使用
 独自にCSSを設定する場合は、「k-」から始める。 */
+#k-copyright {
+    font-size: 1.0rem;
+}
 
 label {
-    font-size: 1.0rem;
-    font-weight: 700;
-  }
+  font-size: 1.0rem;
+  font-weight: 700;
+}
 
 /* グローバルナビの設定 */
 .k-nav-link {
@@ -368,5 +371,10 @@ table td {
   .k-slick-slide {
     height: 225px;
   }
+
+  #k-copyright {
+    font-size: 0.6rem;
+  }
+
 
 }

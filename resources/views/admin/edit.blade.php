@@ -14,7 +14,7 @@
         <input type="hidden" name="user_id" value="{{ $detail->user_id }}">
 
         <!-- 実績詳細テーブル用（左） -->
-        <div class="row px-5" style="margin-right:0">
+        <div class="row ps-5" style="margin-right:0">
             <div class="col-md-6 pe-5 k-side-pd">
                 {{-- 表示非表示・掲載順の変更 --}}
                 <div class="row border border-3 border-danger pt-3 pb-4">
@@ -262,15 +262,15 @@
     </form>
 
     {{-- 削除ボタン --}}
-    <div class="col-md-12 ps-5">
+    <div class="row col-md-12 ps-5">
         <form method="post" action="{{ route('admin.destroy', $detail) }}" enctype="multipart/form-data"
-            class="needs-validation" novalidate>
+            class="needs-validation" novalidate style="padding-left: 0px;">
             @csrf
             @method('delete')
             <input type="hidden" name="id" value="{{ $detail->id }}">
             <input type="hidden" name="user_id" value="{{ $detail->user_id }}">
             <input type="hidden" name="priority" value="{{ $detail->priority }}">
-            <button class="col-md-2 btn btn-danger btn-lg mb-5 me-3"
+            <button class="col-md-2 btn btn-danger btn-lg mb-3 me-3"
                 onClick="return confirm('本当に削除しますか？');">削除する</button>
         </form>
     </div>

@@ -23,7 +23,6 @@
 </head>
 
 <body>
-    {{-- @include('layouts.navigation') --}}
     <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none">
         <a class="navbar-brand col-sm-3 me-0 px-sm-3 py-sm-3" href="/">河村工芸</a>
         <button class="navbar-toggler position-right d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -59,7 +58,7 @@
                             <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-2 pt-lg-5">
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-1"><img
+                                    <a class="nav-link k-nav-link" aria-current="page" href="#item-1"><img
                                             src="/images/btn_gNav01_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav01_on.png'"
                                             onmouseout="this.src='/images/btn_gNav01_off.png'"></a>
@@ -119,21 +118,13 @@
             </nav>
             <!-- グローバルナビ配置　終了 -->
 
-
-            <!-- 【最終削除】headerデフォルト -->
-            {{-- <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-                </header> --}}
-
             <main class="col-lg-10 col-sm-12 k-side-pd">
                 <div data-bs-spy="scroll" data-bs-target="#sidebarMenu" data-bs-offset="0" class="scrollspy"
                     tabindex="0">
                     {{ $slot }}
 
-                    <div class="row col-md-12 px-5">
-                        <p style="margin-bottom: 0">©2022 kawamura Kougei All Rights Reserved</p>
+                    <div class="row col-md-12 ps-5">
+                        <p id="k-copyright" style="margin-bottom: 0; text-align: right;">©2022 kawamura Kougei All Rights Reserved</p>
                         <hr style="margin-bottom: 0">
 
                         @if (Route::has('login'))

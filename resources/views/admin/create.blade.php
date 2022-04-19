@@ -59,7 +59,10 @@
                         <select class="form-select d-block w-100" id="type1" name="type1" required>
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
+                                <option value={{ $k }}
+                                    @if($k == old('type1', '')) selected @endif>
+                                    {{ $v }}
+                                </option>
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
@@ -73,7 +76,7 @@
                         <select class="form-select d-block w-100" id="type2" name="type2">
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
+                                <option value={{ $k }}@if($k == old('type2', '')) selected @endif>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -84,7 +87,7 @@
                         <select class="form-select d-block w-100" id="type3" name="type3">
                             <option value="">選択...</option>
                             @foreach ($types as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
+                                <option value={{ $k }}@if($k == old('type3', '')) selected @endif>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -96,7 +99,7 @@
                         <select class="form-select d-block w-100" id="content_tag1" name="content_tag1" required>
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
+                                <option value={{ $k }}@if($k == old('content_tag1', '')) selected @endif>{{ $v }}</option>
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
@@ -110,7 +113,7 @@
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
+                                <option value={{ $k }}@if($k == old('content_tag2', '')) selected @endif>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -121,7 +124,7 @@
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                <option value={{ $k }}>{{ $v }}</option>
+                                <option value={{ $k }}@if($k == old('content_tag3', '')) selected @endif>{{ $v }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -136,7 +139,7 @@
                     <label for="image_0" class="form-label">画像・説明文登録</label>
                     <p class="mb-1">1枚目</p>
                     <input type="file" class="form-control" id="image_0" placeholder="画像を登録してください" name="image_[]" required>
-                    <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="{{old('img_content')}}" name="img_content_[]" required>
+                    <input type="text" class="form-control mt-2" id="image_0" placeholder="20文字以下推奨" value="{{old('img_content_[]')}}" name="img_content_[]" required>
                     <span class="invalid-feedback">画像・説明文を登録してください</span>
                 </div>
 

@@ -73,12 +73,14 @@ class Detail extends Model
     public static function storeDetailsTable($request, $detail) {
         $detail->fill(['user_id' => auth()->user()->id]);
         $detail->fill($request->all());
+        $detail->priority = 1;
         $detail->is_detail_deleted = 1;
         unset($detail['_token']);
-        $detail->save();
 
-        // priorityは重複させない。$detail->idを使用するため2回に分けて保存
-        $detail->priority = $detail->id;
+        // 新規登録は優先順位1とするため、これまで登録してきた実績は+1とする
+        $add_priority = Detail::where('priority', '>=', 1);
+        $add_priority->increment('priority', 1);
+
         $detail->save();
     }
 

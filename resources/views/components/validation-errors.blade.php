@@ -12,7 +12,7 @@
             @endforeach
 
             @if(empty($errors->first('image0')))
-                <li>用途・工事内容・画像に誤りが無いか確認してください。</li>
+                <li>用途・工事内容・画像及び画像説明文に誤りがないか確認してください。</li>
             @endif
         </ul>
     </div>

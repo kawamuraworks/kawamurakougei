@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('index#item-1', function () {
-    return view('index#item-1');
-})->name('index#item-1');
+Route::get('?#item-1', function () {
+    return view('#item-1');
+})->name('index');
 
 // Route::resource('admin', DetailController::class);
 

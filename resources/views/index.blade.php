@@ -12,13 +12,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/top1.png') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/top1.png') }}" class="d-block w-100" alt="実績紹介">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/top2.png') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/top2.png') }}" class="d-block w-100" alt="会社案内">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/top3.png') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/top3.png') }}" class="d-block w-100" alt="工事価格">
             </div>
         </div>
     </div>
@@ -29,27 +29,19 @@
         <p>会社案内の文章です。...</p>
     </div>
 
-    <hr id="item-3" style="margin: 50% 10%;">
-
-    <div style="margin-left: 10%;">
-        <h4>サービス</h4>
+    <div style="margin: 50% 10% 0 10%;">
+        <h4 id="item-3" style="border-bottom: 1px solid lightgray; padding-left: 10px;">サービス</h4>
         <p>サービスの文章です。...</p>
     </div>
 
-    <hr id="item-4" style="margin: 50% 10%;">
-
-    <div style="margin-left: 10%;">
-        <h4>工事価格</h4>
-        <p>アイテム 3の文章です。...</p>
+    <div style="margin: 50% 10% 0 10%;">
+        <h4 id="item-4" style="border-bottom: 1px solid lightgray; padding-left: 10px;">工事価格</h4>
+        <p>工事価格の文章です。...</p>
     </div>
 
-    <hr id="item-5" style="margin: 50% 10%;">
-
-    <div style="margin-left: 10%;">
-        <h4>所在地</h4>
+    <div style="margin: 50% 10% 50% 10%;">
+        <h4 id="item-5" style="border-bottom: 1px solid lightgray; padding-left: 10px;">所在地</h4>
         <p>所在地の文章です。...</p>
     </div>
-
-    <hr style="margin: 10%;">
 
 </x-app-layout>

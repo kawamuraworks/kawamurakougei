@@ -58,7 +58,8 @@
                             <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-2 pt-lg-5">
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="/#item-1"><img
+                                    <a class="nav-link k-nav-link" aria-current="page"
+                                        @if (Route::getCurrentRoute()->getName() === 'index') href="#item-1" @else href="{{ route('index') }}" @endif><img
                                             src="/images/btn_gNav01_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav01_on.png'"
                                             onmouseout="this.src='/images/btn_gNav01_off.png'"></a>
@@ -67,16 +68,19 @@
                                 <!-- 実績ページは常にナビボタンをonにする。画像の切り替えは必要ない。 -->
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="/work"><img
-                                            src="/images/btn_gNav02_off.png" class="img-fluid" alt=""
-                                            onmouseover="this.src='/images/btn_gNav02_on.png'"
-                                            onmouseout="this.src='/images/btn_gNav02_off.png'"></a>
+                                    <a class="nav-link k-nav-link" aria-current="page"
+                                        href="{{ route('work.index') }}"><img
+                                            @if (Route::getCurrentRoute()->getName() === 'work.index') src="/images/btn_gNav02_on.png" @else src="/images/btn_gNav02_off.png"
+                                        onmouseover="this.src='/images/btn_gNav02_on.png'"
+                                        onmouseout="this.src='/images/btn_gNav02_off.png'" @endif
+                                            class="img-fluid" alt=""></a>
                                 </div>
 
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-3"><img
+                                    <a class="nav-link k-nav-link" aria-current="page"
+                                        @if (Route::getCurrentRoute()->getName() === 'index') href="#item-3" @else href="{{ route('index') }}" @endif><img
                                             src="/images/btn_gNav03_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav03_on.png'"
                                             onmouseout="this.src='/images/btn_gNav03_off.png'"></a>
@@ -84,7 +88,8 @@
 
                                 <div div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-4"><img
+                                    <a class="nav-link k-nav-link" aria-current="page"
+                                        @if (Route::getCurrentRoute()->getName() === 'index') href="#item-4" @else href="{{ route('index') }}" @endif><img
                                             src="/images/btn_gNav04_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav04_on.png'"
                                             onmouseout="this.src='/images/btn_gNav04_off.png'"></a>
@@ -92,7 +97,8 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('index') }}#item-5"><img
+                                    <a class="nav-link k-nav-link" aria-current="page"
+                                        @if (Route::getCurrentRoute()->getName() === 'index') href="#item-5" @else href="{{ route('index') }}" @endif><img
                                             src="/images/btn_gNav05_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav05_on.png'"
                                             onmouseout="this.src='/images/btn_gNav05_off.png'"></a>
@@ -100,11 +106,28 @@
 
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link" aria-current="page" href="{{ route('contact') }}"><img
-                                            src="/images/btn_gNav06_off.png" class="img-fluid" alt=""
-                                            onmouseover="this.src='/images/btn_gNav06_on.png'"
-                                            onmouseout="this.src='/images/btn_gNav06_off.png'"></a>
+                                    <a class="nav-link k-nav-link" aria-current="page"
+                                        href="{{ route('contact') }}"><img
+                                            @if (Route::getCurrentRoute()->getName() === 'contact') src="/images/btn_gNav06_on.png" @else src="/images/btn_gNav06_off.png"
+                                        onmouseover="this.src='/images/btn_gNav06_on.png'"
+                                        onmouseout="this.src='/images/btn_gNav06_off.png'" @endif
+                                            class="img-fluid" alt=""></a>
                                 </div>
+
+                                @if (Route::has('login'))
+                                    <div
+                                        class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
+                                        @auth
+                                            <a class="nav-link k-nav-link" aria-current="page"
+                                                href="{{ route('admin.list') }}"><img
+                                                    @if (Route::getCurrentRoute()->getName() == 'admin.#') src="/images/btn_gNav07_on.png" @else src="/images/btn_gNav07_off.png"
+                                        onmouseover="this.src='/images/btn_gNav07_on.png'"
+                                        onmouseout="this.src='/images/btn_gNav07_off.png'" @endif
+                                                    class="img-fluid" alt=""></a>
+                                        @endauth
+                                    </div>
+                                @endif
+
                             </div>
                         </nav>
 
@@ -124,24 +147,28 @@
                     {{ $slot }}
 
                     <div class="row col-md-12 ps-5">
-                        <p id="k-copyright" style="margin-bottom: 0; text-align: right;">©2022 kawamura Kougei All Rights Reserved</p>
+                        <p id="k-copyright" style="margin-bottom: 0; text-align: right;">©2022 kawamura Kougei All
+                            Rights Reserved</p>
                         <hr style="margin-bottom: 0">
 
                         @if (Route::has('login'))
-                            <div class="row col-md-12">
+                            <div class="row col-md-12 mb-lg-2 mb-sm-5 ps-0">
                                 @auth
-                                    <a href="{{ url('/admin/create') }}" class="col-sm-12 col-lg-2 btn btn-light my-2">新規実績登録</a>
-                                    <a href="{{ url('/admin/select') }}" class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">実績変更選択</a>
-                                    <a href="{{ route('register') }}" class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">管理者登録</a>
+                                    {{-- <a href="{{ url('/admin/create') }}"
+                                        class="col-sm-12 col-lg-2 btn btn-light my-2">新規実績登録</a>
+                                    <a href="{{ url('/admin/select') }}"
+                                        class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">実績変更選択</a>
+                                    <a href="{{ route('register') }}"
+                                        class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">管理者登録</a> --}}
                                     <form method="POST" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
                                         @csrf
-                                        <x-dropdown-link :href="route('logout')" class="btn btn-light ms-lg-2" onclick="event.preventDefault();
-                                                                    this.closest('form').submit();">
+                                        <x-dropdown-link :href="route('logout')" class="btn btn-light" onclick="event.preventDefault();
+                                                                                this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-dropdown-link>
                                     </form>
                                 @else
-                                    <a href="{{ route('login') }}" class="col-2 btn btn-light my-2">ログイン</a>
+                                    <a href="{{ route('login') }}" class="col-lg-2 col-sm-4 btn btn-light my-2">ログイン</a>
                                 @endauth
                             </div>
                         @endif
@@ -149,13 +176,7 @@
                     </div>
                 </div>
             </main>
-
-            <!-- 【最終削除】mainデフォルト -->
-            {{-- <main>
-                    {{ $slot }}
-                </main> --}}
         </div>
-
     </div>
 
 

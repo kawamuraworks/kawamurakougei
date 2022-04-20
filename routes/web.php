@@ -19,10 +19,6 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('?#item-1', function () {
-    return view('#item-1');
-})->name('index');
-
 // Route::resource('admin', DetailController::class);
 
 
@@ -30,6 +26,7 @@ Route::get('work', [DetailController::class, 'index'])->name('work.index');
 Route::get('work/{priority?}', [DetailController::class, 'priority'])->name('work.index');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('admin/list', [DetailController::class, 'list'])->name('admin.list');
     Route::get('admin/create', [DetailController::class, 'create'])->name('admin.create');
     Route::post('admin', [DetailController::class, 'store'])->name('admin.store');
 

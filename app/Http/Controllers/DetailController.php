@@ -40,6 +40,11 @@ class DetailController extends Controller
         return view('work.index', compact('detail', 'types', 'tags', 'lists', 'images'));
     }
 
+    public function list()
+    {
+        return view('admin.list');
+    }
+
     public function select()
     {
         $lists = Detail::lists();

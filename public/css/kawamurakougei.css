@@ -1,5 +1,7 @@
 /* CSSは基本的にBootstrapを使用
 独自にCSSを設定する場合は、「k-」から始める。 */
+
+/* コピーライトの文字の大きさ */
 #k-copyright {
     font-size: 1.0rem;
 }

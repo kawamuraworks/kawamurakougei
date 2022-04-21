@@ -26,6 +26,20 @@
                 <th>用　　　途</th>
                 <td>
                     @foreach ($types as $k => $v)
+                        @if ($k == $detail->type1) {{ $v }} @endif
+
+                        @if (isset($detail->type2))
+                            @if ($k == $detail->type2)/ {{ $v }} @endif
+                        @endif
+
+                        @if (isset($detail->type3))
+                            @if ($k == $detail->type3)/ {{ $v }} @endif
+                        @endif
+                    @endforeach
+                </td>
+
+                {{-- <td>
+                    @foreach ($types as $k => $v)
                         @if ($k == $detail->type1)
                             {{ $v }}
                         @endif
@@ -46,13 +60,32 @@
                             @endif
                         @endforeach
                     @endif
-                </td>
+                </td> --}}
             </tr>
 
             <tr>
                 <th>工 事 内 容</th>
                 <td>
                     @foreach ($tags as $k => $v)
+                        @if ($k == $detail->content_tag1) {{ $v }} @endif
+
+                        @if (isset($detail->content_tag2))
+                            @if ($k == $detail->content_tag2)/ {{ $v }} @endif
+                        @endif
+
+                        @if (isset($detail->content_tag3))
+                            @if ($k == $detail->content_tag3)/ {{ $v }} @endif
+                        @endif
+                    @endforeach
+
+
+
+
+
+
+
+
+                    {{-- @foreach ($tags as $k => $v)
                         @if ($k == $detail->content_tag1)
                             {{ $v }}
                         @endif
@@ -72,7 +105,7 @@
                                 / {{ $v }}
                             @endif
                         @endforeach
-                    @endif
+                    @endif --}}
                 </td>
             </tr>
         </table>

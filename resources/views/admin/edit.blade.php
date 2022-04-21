@@ -118,7 +118,8 @@
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type2" name="type2">
                             @if (isset($detail->type2))
-                                @foreach ($types as $k => $v)
+                            <option value="">選択...</option>
+                            @foreach ($types as $k => $v)
                                     @if ($k == $detail->type2)
                                         <option value="{{ old('type2', $detail->type2) }}" selected>
                                             {{ $v }}
@@ -141,7 +142,8 @@
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type3" name="type3">
                             @if (isset($detail->type3))
-                                @foreach ($types as $k => $v)
+                            <option value="">選択...</option>
+                            @foreach ($types as $k => $v)
                                     @if ($k == $detail->type3)
                                         <option value="{{ old('type3', $detail->type3) }}" selected>
                                             {{ $v }}
@@ -184,7 +186,8 @@
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
                             @if (isset($detail->content_tag2))
-                                @foreach ($tags as $k => $v)
+                            <option value="">選択...</option>
+                            @foreach ($tags as $k => $v)
                                     @if ($k == $detail->content_tag2)
                                         <option value="{{ old('content_tag2', $detail->content_tag2) }}" selected>
                                             {{ $v }}
@@ -207,6 +210,7 @@
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
                             @if (isset($detail->content_tag3))
+                                <option value="">選択...</option>
                                 @foreach ($tags as $k => $v)
                                     @if ($k == $detail->content_tag3)
                                         <option value="{{ old('content_tag3', $detail->content_tag3) }}" selected>

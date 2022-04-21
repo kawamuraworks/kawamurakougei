@@ -3,7 +3,8 @@
         <x-auth-card>
             <x-slot name="logo">
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <img src="/images/btn_gNav-00.png" class="w-40 h-10 fill-current text-gray-500" alt="リフォームはプロの壁屋さん兵庫・神戸の河村工芸へ">
+                    {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
                 </a>
             </x-slot>
 

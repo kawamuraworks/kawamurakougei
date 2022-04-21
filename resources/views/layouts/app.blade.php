@@ -120,17 +120,14 @@
                                         @auth
                                             <a class="nav-link k-nav-link" aria-current="page"
                                                 href="{{ route('admin.list') }}"><img
-                                                    @if (Route::getCurrentRoute()->getName() == 'admin.#') src="/images/btn_gNav07_on.png" @else src="/images/btn_gNav07_off.png"
-                                        onmouseover="this.src='/images/btn_gNav07_on.png'"
-                                        onmouseout="this.src='/images/btn_gNav07_off.png'" @endif
+                                                    @if (strpos(Route::getCurrentRoute()->getName(), 'admin.') === false) src="/images/btn_gNav07_off.png" onmouseover="this.src='/images/btn_gNav07_on.png'"
+                                                    onmouseout="this.src='/images/btn_gNav07_off.png'" @else src="/images/btn_gNav07_on.png" @endif
                                                     class="img-fluid" alt=""></a>
                                         @endauth
                                     </div>
                                 @endif
-
                             </div>
                         </nav>
-
                     </div>
 
                     <div class="col-lg-2 d-none d-lg-block k-pt k-gNav-sales"><img src="/images/gNav-sales.png"
@@ -152,20 +149,11 @@
                         <hr style="margin-bottom: 0">
 
                         @if (Route::has('login'))
-                            <div class="row col-md-12 mb-lg-2 mb-sm-5 ps-0">
+                            <div class="row col-md-12 mb-lg-2 mb-sm-5 ps-0 pb-5">
                                 @auth
-                                    {{-- <a href="{{ url('/admin/create') }}"
-                                        class="col-sm-12 col-lg-2 btn btn-light my-2">新規実績登録</a>
-                                    <a href="{{ url('/admin/select') }}"
-                                        class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">実績変更選択</a>
-                                    <a href="{{ route('register') }}"
-                                        class="col-sm-12 col-lg-2 btn btn-light my-2 ms-lg-2">管理者登録</a> --}}
-                                    <form method="POST" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
+                                    <form method="post" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
                                         @csrf
-                                        <x-dropdown-link :href="route('logout')" class="btn btn-light" onclick="event.preventDefault();
-                                                                                this.closest('form').submit();">
-                                            {{ __('Log Out') }}
-                                        </x-dropdown-link>
+                                        <button class="btn btn-light my-2">ログアウト</button>
                                     </form>
                                 @else
                                     <a href="{{ route('login') }}" class="col-lg-2 col-sm-4 btn btn-light my-2">ログイン</a>

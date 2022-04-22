@@ -118,8 +118,8 @@
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type2" name="type2">
                             @if (isset($detail->type2))
-                            <option value="">選択...</option>
-                            @foreach ($types as $k => $v)
+                                <option value="">選択...</option>
+                                @foreach ($types as $k => $v)
                                     @if ($k == $detail->type2)
                                         <option value="{{ old('type2', $detail->type2) }}" selected>
                                             {{ $v }}
@@ -142,8 +142,8 @@
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type3" name="type3">
                             @if (isset($detail->type3))
-                            <option value="">選択...</option>
-                            @foreach ($types as $k => $v)
+                                <option value="">選択...</option>
+                                @foreach ($types as $k => $v)
                                     @if ($k == $detail->type3)
                                         <option value="{{ old('type3', $detail->type3) }}" selected>
                                             {{ $v }}
@@ -185,7 +185,21 @@
                         <label for="content_tag2" class="form-label">工事内容2 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
-                            @if (isset($detail->content_tag2))
+                            <option value="">選択...</option>
+                            @foreach ($tags as $k => $v)
+                                @if(old('content_tag2') == $k)
+                                    <option value="{{ old('content_tag2') }}" selected>{{ $v }}</option>
+                                @elseif($detail->content_tag2 != '' && $k == $detail->content_tag2)
+                                    <option value="{{ $k }}" selected>{{ $v }}</option>
+                                @else
+                                    <option value={{ $k }}>{{ $v }}</option>
+                                @endif
+                            @endforeach
+
+
+
+
+                            {{-- @if (isset($detail->content_tag2))
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
                                     @if ($k == $detail->content_tag2)
@@ -201,7 +215,7 @@
                                 @foreach ($tags as $k => $v)
                                     <option value={{ $k }}>{{ $v }}</option>
                                 @endforeach
-                            @endif
+                            @endif --}}
                         </select>
                     </div>
 
@@ -209,7 +223,20 @@
                         <label for="content_tag3" class="form-label">工事内容3 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
-                            @if (isset($detail->content_tag3))
+                            <option value="">選択...</option>
+                            @foreach ($tags as $k => $v)
+                                @if (old('content_tag3', '') == $k)
+                                <option value="{{ $k }}" selected>{{ $v }}</option>
+                                @elseif($detail->content_tag3 == $k)
+                                    <option value="{{ $k }}" selected>{{ $v }}</option>
+                                @else
+                                    <option value={{ $k }}>{{ $v }}</option>
+                                @endif
+                            @endforeach
+
+
+
+                            {{-- @if (isset($detail->content_tag3))
                                 <option value="">選択...</option>
                                 @foreach ($tags as $k => $v)
                                     @if ($k == $detail->content_tag3)
@@ -225,7 +252,7 @@
                                 @foreach ($tags as $k => $v)
                                     <option value={{ $k }}>{{ $v }}</option>
                                 @endforeach
-                            @endif
+                            @endif --}}
                         </select>
                     </div>
                 </div>

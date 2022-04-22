@@ -38,7 +38,6 @@ class Detail extends Model
                 if($v != '') {
                     $types[$k]['num'] = $v;
                     $types[$k]['name'] = $type_name[$v];
-                    continue;
                 }
             }
             return $types;
@@ -59,7 +58,6 @@ class Detail extends Model
                 if($v != '') {
                     $tags[$k]['num'] = $v;
                     $tags[$k]['name'] = $tag_name[$v];
-                    continue;
                 }
             }
             return $tags;

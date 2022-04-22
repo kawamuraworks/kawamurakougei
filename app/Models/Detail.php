@@ -14,37 +14,69 @@ class Detail extends Model
         'type1', 'type2', 'type3', 'content_tag1', 'content_tag2', 'content_tag3', 'priority', 'is_detail_deleted'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function images() {
+    public function images()
+    {
         return $this->hasMany(Image::class);
     }
 
     // 用途一覧
-    public static function types() {
-        $types = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+    public static function types($flag, $detail)
+    {
+        $type_name = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+        $has_type = [$detail->type1, $detail->type2, $detail->type3];
 
-        return $types;
+        if ($flag == 0) {
+            $types = $type_name;
+            return $types;
+        } elseif ($flag == 1) {
+            foreach ($has_type as $k => $v) {
+                if($v != '') {
+                    $types[$k]['num'] = $v;
+                    $types[$k]['name'] = $type_name[$v];
+                    continue;
+                }
+            }
+            return $types;
+        }
     }
 
     // 工事内容一覧
-    public static function tags() {
-        $tags = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
+    public static function tags($flag, $detail)
+    {
+        $tag_name = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
+        $has_tag = [$detail->content_tag1, $detail->content_tag2, $detail->content_tag3];
 
-        return $tags;
+        if ($flag == 0) {
+            $tags = $tag_name;
+            return $tags;
+        } elseif ($flag == 1) {
+            foreach ($has_tag as $k=>$v) {
+                if($v != '') {
+                    $tags[$k]['num'] = $v;
+                    $tags[$k]['name'] = $tag_name[$v];
+                    continue;
+                }
+            }
+            return $tags;
+        }
     }
 
     // 実績変更一覧(select)ページで「表示・非表示」
-    public static function display() {
+    public static function display()
+    {
         $display = ['表示', '非表示'];
 
         return $display;
     }
 
     // 実績一覧
-    public static function lists() {
+    public static function lists()
+    {
         $sort = 'priority';
         $lists = Detail::orderBy($sort, 'asc')->get();
 
@@ -52,7 +84,8 @@ class Detail extends Model
     }
 
     // バリデーションルール
-    public static function validation($request) {
+    public static function validation($request)
+    {
         $inputs = $request->validate([
             // detailsテーブル
             'headline' => 'required|max:255',
@@ -70,7 +103,8 @@ class Detail extends Model
     }
 
     // 新規登録(create)時のDetailsテーブルへの登録
-    public static function storeDetailsTable($request, $detail) {
+    public static function storeDetailsTable($request, $detail)
+    {
         $detail->fill(['user_id' => auth()->user()->id]);
         $detail->fill($request->all());
         $detail->priority = 1;
@@ -85,7 +119,8 @@ class Detail extends Model
     }
 
     // 優先順位を変更するメソッド
-    public static function editPriority($request, $detail) {
+    public static function editPriority($request, $detail)
+    {
         $detail = Detail::where('id', $request->id)->first(); // 【備忘録】->first()で$detailのデータを取り出さないとエラーになる。
 
         // 優先順位が下から上に変更する時のメソッド

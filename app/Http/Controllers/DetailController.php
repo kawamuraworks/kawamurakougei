@@ -20,8 +20,8 @@ class DetailController extends Controller
     public function index()
     {
         $detail = Detail::where('priority', 1)->first();
-        $types = Detail::types();
-        $tags = Detail::tags();
+        $types = Detail::types(1,$detail);
+        $tags = Detail::tags(1,$detail);
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
@@ -32,8 +32,8 @@ class DetailController extends Controller
     {
         $result = $request->priority;
         $detail = Detail::where('priority', $result)->first();
-        $types = Detail::types();
-        $tags = Detail::tags();
+        $types = Detail::types(1,$detail);
+        $tags = Detail::tags(1,$detail);
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
@@ -57,10 +57,10 @@ class DetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Detail $detail)
     {
-        $types = Detail::types();
-        $tags = Detail::tags();
+        $types = Detail::types(0,$detail);
+        $tags = Detail::tags(0,$detail);
 
         return view('admin.create', compact('types', 'tags'));
     }
@@ -101,8 +101,8 @@ class DetailController extends Controller
     {
         // 【備忘録】$adminはパラメータ(URLにある数値)よりDetailsテーブルのidを取得する
         $detail = Detail::where('id', $admin)->first();
-        $types = Detail::types();
-        $tags = Detail::tags();
+        $types = Detail::types(0,$detail);
+        $tags = Detail::tags(0,$detail);
         $display = Detail::display();
         $images = Image::where('detail_id', $admin)->get();
 

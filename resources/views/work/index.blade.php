@@ -25,87 +25,26 @@
             <tr>
                 <th>用　　　途</th>
                 <td>
-                    @foreach ($types as $k => $v)
-                        @if ($k == $detail->type1) {{ $v }} @endif
-
-                        @if (isset($detail->type2))
-                            @if ($k == $detail->type2)/ {{ $v }} @endif
+                    @for($i=0; $i<count($types); $i++)
+                        @if($i==0)
+                        {{ $types[$i]['name'] }}
+                        @else
+                        {{ '/ ' .$types[$i]['name'] }}
                         @endif
-
-                        @if (isset($detail->type3))
-                            @if ($k == $detail->type3)/ {{ $v }} @endif
-                        @endif
-                    @endforeach
+                    @endfor
                 </td>
-
-                {{-- <td>
-                    @foreach ($types as $k => $v)
-                        @if ($k == $detail->type1)
-                            {{ $v }}
-                        @endif
-                    @endforeach
-
-                    @if (isset($detail->type2))
-                        @foreach ($types as $k => $v)
-                            @if ($k == $detail->type2)
-                                / {{ $v }}
-                            @endif
-                        @endforeach
-                    @endif
-
-                    @if (isset($detail->type3))
-                        @foreach ($types as $k => $v)
-                            @if ($k == $detail->type3)
-                                / {{ $v }}
-                            @endif
-                        @endforeach
-                    @endif
-                </td> --}}
             </tr>
 
             <tr>
                 <th>工 事 内 容</th>
                 <td>
-                    @foreach ($tags as $k => $v)
-                        @if ($k == $detail->content_tag1) {{ $v }} @endif
-
-                        @if (isset($detail->content_tag2))
-                            @if ($k == $detail->content_tag2)/ {{ $v }} @endif
+                    @for($i=0; $i<count($tags); $i++)
+                        @if($i==0)
+                        {{ $tags[$i]['name'] }}
+                        @else
+                        {{ '/ ' .$tags[$i]['name'] }}
                         @endif
-
-                        @if (isset($detail->content_tag3))
-                            @if ($k == $detail->content_tag3)/ {{ $v }} @endif
-                        @endif
-                    @endforeach
-
-
-
-
-
-
-
-
-                    {{-- @foreach ($tags as $k => $v)
-                        @if ($k == $detail->content_tag1)
-                            {{ $v }}
-                        @endif
-                    @endforeach
-
-                    @if (isset($detail->content_tag2))
-                        @foreach ($tags as $k => $v)
-                            @if ($k == $detail->content_tag2)
-                                / {{ $v }}
-                            @endif
-                        @endforeach
-                    @endif
-
-                    @if (isset($detail->content_tag3))
-                        @foreach ($tags as $k => $v)
-                            @if ($k == $detail->content_tag3)
-                                / {{ $v }}
-                            @endif
-                        @endforeach
-                    @endif --}}
+                    @endfor
                 </td>
             </tr>
         </table>

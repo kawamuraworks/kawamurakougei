@@ -181,78 +181,39 @@
                         </div>
                     </div>
 
+                    {{-- 川口先生版 -> oldは、0を返すのでDBの値を取得しない --}}
                     <div class="col-md-4">
                         <label for="content_tag2" class="form-label">工事内容2 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                @if(old('content_tag2') == $k)
-                                    <option value="{{ old('content_tag2') }}" selected>{{ $v }}</option>
-                                @elseif($detail->content_tag2 != '' && $k == $detail->content_tag2)
-                                    <option value="{{ $k }}" selected>{{ $v }}</option>
+                                @if (old('content_tag2') == $k)
+                                    <option selected value="{{$k}}">{{$v}}</option>
+                                @elseif ($detail->content_tag2 == $k)
+                                    <option value="{{$k}}">{{$v}}</option>
                                 @else
-                                    <option value={{ $k }}>{{ $v }}</option>
+                                    <option value="{{$k}}">{{$v}}</option>
                                 @endif
                             @endforeach
-
-
-
-
-                            {{-- @if (isset($detail->content_tag2))
-                            <option value="">選択...</option>
-                            @foreach ($tags as $k => $v)
-                                    @if ($k == $detail->content_tag2)
-                                        <option value="{{ old('content_tag2', $detail->content_tag2) }}" selected>
-                                            {{ $v }}
-                                        </option>
-                                        @continue
-                                    @endif
-                                    <option value={{ $k }}>{{ $v }}</option>
-                                @endforeach
-                            @else
-                                <option value="">選択...</option>
-                                @foreach ($tags as $k => $v)
-                                    <option value={{ $k }}>{{ $v }}</option>
-                                @endforeach
-                            @endif --}}
                         </select>
                     </div>
 
+                    {{-- DBの有無により表示の変更はできるが、oldの反映はできない --}}
                     <div class="col-md-4">
                         <label for="content_tag3" class="form-label">工事内容3 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
                             <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
-                                @if (old('content_tag3', '') == $k)
-                                <option value="{{ $k }}" selected>{{ $v }}</option>
-                                @elseif($detail->content_tag3 == $k)
-                                    <option value="{{ $k }}" selected>{{ $v }}</option>
-                                @else
-                                    <option value={{ $k }}>{{ $v }}</option>
+                                @if (isset($detail->content_tag3) && $k == $detail->content_tag3)
+                                    <option value="{{ old('content_tag3', $detail->content_tag3) }}" selected>
+                                        {{ $v }}
+                                    </option>
+                                    @continue
                                 @endif
+                                <option value={{ $k }}>{{ $v }}</option>
                             @endforeach
-
-
-
-                            {{-- @if (isset($detail->content_tag3))
-                                <option value="">選択...</option>
-                                @foreach ($tags as $k => $v)
-                                    @if ($k == $detail->content_tag3)
-                                        <option value="{{ old('content_tag3', $detail->content_tag3) }}" selected>
-                                            {{ $v }}
-                                        </option>
-                                        @continue
-                                    @endif
-                                    <option value={{ $k }}>{{ $v }}</option>
-                                @endforeach
-                            @else
-                                <option value="">選択...</option>
-                                @foreach ($tags as $k => $v)
-                                    <option value={{ $k }}>{{ $v }}</option>
-                                @endforeach
-                            @endif --}}
                         </select>
                     </div>
                 </div>

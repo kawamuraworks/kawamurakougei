@@ -156,7 +156,7 @@
                                         <button class="btn btn-light my-2">ログアウト</button>
                                     </form>
                                 @else
-                                    <a href="{{ route('login') }}" class="col-lg-2 col-sm-4 btn btn-light my-2">ログイン</a>
+                                    <a href="{{ route('login') }}" class="col-lg-2 col-sm-4 btn btn-light ms-2 my-2">ログイン</a>
                                 @endauth
                             </div>
                         @endif

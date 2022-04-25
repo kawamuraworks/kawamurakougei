@@ -19,13 +19,14 @@ class DetailController extends Controller
      */
     public function index()
     {
+        $result = 1;
         $detail = Detail::where('priority', 1)->first();
         $types = Detail::types(1,$detail);
         $tags = Detail::tags(1,$detail);
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        return view('work.index', compact('detail', 'types', 'tags', 'lists', 'images'));
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
     }
 
     public function priority(Request $request)
@@ -37,7 +38,7 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        return view('work.index', compact('detail', 'types', 'tags', 'lists', 'images'));
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
     }
 
     public function list()

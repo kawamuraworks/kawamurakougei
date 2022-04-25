@@ -149,7 +149,7 @@
                         <hr style="margin-bottom: 0">
 
                         @if (Route::has('login'))
-                            <div class="row col-md-12 mb-lg-2 mb-sm-5 ps-0 pb-5">
+                            <div class="row col-md-12 mb-lg-2 mb-sm-5 ps-0">
                                 @auth
                                     <form method="post" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
                                         @csrf

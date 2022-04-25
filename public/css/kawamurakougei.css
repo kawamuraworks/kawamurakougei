@@ -83,20 +83,6 @@ label {
   border-radius: 0;
 }
 
-.k-works-list {
-  /* メイン画像の大きさを決める */
-  width: 250px;
-  height: 250px;
-  /* アップした画像は、中央に配置し上下左右をトリミング */
-  background-size: contain;
-  background-color: lightgrey;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Bootstorapで指定する画像の丸みを削除 */
-  border-radius: 0;
-}
-
 .headline {
   position: absolute;
   bottom: 150px;
@@ -231,6 +217,22 @@ table td {
   color: #000;
 }
 
+.k-select {
+    position: relative;
+}
+
+.k-select p {
+    color: #fff;
+    vertical-align: middle;
+    width: 100%;
+    height: calc(100% - 2.0rem);
+    padding: 35% 0;
+    position: absolute;  /* relativeの要素を基準にする */
+    left: 0;/* 基準からみて左寄せ */
+    top: 0;
+    background: rgba(0,0,0,0.5);  /* 半透明の背景。 */
+  }
+
 .works-list{
   text-align: center;
 }
@@ -253,7 +255,12 @@ table td {
   .k-slick-slide {
     width: auto;
     height: 375px;
-    }
+  }
+
+  .k-select p {
+    padding: 30% 0;
+  }
+
 }
 
 @media (max-width: 576px){
@@ -372,6 +379,11 @@ table td {
 
   .k-slick-slide {
     height: 225px;
+  }
+
+  .k-select p {
+    height: 65%;
+    padding: 35% 0;
   }
 
   #k-copyright {

@@ -62,7 +62,6 @@
                     <div class="col-md-4">
                         <label for="type1" class="form-label">用途1</label>
                         <select class="form-select d-block w-100" id="type1" name="type1" required>
-                            <option value="">選択...</option>
                             @foreach ($types as $k => $v)
                                 @if ($k == old('type1', ''))
                                     <option value="{{ $k }}" selected>{{ $v }}</option>
@@ -82,7 +81,6 @@
                         <label for="type2" class="form-label">用途2 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type2" name="type2">
-                            <option value="">選択...</option>
                             @foreach ($types as $k => $v)
                                 @if ($k == old('type2', ''))
                                     <option value="{{ $k }}" selected>{{ $v }}</option>
@@ -99,7 +97,6 @@
                         <label for="type3" class="form-label">用途3 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="type3" name="type3">
-                            <option value="">選択...</option>
                             @foreach ($types as $k => $v)
                                 @if ($k == old('type3', ''))
                                     <option value="{{ $k }}" selected>{{ $v }}</option>
@@ -117,7 +114,6 @@
                     <div class="col-md-4">
                         <label for="content_tag1" class="form-label">工事内容1</label>
                         <select class="form-select d-block w-100" id="content_tag1" name="content_tag1" required>
-                            <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
                                 <option value={{ $k }}@if ($k == old('content_tag1', '')) selected @endif>
                                     {{ $v }}</option>
@@ -132,7 +128,6 @@
                         <label for="content_tag2" class="form-label">工事内容2 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag2" name="content_tag2">
-                            <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
                                 <option value={{ $k }}@if ($k == old('content_tag2', '')) selected @endif>
                                     {{ $v }}</option>
@@ -144,7 +139,6 @@
                         <label for="content_tag3" class="form-label">工事内容3 <span
                                 class="text-muted">(該当時のみ)</span></label>
                         <select class="form-select d-block w-100" id="content_tag3" name="content_tag3">
-                            <option value="">選択...</option>
                             @foreach ($tags as $k => $v)
                                 <option value={{ $k }}@if ($k == old('content_tag3', '')) selected @endif>
                                     {{ $v }}</option>

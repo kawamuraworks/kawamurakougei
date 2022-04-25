@@ -27,7 +27,7 @@ class Detail extends Model
     // 用途一覧
     public static function types($flag, $detail)
     {
-        $type_name = ['戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
+        $type_name = ['選択...', '戸建住宅', '集合住宅', '個人店舗', '大規模店舗', 'その他'];
         $has_type = [$detail->type1, $detail->type2, $detail->type3];
 
         if ($flag == 0) {
@@ -47,7 +47,7 @@ class Detail extends Model
     // 工事内容一覧
     public static function tags($flag, $detail)
     {
-        $tag_name = ['外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
+        $tag_name = ['選択...', '外壁施工', '内壁施工', 'オリジナルデザイン', 'その他'];
         $has_tag = [$detail->content_tag1, $detail->content_tag2, $detail->content_tag3];
 
         if ($flag == 0) {

@@ -28,7 +28,7 @@
                     @for($i=0; $i<count($types); $i++)
                         @if($i==0)
                         {{ $types[$i]['name'] }}
-                        @else
+                        @elseif($i>=1 && $types[$i]['num'] != 0)
                         {{ '/ ' .$types[$i]['name'] }}
                         @endif
                     @endfor
@@ -41,7 +41,7 @@
                     @for($i=0; $i<count($tags); $i++)
                         @if($i==0)
                         {{ $tags[$i]['name'] }}
-                        @else
+                        @elseif($i>=1 && $tags[$i]['num'] != 0)
                         {{ '/ ' .$tags[$i]['name'] }}
                         @endif
                     @endfor

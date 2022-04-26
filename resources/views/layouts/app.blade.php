@@ -42,9 +42,8 @@
                 <div class="container d-none d-lg-block">
                     <div class="row justify-content-center k-pt">
                         <div class="col-12 k-logo-pd">
-                            <h1><a class="navbar-brand" href="/"><img src="/images/btn_gNav-00.png"
+                            <a class="navbar-brand" href="/"><img src="/images/btn_gNav-00.png"
                                         class="img-fluid" alt="リフォームはプロの壁屋さん兵庫・神戸の河村工芸へ"></a>
-                            </h1>
                         </div>
                     </div>
                 </div>

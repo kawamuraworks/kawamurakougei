@@ -11,6 +11,11 @@ label {
   font-weight: 700;
 }
 
+iframe {
+    width: 100%;
+    height: 350px;
+}
+
 /* グローバルナビの設定 */
 .k-nav-link {
   display: block;
@@ -250,6 +255,11 @@ table td {
   #sidebarMenu{
       z-index:100;
       position:relative;
+  }
+
+  .card-img {
+    width: auto;
+    height: 80vh;
   }
 
   .k-slick-slide {

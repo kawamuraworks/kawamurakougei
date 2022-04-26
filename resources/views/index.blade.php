@@ -12,13 +12,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/top1.png') }}" class="d-block w-100" alt="実績紹介">
+                <a href="{{ route('work.index') }}"><img src="{{ asset('images/top1.png') }}" class="d-block w-100" alt="実績紹介"></a>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/top2.png') }}" class="d-block w-100" alt="会社案内">
+                <a href="#item-1"><img src="{{ asset('images/top2.png') }}" class="d-block w-100" alt="会社案内"></a>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/top3.png') }}" class="d-block w-100" alt="工事価格">
+                <a href="#item-4"><img src="{{ asset('images/top3.png') }}" class="d-block w-100" alt="工事価格"></a>
             </div>
         </div>
     </div>
@@ -30,9 +30,9 @@
         <p class="lead">河村工芸は、先代の河村孝から数えて〇〇年の歴史があります。</p>
     </div>
 
-    <hr id="item-3" style="margin: 10% 0;">
+    <hr style="margin: 10% 0;">
 
-    <div class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 10%;">
+    <div id="item-3" class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 10%;">
         <h2 class="cs_request pb-lg-4">壁であればなんでも対応いたします！</h2>
         <p class="lead">
             昔ながらのブロック塀の施工・修理から外壁のひび割れや塗装の剥がれ落ち、色落ちなどの修理やリフォーム。
@@ -40,9 +40,9 @@
         </p>
     </div>
 
-    <hr id="item-4" style="margin: 10% 0;">
+    <hr style="margin: 10% 0;">
 
-    <div class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 10%;">
+    <div id="item-4" class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5" style="margin-top: 10%;">
         <h3 class="cs_request pb-lg-4">左官工事価格のご案内</h3>
         <p class="lead">
             個人様向け<br>
@@ -63,14 +63,14 @@
         </p>
     </div>
 
-    <hr id="item-5" style="margin: 10% 0;">
+    <hr style="margin: 10% 0;">
 
-    <div class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-4" style="margin-top: 10%;">
+    <div id="item-5" class="col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-4" style="margin-top: 10%;">
         <h4 class="cs_request pb-lg-4">所在地</h4>
         <p class="lead">
             河村工芸では、西は兵庫県姫路市から東は奈良県までご依頼頂いた実績があります。<br>
             距離が気になる場合でも先ずはお問い合わせください。<br>
-            <span class="alert-danger">※事務所移転に伴い、Google マップの情報に変更があります。（現在変更申請中）
+            <span class="alert-danger">※事務所移転に伴い、Google マップの情報に変更があります。（現在変更申請中）</span>
         </p>
         <table class="mb-5">
             <tr>

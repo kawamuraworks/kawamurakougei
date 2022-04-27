@@ -9,7 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
-    public function detail() {
+    public function detail()
+    {
         return $this->belongsTo(Detail::class);
     }
 
@@ -18,7 +19,8 @@ class Image extends Model
     ];
 
     // 新規登録(create)時のImagesテーブルへの登録
-    public static function storeImagesTable($request, $detail) {
+    public static function storeImagesTable($request, $detail)
+    {
         $count = count($request->file('image_'));
         for ($i = 0; $i < $count; $i++) {
             $image = new Image();
@@ -40,21 +42,34 @@ class Image extends Model
         }
     }
 
-     // 説明文のみを編集するメソッド
-     public static function onlyEditContent($request,$target,$count) {
-        // 編集する行(情報)をまとめる
-        $updates = [];
-        // 編集する行の情報を配列で生成する
+    // 【MySQL用】AWSではこちら？
+    //  // 説明文のみを編集するメソッド
+    //  public static function onlyEditContent($request,$target,$count) {
+    //     // 編集する行(情報)をまとめる
+    //     $updates = [];
+    //     // 編集する行の情報を配列で生成する
+    //     for ($i = 0; $i < $count; $i++) {
+    //         $temp = ['id' => $target[$i]->id, 'detail_id' => $target[$i]->detail_id, 'path' => $target[$i]->path, 'img_content' => $request->img_content_[$i]];
+    //         array_push($updates, $temp);
+    //     };
+    //     // 第一引数に更新内容すべて、第二引数にどこの値を基準に更新するかを設定、第三引数に更新したい列名を設定
+    //     Image::upsert($updates, ['id', 'detail_id'], ['img_content']);
+    // }
+
+    // 【SQLSTATE用】Herokuで使用
+    // 説明文のみを編集するメソッド
+    public static function onlyEditContent($request, $target, $count)
+    {
         for ($i = 0; $i < $count; $i++) {
-            $temp = ['id' => $target[$i]->id, 'detail_id' => $target[$i]->detail_id, 'path' => $target[$i]->path, 'img_content' => $request->img_content_[$i]];
-            array_push($updates, $temp);
-        };
-        // 第一引数に更新内容すべて、第二引数にどこの値を基準に更新するかを設定、第三引数に更新したい列名を設定
-        Image::upsert($updates, ['id', 'detail_id'], ['img_content']);
+            $image = $target[$i];
+            $image->img_content = $request->img_content_[$i];
+            $image->update();
+        }
     }
 
-     // 画像の差替え・追加を含む編集をするメソッド
-     public static function includeEditImages($request,$image,$target,$count) {
+    // 画像の差替え・追加を含む編集をするメソッド
+    public static function includeEditImages($request, $image, $target, $count)
+    {
         if (isset($request->image_)) {
             $images = $request->image_;
             $key = array_keys($images);
@@ -62,7 +77,7 @@ class Image extends Model
             foreach ($key as $v) {
                 // if → 画像の差替え処理。 elseif → 画像の追加処理。
                 // 【備忘録】$keyは配列なので0スタート、$countは更新する枚数なので比べるには-1する必要がある。
-                if ($count-1 >= $v) {
+                if ($count - 1 >= $v) {
                     $input = $request->file('image_')[$v];
                     $original = $input->getClientOriginalName();
                     $image_kind =  explode(".", $original);
@@ -88,7 +103,4 @@ class Image extends Model
             }
         }
     }
-
-
-
 }

@@ -105,12 +105,12 @@ class Detail extends Model
     {
         $detail->fill(['user_id' => auth()->user()->id]);
         $detail->fill($request->all());
-        $detail->priority = 1;
+        $detail->priority = 2;
         $detail->is_detail_deleted = 1;
         unset($detail['_token']);
 
         // 新規登録は優先順位1とするため、これまで登録してきた実績は+1とする
-        $add_priority = Detail::where('priority', '>=', 1);
+        $add_priority = Detail::where('priority', '>=', 2);
         $add_priority->increment('priority', 1);
 
         $detail->save();

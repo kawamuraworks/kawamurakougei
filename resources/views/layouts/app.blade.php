@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="Description" content="外壁塗装、室内壁塗り、珪藻土、漆喰、店舗のリフォームはプロの壁屋さん兵庫・神戸の河村工芸へ。">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', '河村工芸') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -163,6 +163,7 @@
                         @endif
 
                     </div>
+                    <div class="d-lg-none col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-4" style="margin-top: 100%;"></div>
                 </div>
             </main>
         </div>

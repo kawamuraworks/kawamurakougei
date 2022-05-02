@@ -20,31 +20,6 @@ class Image extends Model
 
     // // 【MySQL用】AWSではこちら？
     // // 新規登録(create)時のImagesテーブルへの登録
-    // public static function storeImagesTable($request, $detail)
-    // {
-    //     $count = count($request->file('image_'));
-    //     for ($i = 0; $i < $count; $i++) {
-    //         $image = new Image();
-    //         $image->detail_id = $detail->id;
-
-    //         // 登録する画像名の作成
-    //         $input = $request->file('image_')[$i];
-    //         $original = $input->getClientOriginalName();
-    //         $img_kind =  explode(".", $original);
-    //         $image_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
-
-    //         // storageに保存ファイルの作成・画像の登録
-    //         $input->move('storage/work_' . $detail->id, $image_name);
-    //         $image->path = 'storage/work_' . $detail->id;
-
-    //         // 画像説明文の保存
-    //         $image->img_content = $request->img_content_[$i];
-    //         $image->save();
-    //     }
-    // }
-
-    // 【SQLSTATE用】Herokuで使用
-    // 新規登録(create)時のImagesテーブルへの登録。Herokuではシンボリックリンクが機能しないので、publicに直接保存する。
     public static function storeImagesTable($request, $detail)
     {
         $count = count($request->file('image_'));
@@ -59,14 +34,39 @@ class Image extends Model
             $image_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
 
             // storageに保存ファイルの作成・画像の登録
-            $input->move('public/work_' . $detail->id, $image_name);
-            $image->path = 'public/work_' . $detail->id;
+            $input->move('storage/work_' . $detail->id, $image_name);
+            $image->path = 'storage/work_' . $detail->id;
 
             // 画像説明文の保存
             $image->img_content = $request->img_content_[$i];
             $image->save();
         }
     }
+
+    // 【SQLSTATE用】Herokuで使用
+    // 新規登録(create)時のImagesテーブルへの登録。Herokuではシンボリックリンクが機能しないので、publicに直接保存する。
+    // public static function storeImagesTable($request, $detail)
+    // {
+    //     $count = count($request->file('image_'));
+    //     for ($i = 0; $i < $count; $i++) {
+    //         $image = new Image();
+    //         $image->detail_id = $detail->id;
+
+    //         // 登録する画像名の作成
+    //         $input = $request->file('image_')[$i];
+    //         $original = $input->getClientOriginalName();
+    //         $img_kind =  explode(".", $original);
+    //         $image_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
+
+    //         // storageに保存ファイルの作成・画像の登録
+    //         $input->move('public/work_' . $detail->id, $image_name);
+    //         $image->path = 'public/work_' . $detail->id;
+
+    //         // 画像説明文の保存
+    //         $image->img_content = $request->img_content_[$i];
+    //         $image->save();
+    //     }
+    // }
 
 
     // 【MySQL用】AWSではこちら？
@@ -96,45 +96,6 @@ class Image extends Model
 
     // // 【MySQL用】AWSではこちら？
     // // 画像の差替え・追加を含む編集をするメソッド
-    // public static function includeEditImages($request, $image, $target, $count)
-    // {
-    //     if (isset($request->image_)) {
-    //         $images = $request->image_;
-    //         $key = array_keys($images);
-
-    //         foreach ($key as $v) {
-    //             // if → 画像の差替え処理。 elseif → 画像の追加処理。
-    //             // 【備忘録】$keyは配列なので0スタート、$countは更新する枚数なので比べるには-1する必要がある。
-    //             if ($count - 1 >= $v) {
-    //                 $input = $request->file('image_')[$v];
-    //                 $original = $input->getClientOriginalName();
-    //                 $image_kind =  explode(".", $original);
-    //                 $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-    //                 $input->move('storage/work_' . $target[0]->detail_id, $image_name);
-
-    //                 $image->path = 'storage/work_' . $target[0]->detail_id;
-    //                 $image->img_content = $request->img_content_[$v];
-    //                 $image->update();
-    //             } elseif ($count <= $v) {
-    //                 $image = new Image();
-    //                 $input = $request->file('image_')[$v];
-    //                 $original = $input->getClientOriginalName();
-    //                 $image_kind =  explode(".", $original);
-    //                 $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-    //                 $input->move('storage/work_' . $target[0]->detail_id, $image_name);
-
-    //                 $image->detail_id = $target[0]->detail_id;
-    //                 $image->path = 'storage/work_' . $target[0]->detail_id;
-    //                 $image->img_content = $request->img_content_[$v];
-    //                 $image->save();
-    //             }
-    //         }
-    //     }
-    // }
-
-
-    // 【SQLSTATE用】Herokuで使用
-    // 画像の差替え・追加を含む編集をするメソッド。Herokuではシンボリックリンクが機能しないので、publicに直接保存する。
     public static function includeEditImages($request, $image, $target, $count)
     {
         if (isset($request->image_)) {
@@ -149,9 +110,9 @@ class Image extends Model
                     $original = $input->getClientOriginalName();
                     $image_kind =  explode(".", $original);
                     $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-                    $input->move('public/work_' . $target[0]->detail_id, $image_name);
+                    $input->move('storage/work_' . $target[0]->detail_id, $image_name);
 
-                    $image->path = 'public/work_' . $target[0]->detail_id;
+                    $image->path = 'storage/work_' . $target[0]->detail_id;
                     $image->img_content = $request->img_content_[$v];
                     $image->update();
                 } elseif ($count <= $v) {
@@ -160,14 +121,53 @@ class Image extends Model
                     $original = $input->getClientOriginalName();
                     $image_kind =  explode(".", $original);
                     $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-                    $input->move('public/work_' . $target[0]->detail_id, $image_name);
+                    $input->move('storage/work_' . $target[0]->detail_id, $image_name);
 
                     $image->detail_id = $target[0]->detail_id;
-                    $image->path = 'public/work_' . $target[0]->detail_id;
+                    $image->path = 'storage/work_' . $target[0]->detail_id;
                     $image->img_content = $request->img_content_[$v];
                     $image->save();
                 }
             }
         }
     }
+
+
+    // 【SQLSTATE用】Herokuで使用
+    // 画像の差替え・追加を含む編集をするメソッド。Herokuではシンボリックリンクが機能しないので、publicに直接保存する。
+    // public static function includeEditImages($request, $image, $target, $count)
+    // {
+    //     if (isset($request->image_)) {
+    //         $images = $request->image_;
+    //         $key = array_keys($images);
+
+    //         foreach ($key as $v) {
+    //             // if → 画像の差替え処理。 elseif → 画像の追加処理。
+    //             // 【備忘録】$keyは配列なので0スタート、$countは更新する枚数なので比べるには-1する必要がある。
+    //             if ($count - 1 >= $v) {
+    //                 $input = $request->file('image_')[$v];
+    //                 $original = $input->getClientOriginalName();
+    //                 $image_kind =  explode(".", $original);
+    //                 $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
+    //                 $input->move('public/work_' . $target[0]->detail_id, $image_name);
+
+    //                 $image->path = 'public/work_' . $target[0]->detail_id;
+    //                 $image->img_content = $request->img_content_[$v];
+    //                 $image->update();
+    //             } elseif ($count <= $v) {
+    //                 $image = new Image();
+    //                 $input = $request->file('image_')[$v];
+    //                 $original = $input->getClientOriginalName();
+    //                 $image_kind =  explode(".", $original);
+    //                 $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
+    //                 $input->move('public/work_' . $target[0]->detail_id, $image_name);
+
+    //                 $image->detail_id = $target[0]->detail_id;
+    //                 $image->path = 'public/work_' . $target[0]->detail_id;
+    //                 $image->img_content = $request->img_content_[$v];
+    //                 $image->save();
+    //             }
+    //         }
+    //     }
+    // }
 }

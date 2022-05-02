@@ -59,8 +59,8 @@ class Image extends Model
             $image_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
 
             // storageに保存ファイルの作成・画像の登録
-            $input->move('public/storage/work_' . $detail->id, $image_name);
-            $image->path = 'public/storage/work_' . $detail->id;
+            $input->move('public/work_img/work_' . $detail->id, $image_name);
+            $image->path = 'public/work_img/work_' . $detail->id;
 
             // 画像説明文の保存
             $image->img_content = $request->img_content_[$i];
@@ -149,9 +149,9 @@ class Image extends Model
                     $original = $input->getClientOriginalName();
                     $image_kind =  explode(".", $original);
                     $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-                    $input->move('public/storage/work_' . $target[0]->detail_id, $image_name);
+                    $input->move('public/work_img/work_' . $target[0]->detail_id, $image_name);
 
-                    $image->path = 'public/storage/work_' . $target[0]->detail_id;
+                    $image->path = 'public/work_img/work_' . $target[0]->detail_id;
                     $image->img_content = $request->img_content_[$v];
                     $image->update();
                 } elseif ($count <= $v) {
@@ -160,10 +160,10 @@ class Image extends Model
                     $original = $input->getClientOriginalName();
                     $image_kind =  explode(".", $original);
                     $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-                    $input->move('public/storage/work_' . $target[0]->detail_id, $image_name);
+                    $input->move('public/work_img/work_' . $target[0]->detail_id, $image_name);
 
                     $image->detail_id = $target[0]->detail_id;
-                    $image->path = 'public/storage/work_' . $target[0]->detail_id;
+                    $image->path = 'public/work_img/work_' . $target[0]->detail_id;
                     $image->img_content = $request->img_content_[$v];
                     $image->save();
                 }

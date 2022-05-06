@@ -83,7 +83,7 @@
                         @continue
                     @endif
                     <div class="carousel-item" data-bs-interval="5000">
-                        <img src="{{ '/works/work1/works-0001-' . $k+2 . '.jpg' }}"
+                        <img src="{{ '/works/work1/works-0001-' . $k+1 . '.jpg' }}"
                             alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
                             style="margin: 0 auto;">
                         <div class="carousel-caption d-block k-carousel-caption">

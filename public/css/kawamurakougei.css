@@ -261,7 +261,7 @@ table td {
   #sidebarMenu{
       z-index:100;
       position:relative;
-      --bs-gutter-y:60px;
+      /* --bs-gutter-y:60px; */
   }
 
   .card-img {

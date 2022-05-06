@@ -32,11 +32,11 @@
         </button>
     </header>
 
-    <div class="container-fluid gy-4">
+    <div class="container-fluid">
         <div class="row">
             <!-- グローバルナビ　開始 -->
             <nav id="sidebarMenu"
-                class="collapse navbar navbar-light col-lg-2 d-lg-block bg-light flex-column align-items-stretch p-3">
+                class="collapse navbar navbar-light col-lg-2 d-lg-block bg-light flex-column align-items-stretch p-3 gy-5">
 
                 <!-- ロゴ配置　開始 -->
                 <div class="container d-none d-lg-block">

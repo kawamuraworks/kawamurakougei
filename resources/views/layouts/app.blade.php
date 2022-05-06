@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none">
+    <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none k-navbar">
         <a class="navbar-brand col-sm-3 me-0 px-sm-3 py-sm-3" href="/">河村工芸</a>
         <button class="navbar-toggler position-right d-lg-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
@@ -32,7 +32,7 @@
         </button>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid gy-4">
         <div class="row">
             <!-- グローバルナビ　開始 -->
             <nav id="sidebarMenu"

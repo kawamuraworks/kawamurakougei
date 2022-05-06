@@ -142,7 +142,7 @@
                     tabindex="0">
                     {{ $slot }}
 
-                    <div class="row col-md-12 ps-5">
+                    <div class="row col-md-12 px-lg-5 px-sm-3" style="margin-left: 0; margin-right: 0">
                         <p id="k-copyright" style="margin-bottom: 0; text-align: right;">©2022 kawamura Kougei All
                             Rights Reserved</p>
                         <hr style="margin-bottom: 0">

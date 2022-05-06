@@ -26,7 +26,11 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
+        // 【最終削除】AWSではこちらを使用
+        // return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
+
+        // Heroku使用時のみ
+        return view('work.heroku', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
     }
 
     public function priority(Request $request)

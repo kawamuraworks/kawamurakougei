@@ -21,8 +21,15 @@ Route::get('/', function () {
 
 // Route::resource('admin', DetailController::class);
 
+// 【AWS用】こちらが最終
+// indexとpriorityは一緒のviewで表示
+// Route::get('work', [DetailController::class, 'index'])->name('work.index');
 
-Route::get('work', [DetailController::class, 'index'])->name('work.index');
+// 【Heroku用】
+// Herokuは、投稿した画像を保存できない。初期保存した実績のみ画像を表示するためだけに使用。
+Route::get('work', [DetailController::class, 'index'])->name('work.heroku');
+
+
 Route::get('work/{priority?}', [DetailController::class, 'priority'])->name('work.index');
 
 Route::group(['middleware' => ['auth']], function () {

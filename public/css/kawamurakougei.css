@@ -250,17 +250,8 @@ table td {
 @media (max-width: 768px){
   body{
       overflow:hidden;
+      padding-top: 4.75rem;
   }
-
-  /* .k-navbar {
-    position: fixed;
-    z-index: 1000;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-  } */
 
   #sidebarMenu{
       z-index:100;
@@ -285,6 +276,10 @@ table td {
 }
 
 @media (max-width: 576px){
+  body{
+    padding-top: 3.375rem;
+  }
+
   .headline {
     position: absolute;
     bottom: 70px;

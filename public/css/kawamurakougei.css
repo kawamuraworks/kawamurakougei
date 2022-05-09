@@ -252,12 +252,15 @@ table td {
       overflow:hidden;
   }
 
-  .k-navbar {
-    position: absolute;
-    top: 0;
+  /* .k-navbar {
+    position: fixed;
     z-index: 1000;
     width: 100%;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  } */
 
   #sidebarMenu{
       z-index:100;

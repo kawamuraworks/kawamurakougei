@@ -252,11 +252,6 @@ table td {
       overflow:hidden;
   }
 
-  .k-navbar {
-    position: fixed;
-    z-index: 1000;
-    width: 100%;
-  }
 
   #sidebarMenu{
       z-index:100;

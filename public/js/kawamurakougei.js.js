@@ -133,7 +133,7 @@ function deleteImageEdit() {
 
 // ※途中　トップページでの#itemまでのスクロール
 //スクロール量をコンソールに表示する処理
-let target = document.getElementById('#item-1');
+let target = document.getElementById('item-1');
 target.onscroll = () => console.log(target.scrollTop);
 
 //ボタンを押したらスクロール位置400に移動する処理

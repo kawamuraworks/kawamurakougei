@@ -1,4 +1,4 @@
-// 無効なフィールドがある場合にフォーム送信を無効にするスターターJavaScriptの例
+// 入力されていない時のバリデーション
 (function () {
     'use strict'
 
@@ -130,3 +130,12 @@ function deleteImageEdit() {
     e--;
   }
 }
+
+// トップページでの#itemまでのスクロール
+var element = document.getElementById('item-3'); // 移動させたい位置の要素を取得
+    var rect = element.getBoundingClientRect();
+    var position = rect.top;    // 一番上からの位置を取得
+
+function scrollToItem() {
+  scrollTo(100, position);
+ }

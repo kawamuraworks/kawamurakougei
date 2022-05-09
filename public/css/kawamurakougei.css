@@ -253,7 +253,8 @@ table td {
   }
 
   .k-navbar {
-    position: fixed;
+    position: absolute;
+    top: 0;
     z-index: 1000;
     width: 100%;
   }

@@ -132,12 +132,10 @@ function deleteImageEdit() {
 }
 
 // ※途中　トップページでの#itemまでのスクロール
-var element = document.getElementById('item-3'); // 移動させたい位置の要素を取得
-    var rect1 = element.getBoundingClientRect();
-    var position1 = rect1.top;    // 一番上からの位置を取得
-    var rect2 = element.getBoundingClientRect();
-    var position2 = rect2.left;    // 一番左からの位置を取得
+//スクロール量をコンソールに表示する処理
+let target = document.getElementById('#item-1');
+target.onscroll = () => console.log(target.scrollTop);
 
-function scrollToItem() {
-  scrollTo(position2, position1);
- }
+//ボタンを押したらスクロール位置400に移動する処理
+let actionButton = document.getElementById('actionButton');
+actionButton.onclick = () => target.scrollTop = 400;

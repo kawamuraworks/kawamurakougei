@@ -250,7 +250,7 @@ table td {
 @media (max-width: 768px){
   body{
       overflow:hidden;
-      /* padding-top: 4.75rem; */
+      padding-top: 4.75rem;
   }
 
   #sidebarMenu{
@@ -276,9 +276,9 @@ table td {
 }
 
 @media (max-width: 576px){
-  /* body{
+  body{
     padding-top: 3.375rem;
-  } */
+  }
 
   .headline {
     position: absolute;

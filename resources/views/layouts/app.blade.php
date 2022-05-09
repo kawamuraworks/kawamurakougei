@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none fixed-top">
+    <header class="navbar navbar-dark bg-dark flex-md-nowrap p-2 shadow d-lg-none k-navbar">
         <a class="navbar-brand col-sm-3 me-0 px-sm-3 py-sm-3" href="/">河村工芸</a>
         <button class="navbar-toggler position-right d-lg-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
@@ -36,7 +36,7 @@
         <div class="row">
             <!-- グローバルナビ　開始 -->
             <nav id="sidebarMenu"
-                class="collapse navbar navbar-light col-lg-2 d-lg-block bg-light flex-column align-items-stretch p-3">
+                class="collapse navbar navbar-light col-lg-2 d-lg-block bg-light flex-column align-items-stretch p-3 gy-5">
 
                 <!-- ロゴ配置　開始 -->
                 <div class="container d-none d-lg-block">
@@ -57,7 +57,7 @@
                             <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-2 pt-lg-5">
                                 <div
                                     class="col-sm-4 col-lg-6 themed-grid-col px-md-5 py-md-2 px-lg-2 py-lg-3 md-sm-2 pt-lg-2">
-                                    <a class="nav-link k-nav-link"  aria-current="page"
+                                    <a class="nav-link k-nav-link" aria-current="page"
                                         @if (Route::getCurrentRoute()->getName() === 'index') href="#item-1" @else href="{{ route('index') }}" @endif><img
                                             src="/images/btn_gNav01_off.png" class="img-fluid" alt=""
                                             onmouseover="this.src='/images/btn_gNav01_on.png'"

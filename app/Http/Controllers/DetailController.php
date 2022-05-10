@@ -26,6 +26,21 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
+        $sort = 'path';
+        $imgae_list = Image::all()->groupBy('detail_id')->orderBy($sort, 'asc');
+        // $a = Detail::all();
+        // $sort = 'priority';
+
+        // $imgae_list = Detail::whereHas('images', function($q)use($a,$sort){
+        //     $q->where('details.id',1)
+        //     ->orderBy($sort, 'asc')->get();
+        // });
+
+
+
+
+
+
         return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
     }
 

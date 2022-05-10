@@ -26,8 +26,8 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        $sort = 'path';
-        $imgae_list = Image::all()->groupBy('detail_id')->orderBy($sort, 'asc');
+        // $sort = 'path';
+        // $imgae_list = Image::all()->groupBy('detail_id')->orderBy($sort, 'asc');
         // $a = Detail::all();
         // $sort = 'priority';
 

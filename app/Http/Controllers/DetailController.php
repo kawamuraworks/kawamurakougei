@@ -37,7 +37,6 @@ class DetailController extends Controller
         $tags = Detail::tags(1, $detail);
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
-        dd($images);
 
         return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
     }

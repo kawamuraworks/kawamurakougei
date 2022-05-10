@@ -75,9 +75,12 @@
                 @foreach ($images as $k => $v)
                     @if ($k == 0)
                         <div class="carousel-item active" data-bs-interval="5000">
-                            <img src="{{ '/works/work1/works-0001-' . $k+1 . '.jpg' }}"
+                            <img src="data:image/png;base64,{{ $images[$k]->path }}"
                                 alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
                                 style="margin: 0 auto;">
+                            {{-- <img src="{{ '/works/work1/works-0001-' . $k+1 . '.jpg' }}"
+                                alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
+                                style="margin: 0 auto;"> --}}
                             <div class="carousel-caption d-block k-carousel-caption">
                                 <p class="k-detail-content">{{ $images[$k]->img_content }}</p>
                             </div>
@@ -85,7 +88,7 @@
                         @continue
                     @endif
                     <div class="carousel-item" data-bs-interval="5000">
-                        <img src="{{ '/works/work1/works-0001-' . $k+1 . '.jpg' }}"
+                        <img src="data:image/png;base64,{{ $images[$k]->path }}"
                             alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
                             style="margin: 0 auto;">
                         <div class="carousel-caption d-block k-carousel-caption">
@@ -111,8 +114,10 @@
                     <figure class="works-list k-select">
                         <a class="nav-link k-nav-link" aria-current="page"
                             href="/work/index?priority={{ $v->priority }}">
-                            <img src="{{ '/works/work2/works-0002-' . $k+1 . '.jpg' }}"
+                            <img src="data:image/png;base64,{{ $v->path }}"
                                 class="img-fluid" alt="">
+                            {{-- <img src="{{ '/works/work2/works-0002-' . $k+1 . '.jpg' }}"
+                                class="img-fluid" alt=""> --}}
                             @if($result == $v->priority) <p>選択中</p> @endif
                         </a>
                         <figcaption class="lead">{{ $v->headline }}</figcaption>

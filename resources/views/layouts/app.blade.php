@@ -163,7 +163,7 @@
                         @endif
 
                     </div>
-                    <div class="d-lg-none col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-4" style="margin-top: 100%;"></div>
+                    <div class="d-lg-none col-sm-10 col-lg-8 px-sm-4 mx-sm-4 px-lg-5 mx-lg-5 pb-4" style="margin-top: 5%;"></div>
                 </div>
             </main>
         </div>

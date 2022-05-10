@@ -256,8 +256,8 @@ table td {
 
   #sidebarMenu{
       z-index:100;
-      position:relative;
-      /* --bs-gutter-y:60px; */
+      position:fixed;
+      padding-top: 4.75rem;
   }
 
   .card-img {
@@ -281,7 +281,10 @@ table td {
     padding-top: 3.375rem;
   }
 
-  .headline {
+  #sidebarMenu{
+    padding-top: 3.375rem;
+  }
+.headline {
     position: absolute;
     bottom: 70px;
     left: 20px;

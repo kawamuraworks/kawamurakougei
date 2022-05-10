@@ -114,8 +114,10 @@
                     <figure class="works-list k-select">
                         <a class="nav-link k-nav-link" aria-current="page"
                             href="/work/index?priority={{ $v->priority }}">
-                            <img src="data:image/png;base64,{{ $images[0]->path }}"
+                            @foreach($images as $a => $b )
+                            <img src="data:image/png;base64,{{ $images[$a]->path }}"
                                 class="img-fluid" alt="">
+                            @endforeach
                             {{-- <img src="{{ '/works/work2/works-0002-' . $k+1 . '.jpg' }}"
                                 class="img-fluid" alt=""> --}}
                             @if($result == $v->priority) <p>選択中</p> @endif

@@ -1,9 +1,9 @@
 <x-app-layout>
     <div class="card col-lg-10 k-card">
-        <img src="data:image/png;base64,{{ $images->path[0] }}" class="card-img"
-            alt="{{ $detail->headline }}">
-        {{-- <img src="/works/work1/works-0001-1.jpg" class="card-img"
+        {{-- <img src="data:image/png;base64,{{ $images[0]->path }}" class="card-img"
             alt="{{ $detail->headline }}"> --}}
+        <img src="/works/work1/works-0001-1.jpg" class="card-img"
+            alt="{{ $detail->headline }}">
         <div class="card-img-overlay">
             <h1 class="headline">{{ $detail->headline }}</h1>
             <p class="period">施工期間：{{ $detail->period }}</p>

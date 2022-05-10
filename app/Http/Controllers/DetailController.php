@@ -89,27 +89,18 @@ class DetailController extends Controller
         Detail::validation($request);
         Detail::storeDetailsTable($request, $detail);
 
-        $count = count($request->image_);
-
+        $count = count($request->file('image_'));
         for ($i = 0; $i < $count; $i++) {
+            $image = new Image();
+            $image->detail_id = $detail->id;
+
             //POSTされた画像ファイルデータ取得しbase64でエンコードする
-            $path = base64_encode(file_get_contents($request->image_[$i]->getRealPath()));
-            $img_content = $request->img_content_[$i];
-            // base64エンコードしたバイナリデータを格納
-            Image::insert([
-                "path" => $path,
-                "img_content" => $img_content
-            ]);
+            $image->path = base64_encode(file_get_contents($request->image_[$i]->getRealPath()));
+            $image->img_content = $request->img_content_[$i];
+
+            $image->save();
         }
 
-        //POSTされた画像ファイルデータ取得しbase64でエンコードする
-        $path = base64_encode(file_get_contents($request->image_->getRealPath()));
-        $img_content = $request->img_content;
-        // base64エンコードしたバイナリデータを格納
-        Image::insert([
-            "path" => $path,
-            "img_content" => $img_content
-        ]);
 
 
         // Image::storeImagesTable($request, $detail);

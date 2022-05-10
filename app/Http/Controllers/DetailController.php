@@ -21,24 +21,20 @@ class DetailController extends Controller
     {
         $result = 1;
         $detail = Detail::where('priority', 1)->first();
-        $types = Detail::types(1,$detail);
-        $tags = Detail::tags(1,$detail);
+        $types = Detail::types(1, $detail);
+        $tags = Detail::tags(1, $detail);
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        // 【最終削除】AWSではこちらを使用
-        // return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
-
-        // Heroku使用時のみ
-        return view('work.heroku', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
     }
 
     public function priority(Request $request)
     {
         $result = $request->priority;
         $detail = Detail::where('priority', $result)->first();
-        $types = Detail::types(1,$detail);
-        $tags = Detail::tags(1,$detail);
+        $types = Detail::types(1, $detail);
+        $tags = Detail::tags(1, $detail);
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
@@ -64,8 +60,8 @@ class DetailController extends Controller
      */
     public function create(Detail $detail)
     {
-        $types = Detail::types(0,$detail);
-        $tags = Detail::tags(0,$detail);
+        $types = Detail::types(0, $detail);
+        $tags = Detail::tags(0, $detail);
 
         return view('admin.create', compact('types', 'tags'));
     }
@@ -76,11 +72,47 @@ class DetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // 【MySQL用】AWSではこちら？
+    // public function store(Request $request, Detail $detail)
+    // {
+    //     Detail::validation($request);
+    //     Detail::storeDetailsTable($request, $detail);
+    //     Image::storeImagesTable($request, $detail);
+
+    //     return redirect()->route('admin.select')->with('message', '投稿を作成しました');
+    // }
+
+    // 【SQLSTATE用】Herokuで使用
     public function store(Request $request, Detail $detail)
     {
         Detail::validation($request);
         Detail::storeDetailsTable($request, $detail);
-        Image::storeImagesTable($request, $detail);
+
+        $count = count($request->image_);
+
+        for ($i = 0; $i < $count; $i++) {
+            //POSTされた画像ファイルデータ取得しbase64でエンコードする
+            $path = base64_encode(file_get_contents($request->image_[$i]->getRealPath()));
+            $img_content = $request->img_content_[$i];
+            // base64エンコードしたバイナリデータを格納
+            Image::insert([
+                "path" => $path,
+                "img_content" => $img_content
+            ]);
+        }
+
+        //POSTされた画像ファイルデータ取得しbase64でエンコードする
+        $path = base64_encode(file_get_contents($request->image_->getRealPath()));
+        $img_content = $request->img_content;
+        // base64エンコードしたバイナリデータを格納
+        Image::insert([
+            "path" => $path,
+            "img_content" => $img_content
+        ]);
+
+
+        // Image::storeImagesTable($request, $detail);
 
         return redirect()->route('admin.select')->with('message', '投稿を作成しました');
     }
@@ -106,8 +138,8 @@ class DetailController extends Controller
     {
         // 【備忘録】$adminはパラメータ(URLにある数値)よりDetailsテーブルのidを取得する
         $detail = Detail::where('id', $admin)->first();
-        $types = Detail::types(0,$detail);
-        $tags = Detail::tags(0,$detail);
+        $types = Detail::types(0, $detail);
+        $tags = Detail::tags(0, $detail);
         $display = Detail::display();
         $images = Image::where('detail_id', $admin)->get();
 
@@ -129,8 +161,8 @@ class DetailController extends Controller
         // 更新対象となる行(イメージテーブル情報)を取得する
         $target = Image::where('detail_id', $request->id)->get();
         $count = count($target);
-        Image::onlyEditContent($request,$target,$count);
-        Image::includeEditImages($request,$image,$target,$count);
+        Image::onlyEditContent($request, $target, $count);
+        Image::includeEditImages($request, $image, $target, $count);
 
         return redirect()->route('admin.select')->with('message', '内容を変更しました');
     }

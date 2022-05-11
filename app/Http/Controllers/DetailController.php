@@ -108,7 +108,21 @@ class DetailController extends Controller
     {
         $lists = Detail::lists();
 
-        return view('admin.select', compact('lists'));
+
+        $imgae_list = DB::table('details')
+            ->join('images', 'details.id', '=', 'images.detail_id')
+            ->select('details.*','images.path')
+            ->distinct('details.priority')
+            ->orderBy('details.priority', 'asc')
+            ->get();
+
+        for($i=0;$i<count($imgae_list);$i++) {
+            $image_path[] = $imgae_list[$i]->path;
+        }
+
+
+
+        return view('admin.select', compact('lists', 'image_path'));
     }
 
     /**

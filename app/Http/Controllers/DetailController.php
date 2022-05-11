@@ -29,7 +29,6 @@ class DetailController extends Controller
 
         // Herokuでのみ使用
         $image_path = Detail::image_path();
-        dd($image_path);
 
         return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'image_path'));
     }

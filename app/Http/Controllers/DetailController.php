@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Detail;
 use App\Models\Image;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -29,19 +30,43 @@ class DetailController extends Controller
         // $sort = 'path';
         // $imgae_list = Image::all()->groupBy('detail_id')->orderBy($sort, 'asc');
         // $a = Detail::all();
-        // $sort = 'priority';
+        $sort = 'detail_id';
 
-        // $imgae_list = Detail::whereHas('images', function($q)use($a,$sort){
-        //     $q->where('details.id',1)
-        //     ->orderBy($sort, 'asc')->get();
-        // });
+        // $imgae_list = Image::with('detail')->whereHas('detail',
+        // function($q){
+        //         $q->where('priority', '>=', '1');
+        // })->groupBy('detail_id')->get();
+
+        // $imgae_list = Image::whereHas('detail', function($q)use($sort){
+        //     $q->where('priority', '>=', '1');
+        // })->get();
+
+        $imgae_list = DB::table('details')
+            ->join('images', 'details.id', '=', 'images.detail_id')
+            ->select('details.*','images.path')
+            ->distinct()
+            ->orderBy('details.priority', 'asc')
+            ->get();
+
+        // $imgae_list = DB::table('images')
+        //     ->join('details', 'details.id', '=', 'images.detail_id')
+        //     ->select('images.*')
+        //     ->distinct()
+        //     ->get();
+
+        // $imgae_list = Detail::
+        //     join('images', 'details.id', 'images.detail_id')
+        //     ->where('priority', '>=', '1')
+        //     ->select('images.*')
+        //     ->distinct()
+        //     ->get();
 
 
 
 
 
 
-        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'imgae_list'));
     }
 
     public function priority(Request $request)

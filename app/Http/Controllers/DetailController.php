@@ -44,13 +44,14 @@ class DetailController extends Controller
         $imgae_list = DB::table('details')
             ->join('images', 'details.id', '=', 'images.detail_id')
             ->select('details.*','images.path')
-            ->distinct()
+            ->distinct('details.priority')
             ->orderBy('details.priority', 'asc')
             ->get();
 
         for($i=0;$i<count($imgae_list);$i++) {
             $image_path[] = $imgae_list[$i]->path;
         }
+
 
         // $imgae_list = DB::table('images')
         //     ->join('details', 'details.id', '=', 'images.detail_id')
@@ -65,7 +66,6 @@ class DetailController extends Controller
         //     ->distinct()
         //     ->get();
 
-        dd($image_path);
 
 
 
@@ -86,7 +86,7 @@ class DetailController extends Controller
         $imgae_list = DB::table('details')
         ->join('images', 'details.id', '=', 'images.detail_id')
         ->select('details.*','images.path')
-        ->distinct()
+        ->distinct('details.priority')
         ->orderBy('details.priority', 'asc')
         ->get();
 

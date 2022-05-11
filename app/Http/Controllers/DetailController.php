@@ -78,7 +78,15 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images'));
+        $imgae_list = DB::table('details')
+        ->join('images', 'details.id', '=', 'images.detail_id')
+        ->select('details.*','images.path')
+        ->distinct()
+        ->orderBy('details.priority', 'asc')
+        ->get();
+
+
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'imgae_list'));
     }
 
     public function list()

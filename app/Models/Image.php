@@ -134,11 +134,13 @@ class Image extends Model
         if (isset($request->image_)) {
             $images = $request->image_;
             $key = array_keys($images);
+            dd(base64_encode(file_get_contents($request->image_[2]->getRealPath())));
 
             foreach ($key as $v) {
                 // if → 画像の差替え処理。 elseif → 画像の追加処理。
                 // 【備忘録】$keyは配列なので0スタート、$countは更新する枚数なので比べるには-1する必要がある。
                 if ($count - 1 >= $v) {
+                    $image = new Image();
                     // $input = $request->file('image_')[$v];
                     // $original = $input->getClientOriginalName();
                     // $image_kind =  explode(".", $original);

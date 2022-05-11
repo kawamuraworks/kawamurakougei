@@ -44,29 +44,23 @@ class Image extends Model
     // }
 
     // 【SQLSTATE用】Herokuで使用
-    // 新規登録(create)時のImagesテーブルへの登録。Herokuではシンボリックリンクが機能しないので、publicに直接保存する。
-    public static function storeImagesTable($request, $detail)
+    // 新規登録(create)時のImagesテーブルへの登録。Herokuではフォルダの作成ができないので、画像をDBにバイナリ保存する。
+    public static function storeImagesTableForHeroku($request, $detail)
     {
         $count = count($request->file('image_'));
         for ($i = 0; $i < $count; $i++) {
             $image = new Image();
             $image->detail_id = $detail->id;
 
-            // 登録する画像名の作成
-            $input = $request->file('image_')[$i];
-            $original = $input->getClientOriginalName();
-            $img_kind =  explode(".", $original);
-            $image_name = 'works_' . $detail->id . '_' . $i . '.' . end($img_kind);
-
-            // storageに保存ファイルの作成・画像の登録
-            $input->move('public/storage/work_' . $detail->id, $image_name);
-            $image->path = 'public/storage/work_' . $detail->id;
-
-            // 画像説明文の保存
+            //POSTされた画像ファイルデータ取得しbase64でエンコードする
+            $image->path = base64_encode(file_get_contents($request->image_[$i]->getRealPath()));
             $image->img_content = $request->img_content_[$i];
+
             $image->save();
         }
     }
+
+
 
 
     // 【MySQL用】AWSではこちら？

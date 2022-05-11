@@ -27,49 +27,8 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        // $sort = 'path';
-        // $imgae_list = Image::all()->groupBy('detail_id')->orderBy($sort, 'asc');
-        // $a = Detail::all();
-        $sort = 'detail_id';
-
-        // $imgae_list = Image::with('detail')->whereHas('detail',
-        // function($q){
-        //         $q->where('priority', '>=', '1');
-        // })->groupBy('detail_id')->get();
-
-        // $imgae_list = Image::whereHas('detail', function($q)use($sort){
-        //     $q->where('priority', '>=', '1');
-        // })->get();
-
-        $imgae_list = DB::table('details')
-            ->join('images', 'details.id', '=', 'images.detail_id')
-            ->select('details.*','images.path')
-            ->distinct('details.priority')
-            ->orderBy('details.priority', 'asc')
-            ->get();
-
-        for($i=0;$i<count($imgae_list);$i++) {
-            $image_path[] = $imgae_list[$i]->path;
-        }
-
-
-        // $imgae_list = DB::table('images')
-        //     ->join('details', 'details.id', '=', 'images.detail_id')
-        //     ->select('images.*')
-        //     ->distinct()
-        //     ->get();
-
-        // $imgae_list = Detail::
-        //     join('images', 'details.id', 'images.detail_id')
-        //     ->where('priority', '>=', '1')
-        //     ->select('images.*')
-        //     ->distinct()
-        //     ->get();
-
-
-
-
-
+        // Herokuでのみ使用
+        $image_path = Detail::image_path();
 
         return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'image_path'));
     }
@@ -83,18 +42,8 @@ class DetailController extends Controller
         $lists = Detail::lists();
         $images = Image::where('detail_id', $detail->id)->get();
 
-        $imgae_list = DB::table('details')
-        ->join('images', 'details.id', '=', 'images.detail_id')
-        ->select('details.*','images.path')
-        ->distinct('details.priority')
-        ->orderBy('details.priority', 'asc')
-        ->get();
-
-        for($i=0;$i<count($imgae_list);$i++) {
-            $image_path[] = $imgae_list[$i]->path;
-        }
-
-
+        // Herokuでのみ使用
+        $image_path = Detail::image_path();
 
         return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'image_path'));
     }
@@ -108,19 +57,8 @@ class DetailController extends Controller
     {
         $lists = Detail::lists();
 
-
-        $imgae_list = DB::table('details')
-            ->join('images', 'details.id', '=', 'images.detail_id')
-            ->select('details.*','images.path')
-            ->distinct('details.priority')
-            ->orderBy('details.priority', 'asc')
-            ->get();
-
-        for($i=0;$i<count($imgae_list);$i++) {
-            $image_path[] = $imgae_list[$i]->path;
-        }
-
-
+        // Herokuでのみ使用
+        $image_path = Detail::image_path();
 
         return view('admin.select', compact('lists', 'image_path'));
     }
@@ -160,22 +98,7 @@ class DetailController extends Controller
     {
         Detail::validation($request);
         Detail::storeDetailsTable($request, $detail);
-
-        $count = count($request->file('image_'));
-        for ($i = 0; $i < $count; $i++) {
-            $image = new Image();
-            $image->detail_id = $detail->id;
-
-            //POSTされた画像ファイルデータ取得しbase64でエンコードする
-            $image->path = base64_encode(file_get_contents($request->image_[$i]->getRealPath()));
-            $image->img_content = $request->img_content_[$i];
-
-            $image->save();
-        }
-
-
-
-        // Image::storeImagesTable($request, $detail);
+        Image::storeImagesTableForHeroku($request, $detail);
 
         return redirect()->route('admin.select')->with('message', '投稿を作成しました');
     }
@@ -205,6 +128,9 @@ class DetailController extends Controller
         $tags = Detail::tags(0, $detail);
         $display = Detail::display();
         $images = Image::where('detail_id', $admin)->get();
+
+        // Herokuでのみ使用
+        $image_path = Detail::image_path();
 
         return view('admin.edit', compact('detail', 'types', 'tags', 'display', 'images'));
     }

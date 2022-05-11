@@ -207,7 +207,7 @@
                             class="text-danger">※変更する画像のみ再登録してください。</span><br>※画像の追加は、追加ボタンを押してください。</label>
                     @foreach ($images as $k => $v)
                         <p class="mb-1">{{ $k + 1 }}枚目</p>
-                        <img src="{{ asset($v->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
+                        <img src="data:image/png;base64,{{ $v->path }}"
                             class="mb-2 k-cheack-img" alt="">
                         <input type="file" class="form-control" id="image_0" placeholder="変更する画像を登録してください"
                             name="image_[]">

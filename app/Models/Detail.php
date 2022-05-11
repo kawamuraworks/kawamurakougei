@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Detail extends Model
@@ -24,6 +25,25 @@ class Detail extends Model
         return $this->hasMany(Image::class);
     }
 
+    // 【Herokuでのみ使用する関数一覧】画像をバイナリ保存した場合のpath
+    public static function image_path()
+    {
+        // idが重複しないdetailsテーブルを主にimagesテーブルからpathを取得
+        $imgae_list = DB::table('details')
+            ->join('images', 'details.id', '=', 'images.detail_id')
+            ->select('details.*', 'images.path')
+            ->distinct('details.priority')
+            ->orderBy('details.priority', 'asc')
+            ->get();
+
+        // Viewでは、lists等の配列をforeachしたものと併せて使うので、それ用の配列を作成
+        for ($i = 0; $i < count($imgae_list); $i++) {
+            $image_path[] = $imgae_list[$i]->path;
+        }
+
+        return $image_path;
+    }
+
     // 用途一覧
     public static function types($flag, $detail)
     {
@@ -35,7 +55,7 @@ class Detail extends Model
             return $types;
         } elseif ($flag == 1) {
             foreach ($has_type as $k => $v) {
-                if($v != '') {
+                if ($v != '') {
                     $types[$k]['num'] = $v;
                     $types[$k]['name'] = $type_name[$v];
                 }
@@ -54,8 +74,8 @@ class Detail extends Model
             $tags = $tag_name;
             return $tags;
         } elseif ($flag == 1) {
-            foreach ($has_tag as $k=>$v) {
-                if($v != '') {
+            foreach ($has_tag as $k => $v) {
+                if ($v != '') {
                     $tags[$k]['num'] = $v;
                     $tags[$k]['name'] = $tag_name[$v];
                 }

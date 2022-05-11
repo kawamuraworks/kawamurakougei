@@ -134,7 +134,6 @@ class Image extends Model
         if (isset($request->image_)) {
             $images = $request->image_;
             $key = array_keys($images);
-            dd(base64_encode(file_get_contents($request->image_[2]->getRealPath())));
 
             foreach ($key as $v) {
                 // if → 画像の差替え処理。 elseif → 画像の追加処理。

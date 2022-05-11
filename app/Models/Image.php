@@ -139,14 +139,13 @@ class Image extends Model
                 // if → 画像の差替え処理。 elseif → 画像の追加処理。
                 // 【備忘録】$keyは配列なので0スタート、$countは更新する枚数なので比べるには-1する必要がある。
                 if ($count - 1 >= $v) {
-                    $image = new Image();
                     // $input = $request->file('image_')[$v];
                     // $original = $input->getClientOriginalName();
                     // $image_kind =  explode(".", $original);
                     // $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
                     // $input->move('storage/work_' . $target[0]->detail_id, $image_name);
 
-                    $image->path = base64_encode(file_get_contents($request->image_[$v]->getRealPath()));
+                    $image->path = base64_encode(file_get_contents($images[$v]->getRealPath()));
                     $image->img_content = $request->img_content_[$v];
                     $image->update();
                 } elseif ($count <= $v) {

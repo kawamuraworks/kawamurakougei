@@ -65,6 +65,7 @@ class DetailController extends Controller
         //     ->distinct()
         //     ->get();
 
+        dd($image_path);
 
 
 

@@ -145,27 +145,10 @@ class Image extends Model
                         $image->img_content = $request->img_content_[$i];
                         $image->update();
                     }
-
-                    // $input = $request->file('image_')[$v];
-                    // $original = $input->getClientOriginalName();
-                    // $image_kind =  explode(".", $original);
-                    // $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-                    // $input->move('storage/work_' . $target[0]->detail_id, $image_name);
-
-                    // $image->path = base64_encode(file_get_contents($images[$v]->getRealPath()));
-                    // $image->img_content = $request->img_content_[$v];
-                    // $image->update();
                 } elseif ($count <= $v) {
                     $image = new Image();
-                    // $input = $request->file('image_')[$v];
-                    // $original = $input->getClientOriginalName();
-                    // $image_kind =  explode(".", $original);
-                    // $image_name = 'works_' . $target[0]->detail_id . '_' . $v . '.' . end($image_kind);
-                    // $input->move('storage/work_' . $target[0]->detail_id, $image_name);
-
                     $image->detail_id = $target[0]->detail_id;
                     $image->path = base64_encode(file_get_contents($request->image_[$v]->getRealPath()));
-                    // $image->path = 'storage/work_' . $target[0]->detail_id;
                     $image->img_content = $request->img_content_[$v];
                     $image->save();
                 }

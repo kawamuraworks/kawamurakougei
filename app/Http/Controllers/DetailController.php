@@ -83,25 +83,29 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // 【MySQL用】AWSではこちら？
-    // public function store(Request $request, Detail $detail)
-    // {
-    //     Detail::validation($request);
-    //     Detail::storeDetailsTable($request, $detail);
-    //     Image::storeImagesTable($request, $detail);
-
-    //     return redirect()->route('admin.select')->with('message', '投稿を作成しました');
-    // }
-
-    // 【SQLSTATE用】Herokuで使用
     public function store(Request $request, Detail $detail)
     {
         Detail::validation($request);
         Detail::storeDetailsTable($request, $detail);
+
+        // 【MySQL用】AWSではこちら？
+        // Image::storeImagesTable($request, $detail);
+
+        // 【SQLSTATE用】Herokuで使用
         Image::storeImagesTableForHeroku($request, $detail);
 
         return redirect()->route('admin.select')->with('message', '投稿を作成しました');
     }
+
+    // 【SQLSTATE用】Herokuで使用
+    // public function store(Request $request, Detail $detail)
+    // {
+    //     Detail::validation($request);
+    //     Detail::storeDetailsTable($request, $detail);
+    //     Image::storeImagesTableForHeroku($request, $detail);
+
+    //     return redirect()->route('admin.select')->with('message', '投稿を作成しました');
+    // }
 
     /**
      * Display the specified resource.
@@ -129,9 +133,6 @@ class DetailController extends Controller
         $display = Detail::display();
         $images = Image::where('detail_id', $admin)->get();
 
-        // Herokuでのみ使用
-        $image_path = Detail::image_path();
-
         return view('admin.edit', compact('detail', 'types', 'tags', 'display', 'images'));
     }
 
@@ -150,8 +151,17 @@ class DetailController extends Controller
         // 更新対象となる行(イメージテーブル情報)を取得する
         $target = Image::where('detail_id', $request->id)->get();
         $count = count($target);
-        Image::onlyEditContent($request, $target, $count);
-        Image::includeEditImages($request, $image, $target, $count);
+
+        // 【MySQL用】AWSではこちら？
+        // Image::onlyEditContent($request, $target, $count);
+        // 【SQLSTATE用】Herokuで使用
+        Image::onlyEditContentForHeroku($request, $target, $count);
+
+        // 【MySQL用】AWSではこちら？
+        // Image::includeEditImages($request, $image, $target, $count);
+        // 【SQLSTATE用】Herokuで使用
+        Image::includeEditImagesForHeroku($request, $image, $target, $count);
+
 
         return redirect()->route('admin.select')->with('message', '内容を変更しました');
     }

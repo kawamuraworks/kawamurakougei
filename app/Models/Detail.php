@@ -33,7 +33,7 @@ class Detail extends Model
             ->join('images', 'details.id', '=', 'images.detail_id')
             ->select('details.*', 'images.path')
             ->distinct('details.priority')
-            ->orderBy('details.priority', 'asc')
+            ->orderBy('images._id', 'asc')
             ->get();
 
         // Viewでは、lists等の配列をforeachしたものと併せて使うので、それ用の配列を作成

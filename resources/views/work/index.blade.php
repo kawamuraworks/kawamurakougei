@@ -114,7 +114,7 @@
                     <figure class="works-list k-select">
                         <a class="nav-link k-nav-link" aria-current="page"
                             href="/work/index?priority={{ $v->priority }}">
-                            <img src="data:image/png;base64,{{ $imgae_list[$k]->path }}"
+                            <img src="data:image/png;base64,{{ $image_path[$k]->path }}"
                                 class="img-fluid" alt="{{ $v->headline }}">
                             {{-- <img src="{{ '/works/work2/works-0002-' . $k+1 . '.jpg' }}"
                                 class="img-fluid" alt=""> --}}

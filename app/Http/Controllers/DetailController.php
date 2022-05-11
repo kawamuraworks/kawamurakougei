@@ -48,6 +48,10 @@ class DetailController extends Controller
             ->orderBy('details.priority', 'asc')
             ->get();
 
+        for($i=0;$i<count($imgae_list);$i++) {
+            $image_path[] = $imgae_list[$i]->path;
+        }
+
         // $imgae_list = DB::table('images')
         //     ->join('details', 'details.id', '=', 'images.detail_id')
         //     ->select('images.*')
@@ -66,7 +70,7 @@ class DetailController extends Controller
 
 
 
-        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'imgae_list'));
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'image_path'));
     }
 
     public function priority(Request $request)
@@ -85,8 +89,13 @@ class DetailController extends Controller
         ->orderBy('details.priority', 'asc')
         ->get();
 
+        for($i=0;$i<count($imgae_list);$i++) {
+            $image_path[] = $imgae_list[$i]->path;
+        }
 
-        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'imgae_list'));
+
+
+        return view('work.index', compact('result', 'detail', 'types', 'tags', 'lists', 'images', 'image_path'));
     }
 
     public function list()

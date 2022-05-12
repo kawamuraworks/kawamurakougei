@@ -1,8 +1,10 @@
 <x-app-layout>
 
     <div class="row justify-content-center" style="margin-left: 0; margin-right:0">
-        <div class="col-md-7 pe-5 k-side-pd">
-            <h3 class="pt-5 pb-3">お問合せ</h3>
+        <div class="col-md-7 px-5 k-side-pd">
+            <div class="col-12">
+                <h3 class="pt-5 pb-3">お問合せ</h3>
+            </div>
         </div>
     </div>
 
@@ -14,10 +16,10 @@
         @csrf
 
         <div class="row justify-content-center" style="margin-left: 0; margin-right:0">
-            <div class="col-md-7 pe-5 k-side-pd">
+            <div class="col-md-7 px-5 k-side-pd">
                 {{-- お名前・フリガナ --}}
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="name" class="form-label">お名前 ※</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
                             required>
@@ -25,7 +27,7 @@
                             お名前を入力してください
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="kana" class="form-label">フリガナ ※</label>
                         <input type="text" class="form-control" id="kana" name="kana" value="{{ old('kana') }}"
                             required>
@@ -36,7 +38,7 @@
                 </div>
 
                 {{-- メールアドレス --}}
-                <div class="col-sm-12 pt-3">
+                <div class="col-12 pt-3">
                     <label for="email" class="form-label">メールアドレス ※</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                     <div class="invalid-feedback">
@@ -45,8 +47,26 @@
                 </div>
 
                 {{-- 電話番号 --}}
+                    <div class="row col-12 pt-3 mx-0">
+                        <label for="tel" class="form-label ps-0">お電話番号 ※</label>
+                        <div class="col-4 ps-0">
+                            <input type="text" class="form-control px-0" id="tel" name="tel1" value="{{ old('tel1') }}" required>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control " id="tel" name="tel2" value="{{ old('tel2') }}" required>
+                        </div>
+                        <div class="col-4 pe-0">
+                            <input type="text" class="form-control px-0" id="tel" name="tel3" value="{{ old('tel3') }}" required>
+                        </div>
+                        <div class="invalid-feedback">
+                            電話番号を入力してください
+                        </div>
+                    </div>
+
+
+                {{-- 【最終削除】旧電話番号表示
                 <div class="row  pt-3">
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="tel1" class="form-label">お電話番号 ※</label>
                         <input type="text" class="form-control" id="tel1" name="tel1" value="{{ old('tel1') }}" required>
                         <div class="invalid-feedback">
@@ -54,7 +74,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="tel2" class="form-label">　</label>
                         <input type="text" class="form-control" id="tel2" name="tel2" value="{{ old('tel2') }}" required>
                         <div class="invalid-feedback">
@@ -62,14 +82,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="tel3" class="form-label">　</label>
                         <input type="text" class="form-control" id="tel3" name="tel3" value="{{ old('tel3') }}" required>
                         <div class="invalid-feedback">
                             電話番号を入力してください
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-sm-12 pt-3">
                     <label for="location" class="form-label">ご住所</label>

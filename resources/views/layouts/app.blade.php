@@ -148,15 +148,14 @@
                         <hr style="margin-bottom: 0">
 
                         @if (Route::has('login'))
-                            <div class="row col-md-12 mb-lg-2 mb-sm-5 ps-0">
+                            <div class="col-lg-10 col-sm-12 mb-lg-2 mb-sm-5 ps-0">
                                 @auth
-                                    <form method="post" action="{{ route('logout') }}" class="col-sm-12 col-lg-2 my-2">
+                                    <form method="post" action="{{ route('logout') }}" class="col-sm-4 col-lg-2 ms-2 my-2">
                                         @csrf
                                         <button class="btn btn-light my-2">ログアウト</button>
                                     </form>
                                 @else
                                     <a href="{{ route('login') }}" class="col-4 btn btn-light ms-2 my-2">ログイン</a>
-
                                     <a class="col-5 btn btn-light ms-2 my-2" href="{{ route('register') }}">管理者登録画面</a>
                                 @endauth
                             </div>

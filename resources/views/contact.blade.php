@@ -11,8 +11,7 @@
     <x-validation-errors class="mx-5 mb-4 px-4 py-3 alert-danger rounded" :errors="$errors" />
     <x-message :message="session('message')" />
 
-    <form method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data" class="needs-validation"
-        novalidate>
+    <form method="post" action="#" enctype="multipart/form-data" class="needs-validation" novalidate>
         @csrf
 
         <div class="row justify-content-center" style="margin-left: 0; margin-right:0">
@@ -40,56 +39,32 @@
                 {{-- メールアドレス --}}
                 <div class="col-12 pt-3">
                     <label for="email" class="form-label">メールアドレス ※</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                        required>
                     <div class="invalid-feedback">
                         メールアドレスを入力してください
                     </div>
                 </div>
 
                 {{-- 電話番号 --}}
-                    <div class="row col-12 pt-3 mx-0">
-                        <label for="tel" class="form-label ps-0">お電話番号 ※</label>
-                        <div class="col-4 ps-0">
-                            <input type="text" class="form-control px-0" id="tel" name="tel1" value="{{ old('tel1') }}" required>
-                        </div>
-                        <div class="col-4">
-                            <input type="text" class="form-control " id="tel" name="tel2" value="{{ old('tel2') }}" required>
-                        </div>
-                        <div class="col-4 pe-0">
-                            <input type="text" class="form-control px-0" id="tel" name="tel3" value="{{ old('tel3') }}" required>
-                        </div>
-                        <div class="invalid-feedback">
-                            電話番号を入力してください
-                        </div>
+                <div class="row col-12 pt-3 mx-0">
+                    <label for="tel" class="form-label ps-0">お電話番号 ※</label>
+                    <div class="col-4 ps-0">
+                        <input type="text" class="form-control px-0" id="tel" name="tel1" value="{{ old('tel1') }}"
+                            required>
                     </div>
-
-
-                {{-- 【最終削除】旧電話番号表示
-                <div class="row  pt-3">
                     <div class="col-4">
-                        <label for="tel1" class="form-label">お電話番号 ※</label>
-                        <input type="text" class="form-control" id="tel1" name="tel1" value="{{ old('tel1') }}" required>
-                        <div class="invalid-feedback">
-                            電話番号を入力してください
-                        </div>
+                        <input type="text" class="form-control " id="tel" name="tel2" value="{{ old('tel2') }}"
+                            required>
                     </div>
-
-                    <div class="col-4">
-                        <label for="tel2" class="form-label">　</label>
-                        <input type="text" class="form-control" id="tel2" name="tel2" value="{{ old('tel2') }}" required>
-                        <div class="invalid-feedback">
-                            電話番号を入力してください
-                        </div>
+                    <div class="col-4 pe-0">
+                        <input type="text" class="form-control px-0" id="tel" name="tel3" value="{{ old('tel3') }}"
+                            required>
                     </div>
-
-                    <div class="col-4">
-                        <label for="tel3" class="form-label">　</label>
-                        <input type="text" class="form-control" id="tel3" name="tel3" value="{{ old('tel3') }}" required>
-                        <div class="invalid-feedback">
-                            電話番号を入力してください
-                        </div>
+                    <div class="invalid-feedback">
+                        電話番号を入力してください
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="col-sm-12 pt-3">
                     <label for="location" class="form-label">ご住所</label>
@@ -141,10 +116,13 @@
 
         </div>
 
-        <div class="row col-md-12 justify-content-center" style="margin-left: 0; margin-right:0">
-            <button class="col-md-2 btn btn-primary btn-lg my-5 me-3" type="submit">送信する</button>
-            <a class="col-md-2 btn btn-outline-primary btn-lg my-5" href="{{ url('/') }}">トップページに戻る</a>
+        <div class="row justify-content-center" style="margin-left: 0; margin-right:0">
+            <div class="col-md-7 px-5 k-side-pd" style="margin-left: 0; margin-right:0">
+                <button class="col-5 btn btn-primary btn-lg my-5 me-3" type="submit">送信する</button>
+                <a class="col-6 btn btn-outline-primary btn-lg my-5" href="{{ url('/') }}">トップへ戻る</a>
+            </div>
         </div>
+
     </form>
 
 </x-app-layout>

@@ -50,15 +50,15 @@
                 <div class="row col-12 pt-3 mx-0">
                     <label for="tel" class="form-label ps-0">お電話番号 ※</label>
                     <div class="col-4 ps-0">
-                        <input type="text" class="form-control px-0" id="tel" name="tel1" value="{{ old('tel1') }}"
+                        <input type="text" class="form-control" id="tel" name="tel1" value="{{ old('tel1') }}"
                             required>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control " id="tel" name="tel2" value="{{ old('tel2') }}"
+                        <input type="text" class="form-control" id="tel" name="tel2" value="{{ old('tel2') }}"
                             required>
                     </div>
                     <div class="col-4 pe-0">
-                        <input type="text" class="form-control px-0" id="tel" name="tel3" value="{{ old('tel3') }}"
+                        <input type="text" class="form-control" id="tel" name="tel3" value="{{ old('tel3') }}"
                             required>
                     </div>
                     <div class="invalid-feedback">

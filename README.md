@@ -1,4 +1,4 @@
-<p align="center"><a href="[https://laravel.com](https://kakunin-kougei.herokuapp.com/)" target="_blank"><img src="/images/btn_gNav-00.png" width="400"></a></p>
+<p align="center"><a href="https://kakunin-kougei.herokuapp.com/" target="_blank"><img src="public/images/btn_gNav-00.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>

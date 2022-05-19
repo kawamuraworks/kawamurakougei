@@ -5,13 +5,16 @@
 ## 家業のCMS付ホームページです
 
 実績紹介のページは、CMSで管理しています。
+
 文字や画像の登録を行うだけで実績ページの作成が可能です。
 
 
 ## 使い方
 
 1.画面最下部にあるログインより管理者画面に移ってください。
+
 　**メールアドレス：** test@yahoo.co.jp
+ 
 　**パスワード　　：** test1234
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.

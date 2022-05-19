@@ -4,19 +4,15 @@
 
 ## 家業のCMS付ホームページです
 
+実績紹介のページは、CMSで管理しています。
 文字や画像の登録を行うだけで実績ページの作成が可能です。
 
-<!-- - [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications. -->
+## 使い方
 
-## Learning Laravel
+1.画面最下部にあるログインより管理者画面に移ってください。
+　**メールアドレス：** test@yahoo.co.jp
+　**パスワード　　：** test1234
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 

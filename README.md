@@ -14,6 +14,8 @@
 **１.管理者画面を開く**
 
 　画面最下部にあるログインより管理者画面に移ってください。
+ 
+　http://kakunin-kougei.herokuapp.com/login より直接ログイン画面に移動できます。
 
 　メールアドレス： test@yahoo.co.jp
  
@@ -29,7 +31,7 @@
  
 　画像のアップロードは、最大1MBとしてください。
  
- 新規実績登録後は、自動で実績変更選択画面へ移動します。
+　※新規実績登録後は、自動で実績変更選択画面へ移動します。
 
  
 **４.実績変更選択画面**
@@ -38,7 +40,9 @@
  
 　新規実績登録された物件は、実績一覧の2番目に非表示としてDBに登録されています。
  
-　登録されたレイアウトを確認する場合は、*http://kakunin-kougei.herokuapp.com/work/index?priority=2* より確認してください。
+　登録されたレイアウトの確認は、以下のアドレスより行ってください。
+ 
+　*http://kakunin-kougei.herokuapp.com/work/index?priority=2*
 　
 　レイアウトに問題が無ければ、登録された実績変更ページに移動し、「表示切替」「表示順序」を変更してください。
  
@@ -52,12 +56,7 @@
 　動作確認のため新規実績登録を行った場合は確認後、登録実績の削除をお願いします。
 　
 　現在、登録されている実績の変更は行わないでください。
-　
- 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
 ## Laravel Sponsors
 

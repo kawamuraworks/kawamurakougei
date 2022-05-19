@@ -17,9 +17,9 @@
  
 　http://kakunin-kougei.herokuapp.com/login より直接ログイン画面に移動できます。
 
-　メールアドレス： test@yahoo.co.jp
+　　メールアドレス： test@yahoo.co.jp
  
-　パスワード　　： test1234
+　　パスワード　　： test1234
  
 **２.管理画面一覧より希望するページへ移動してください**
  

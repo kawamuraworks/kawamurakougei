@@ -1,12 +1,16 @@
 <p align="center"><a href="https://kakunin-kougei.herokuapp.com/" target="_blank"><img src="public/images/read_me.jpg" width="400"></a></p>
+<<<<<<< HEAD
+
+=======
+>>>>>>> cc0ea843fea82547a61483b63f8006e45fdc2769
 
 
 
-## About Laravel
+## 家業のCMS付ホームページです
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+文字や画像の登録を行うだけで実績ページの作成が可能です。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
+<!-- - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
@@ -14,7 +18,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Robust background job processing](https://laravel.com/docs/queues).
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Laravel is accessible, powerful, and provides tools required for large, robust applications. -->
 
 ## Learning Laravel
 

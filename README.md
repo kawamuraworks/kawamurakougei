@@ -9,8 +9,6 @@
 文字や画像の登録を行うだけで実績ページの作成が可能です。
 
 
-
-
 ## 使い方
 
 1.画面最下部にあるログインより管理者画面に移ってください。
@@ -18,6 +16,20 @@
 　**メールアドレス：** test@yahoo.co.jp
  
 　**パスワード　　：** test1234
+ 
+2.新規実績登録
+
+　見出し・施工期間は、画像の上に表示されている文字になります。
+ 
+　以降は、入力欄と表示順序が対応しています。
+ 
+　画像のアップロードは、最大1MBとしてください。
+ 
+3.実績変更
+
+　新規実績登録
+　
+ 
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 

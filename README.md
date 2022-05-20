@@ -16,6 +16,8 @@
 　画面最下部にあるログインより管理者画面に移ってください。
  
  　[こちらのリンクから直接ログイン画面に移動できます。](http://kakunin-kougei.herokuapp.com/login)
+  
+ 　ログイン情報は以下の通りです。
 
 　　メールアドレス： test@yahoo.co.jp
  

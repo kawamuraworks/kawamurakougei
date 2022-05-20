@@ -1,4 +1,4 @@
-<p align="center"><a href="https://kakunin-kougei.herokuapp.com/" target="_blank"><img src="public/images/read_me.jpg" width="600"></a></p>
+<p align="center"><a href="https://kakunin-kougei.herokuapp.com/" target="_blank"><img src="public/images/read_me.jpg" width="800"></a></p>
 
 
 
@@ -14,6 +14,8 @@
 **１.管理者画面を開く**
 
 　画面最下部にあるログインより管理者画面に移ってください。
+ 
+ [こちらのリンクから直接ログイン画面に移動できます。](http://kakunin-kougei.herokuapp.com/login)
  
 　http://kakunin-kougei.herokuapp.com/login より直接ログイン画面に移動できます。
 

@@ -15,9 +15,7 @@
 
 　画面最下部にあるログインより管理者画面に移ってください。
  
- [こちらのリンクから直接ログイン画面に移動できます。](http://kakunin-kougei.herokuapp.com/login)
- 
-　http://kakunin-kougei.herokuapp.com/login より直接ログイン画面に移動できます。
+ 　[こちらのリンクから直接ログイン画面に移動できます。](http://kakunin-kougei.herokuapp.com/login)
 
 　　メールアドレス： test@yahoo.co.jp
  
@@ -44,7 +42,7 @@
  
 　新規実績登録された物件は、実績一覧の2番目に非表示としてDBに登録されています。
  
-　登録されたレイアウトの確認は、以下のアドレスより行ってください。
+　登録されたレイアウトは、以下のアドレスより確認ができます。
  
 　*http://kakunin-kougei.herokuapp.com/work/index?priority=2*
 　

@@ -156,7 +156,7 @@
                                     </form>
                                 @else
                                     <a href="{{ route('login') }}" class="col-4 btn btn-light ms-2 my-2">ログイン</a>
-                                    <a class="col-5 btn btn-light ms-2 my-2" href="{{ route('register') }}">管理者登録画面</a>
+                                    {{-- <a class="col-5 btn btn-light ms-2 my-2" href="{{ route('register') }}">管理者登録画面</a> --}}
                                 @endauth
                             </div>
                         @endif

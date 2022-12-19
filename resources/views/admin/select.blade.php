@@ -11,7 +11,7 @@
             <div class="col-sm-6 col-lg-3 themed-grid-col pt-lg-2 ps-0">
                 <figure class="works-list">
                     <a class="nav-link k-nav-link" aria-current="page" href="{{route('admin.edit', $v)}}">
-                        <img src="data:image/png;base64,{{ $image_path[$k] }}"
+                        <img src="{{ asset('storage/work_' . $v->id . '/works_' . $v->id . '_0.jpg') }}"
                             class="img-fluid" alt="">
                     </a>
                     <figcaption class="lead">{{ $v->headline }}</figcaption>

@@ -1,7 +1,9 @@
 <x-app-layout>
     <div class="card col-lg-10 k-card">
-        <img src="{{ asset($images[0]->path . '/works_' . $detail->id . '_0.jpg') }}" class="card-img"
+        <img src="data:image/png;base64,{{ $images[0]->path }}" class="card-img"
             alt="{{ $detail->headline }}">
+        {{-- <img src="/works/work1/works-0001-1.jpg" class="card-img"
+            alt="{{ $detail->headline }}"> --}}
         <div class="card-img-overlay">
             <h1 class="headline">{{ $detail->headline }}</h1>
             <p class="period">施工期間：{{ $detail->period }}</p>
@@ -73,9 +75,12 @@
                 @foreach ($images as $k => $v)
                     @if ($k == 0)
                         <div class="carousel-item active" data-bs-interval="5000">
-                            <img src="{{ asset($images[$k]->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
+                            <img src="data:image/png;base64,{{ $images[$k]->path }}"
                                 alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
                                 style="margin: 0 auto;">
+                            {{-- <img src="{{ '/works/work1/works-0001-' . $k+1 . '.jpg' }}"
+                                alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
+                                style="margin: 0 auto;"> --}}
                             <div class="carousel-caption d-block k-carousel-caption">
                                 <p class="k-detail-content">{{ $images[$k]->img_content }}</p>
                             </div>
@@ -83,7 +88,7 @@
                         @continue
                     @endif
                     <div class="carousel-item" data-bs-interval="5000">
-                        <img src="{{ asset($images[$k]->path . '/works_' . $detail->id . '_' . $k . '.jpg') }}"
+                        <img src="data:image/png;base64,{{ $images[$k]->path }}"
                             alt="{{ $images[$k]->img_content }}" class="d-block k-slick-slide"
                             style="margin: 0 auto;">
                         <div class="carousel-caption d-block k-carousel-caption">
@@ -109,8 +114,10 @@
                     <figure class="works-list k-select">
                         <a class="nav-link k-nav-link" aria-current="page"
                             href="/work/index?priority={{ $v->priority }}">
-                            <img src="{{ asset('storage/work_' . $v->id . '/works_' . $v->id . '_0.jpg') }}"
-                                class="img-fluid" alt="">
+                            <img src="data:image/png;base64,{{ $image_path[$k] }}"
+                                class="img-fluid" alt="{{ $v->headline }}">
+                            {{-- <img src="{{ '/works/work2/works-0002-' . $k+1 . '.jpg' }}"
+                                class="img-fluid" alt=""> --}}
                             @if($result == $v->priority) <p>選択中</p> @endif
                         </a>
                         <figcaption class="lead">{{ $v->headline }}</figcaption>
